@@ -27,25 +27,25 @@ namespace VeterenaryClinicApp
 
         }
 
-        private void pictureBox2_MouseLeave(object sender, EventArgs e)
-        {
-            pictureBox2.Image = new Bitmap(@"C:\Users\fikra\source\repos\VeterenaryClinicApp\VeterenaryClinicApp\Resources\511955_arrow_before_beginning_left_previous_icon.png");
-        }
+        //private void pictureBox2_MouseLeave(object sender, EventArgs e)
+        //{
+        //    pictureBox2.Image = new Bitmap(@"C:\Users\fikra\source\repos\VeterenaryClinicApp\VeterenaryClinicApp\Resources\511955_arrow_before_beginning_left_previous_icon.png");
+        //}
 
-        private void pictureBox2_MouseMove(object sender, MouseEventArgs e)
-        {
-            pictureBox2.Image = new Bitmap(@"C:\Users\fikra\source\repos\VeterenaryClinicApp\VeterenaryClinicApp\Resources\511955_arrow_before_beginning_left_previous_icon (1).png");
-        }
+        //private void pictureBox2_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    pictureBox2.Image = new Bitmap(@"C:\Users\fikra\source\repos\VeterenaryClinicApp\VeterenaryClinicApp\Resources\511955_arrow_before_beginning_left_previous_icon (1).png");
+        //}
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
+        //private void textBox1_TextChanged(object sender, EventArgs e)
+        //{
             
-        }
+        //}
 
-        private void textBox1_Click(object sender, EventArgs e)
-        {
-            textBox1.Clear();
-        }
+        //private void textBox1_Click(object sender, EventArgs e)
+        //{
+        //    textBox1.Clear();
+        //}
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -73,15 +73,15 @@ namespace VeterenaryClinicApp
             
         }
 
-        private void pictureBox3_MouseLeave(object sender, EventArgs e)
-        {
-            pictureBox3.Image = new Bitmap(@"C:\Users\fikra\source\repos\VeterenaryClinicApp\VeterenaryClinicApp\Resources\9111264_question_circle_icon.png");
-        }
+        //private void pictureBox3_MouseLeave(object sender, EventArgs e)
+        //{
+        //    pictureBox3.Image = new Bitmap(@"C:\Users\fikra\source\repos\VeterenaryClinicApp\VeterenaryClinicApp\Resources\9111264_question_circle_icon.png");
+        //}
 
-        private void pictureBox3_MouseMove(object sender, MouseEventArgs e)
-        {
-            pictureBox3.Image = new Bitmap(@"C:\Users\fikra\source\repos\VeterenaryClinicApp\VeterenaryClinicApp\Resources\9111264_question_circle_icon (1).png");
-        }
+        //private void pictureBox3_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    pictureBox3.Image = new Bitmap(@"C:\Users\fikra\source\repos\VeterenaryClinicApp\VeterenaryClinicApp\Resources\9111264_question_circle_icon (1).png");
+        //}
 
     }
 }

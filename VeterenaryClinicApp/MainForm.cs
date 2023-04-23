@@ -104,7 +104,20 @@ namespace VeterenaryClinicApp
 
         private void button2_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TableForm());
+            DataTable data = new DataTable();
+            data.Columns.Add("Id", typeof(int));
+            data.Columns.Add("Регистрационный номер", typeof(int));
+            data.Columns.Add("Код типа собственности", typeof(int));
+            data.Columns.Add("Год открытия", typeof(int));
+            data.Columns.Add("Адрес пункта", typeof(string));
+            data.Columns.Add("Название пункта", typeof(string));
+            data.Columns.Add("Район города", typeof(string));
+            data.Columns.Add("Телефон", typeof(string));
+
+            data.Rows.Add(1, 24326, 2, 2019, "просп. Ильича, 94, Донецк", "Ветеринарная клиника Мурка", "Черногвардейскй", "+380 (713) 17-76-75");
+            
+
+            OpenChildForm(new TableForm(data,"Ветеринарные клиники"));
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -129,57 +142,172 @@ namespace VeterenaryClinicApp
 
         private void ownerButton_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TableForm());
+            DataTable data = new DataTable();
+            data.Columns.Add("Id", typeof(int));
+            data.Columns.Add("Регистрационный номер", typeof(int));
+            data.Columns.Add("Код типа собственности", typeof(int));
+            data.Columns.Add("Год открытия", typeof(int));
+            data.Columns.Add("Адрес пункта", typeof(string));
+            data.Columns.Add("Название пункта", typeof(string));
+            data.Columns.Add("Район города", typeof(string));
+            data.Columns.Add("Телефон", typeof(string));
+
+            data.Rows.Add(1, "4A63", 2, 2019, "просп. Ильича, 94, Донецк", "Ветеринарная клиника Мурка", "Черногвардейскй", "+380 (713) 17-76-75");
+            OpenChildForm(new TableForm(data, "Ветеринарные клиники"));
         }
 
         private void employeesButton_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TableForm());
+            DataTable data = new DataTable();
+            data.Columns.Add("Id", typeof(int));
+            data.Columns.Add("Регистрационный номер", typeof(int));
+            data.Columns.Add("Код типа собственности", typeof(int));
+            data.Columns.Add("Год открытия", typeof(int));
+            data.Columns.Add("Адрес пункта", typeof(string));
+            data.Columns.Add("Название пункта", typeof(string));
+            data.Columns.Add("Район города", typeof(string));
+            data.Columns.Add("Телефон", typeof(string));
+
+            data.Rows.Add(1, "4A63", 2, 2019, "просп. Ильича, 94, Донецк", "Ветеринарная клиника Мурка", "Черногвардейскй", "+380 (713) 17-76-75");
+            OpenChildForm(new TableForm(data, "Ветеринарные клиники"));
         }
 
         private void animalsButton_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TableForm());
+            DataTable data = new DataTable();
+            data.Columns.Add("Id", typeof(int));
+            data.Columns.Add("Регистрационный номер", typeof(int));
+            data.Columns.Add("Код типа собственности", typeof(int));
+            data.Columns.Add("Год открытия", typeof(int));
+            data.Columns.Add("Адрес пункта", typeof(string));
+            data.Columns.Add("Название пункта", typeof(string));
+            data.Columns.Add("Район города", typeof(string));
+            data.Columns.Add("Телефон", typeof(string));
+
+            data.Rows.Add(1, "4A63", 2, 2019, "просп. Ильича, 94, Донецк", "Ветеринарная клиника Мурка", "Черногвардейскй", "+380 (713) 17-76-75");
+            OpenChildForm(new TableForm(data, "Ветеринарные клиники"));
         }
 
         private void procButton_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TableForm());
+            DataTable data = new DataTable();
+            data.Columns.Add("Id", typeof(int));
+            data.Columns.Add("Регистрационный номер", typeof(int));
+            data.Columns.Add("Код типа собственности", typeof(int));
+            data.Columns.Add("Год открытия", typeof(int));
+            data.Columns.Add("Адрес пункта", typeof(string));
+            data.Columns.Add("Название пункта", typeof(string));
+            data.Columns.Add("Район города", typeof(string));
+            data.Columns.Add("Телефон", typeof(string));
+
+            data.Rows.Add(1, "4A63", 2, 2019, "просп. Ильича, 94, Донецк", "Ветеринарная клиника Мурка", "Черногвардейскй", "+380 (713) 17-76-75");
+            OpenChildForm(new TableForm(data, "Ветеринарные клиники"));
         }
 
         private void positionsButton_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TableForm());
+            DataTable data = new DataTable();
+            data.Columns.Add("Id", typeof(int));
+            data.Columns.Add("Должность", typeof(string));
+            
+            data.Rows.Add(1, "Глав. Врач");
+            OpenChildForm(new TableForm(data, "Должности"));
         }
 
         private void disctrictsButton_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TableForm());
+            DataTable data = new DataTable();
+            data.Columns.Add("Id", typeof(int));
+            data.Columns.Add("Регистрационный номер", typeof(int));
+            data.Columns.Add("Код типа собственности", typeof(int));
+            data.Columns.Add("Год открытия", typeof(int));
+            data.Columns.Add("Адрес пункта", typeof(string));
+            data.Columns.Add("Название пункта", typeof(string));
+            data.Columns.Add("Район города", typeof(string));
+            data.Columns.Add("Телефон", typeof(string));
+
+            data.Rows.Add(1, "4A63", 2, 2019, "просп. Ильича, 94, Донецк", "Ветеринарная клиника Мурка", "Черногвардейскй", "+380 (713) 17-76-75");
+            OpenChildForm(new TableForm(data, "Ветеринарные клиники"));
         }
 
         private void classesButton_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TableForm());
+            DataTable data = new DataTable();
+            data.Columns.Add("Id", typeof(int));
+            data.Columns.Add("Регистрационный номер", typeof(int));
+            data.Columns.Add("Код типа собственности", typeof(int));
+            data.Columns.Add("Год открытия", typeof(int));
+            data.Columns.Add("Адрес пункта", typeof(string));
+            data.Columns.Add("Название пункта", typeof(string));
+            data.Columns.Add("Район города", typeof(string));
+            data.Columns.Add("Телефон", typeof(string));
+
+            data.Rows.Add(1, "4A63", 2, 2019, "просп. Ильича, 94, Донецк", "Ветеринарная клиника Мурка", "Черногвардейскй", "+380 (713) 17-76-75");
+            OpenChildForm(new TableForm(data, "Ветеринарные клиники"));
         }
 
         private void typeButton_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TableForm());
+            DataTable data = new DataTable();
+            data.Columns.Add("Id", typeof(int));
+            data.Columns.Add("Регистрационный номер", typeof(int));
+            data.Columns.Add("Код типа собственности", typeof(int));
+            data.Columns.Add("Год открытия", typeof(int));
+            data.Columns.Add("Адрес пункта", typeof(string));
+            data.Columns.Add("Название пункта", typeof(string));
+            data.Columns.Add("Район города", typeof(string));
+            data.Columns.Add("Телефон", typeof(string));
+
+            data.Rows.Add(1, "4A63", 2, 2019, "просп. Ильича, 94, Донецк", "Ветеринарная клиника Мурка", "Черногвардейскй", "+380 (713) 17-76-75");
+            OpenChildForm(new TableForm(data, "Ветеринарные клиники"));
         }
 
         private void ownershipButton_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TableForm());
+            DataTable data = new DataTable();
+            data.Columns.Add("Id", typeof(int));
+            data.Columns.Add("Регистрационный номер", typeof(int));
+            data.Columns.Add("Код типа собственности", typeof(int));
+            data.Columns.Add("Год открытия", typeof(int));
+            data.Columns.Add("Адрес пункта", typeof(string));
+            data.Columns.Add("Название пункта", typeof(string));
+            data.Columns.Add("Район города", typeof(string));
+            data.Columns.Add("Телефон", typeof(string));
+
+            data.Rows.Add(1, "4A63", 2, 2019, "просп. Ильича, 94, Донецк", "Ветеринарная клиника Мурка", "Черногвардейскй", "+380 (713) 17-76-75");
+            OpenChildForm(new TableForm(data, "Ветеринарные клиники"));
         }
 
         private void licencesButton_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TableForm());
+            DataTable data = new DataTable();
+            data.Columns.Add("Id", typeof(int));
+            data.Columns.Add("Регистрационный номер", typeof(int));
+            data.Columns.Add("Код типа собственности", typeof(int));
+            data.Columns.Add("Год открытия", typeof(int));
+            data.Columns.Add("Адрес пункта", typeof(string));
+            data.Columns.Add("Название пункта", typeof(string));
+            data.Columns.Add("Район города", typeof(string));
+            data.Columns.Add("Телефон", typeof(string));
+
+            data.Rows.Add(1, "4A63", 2, 2019, "просп. Ильича, 94, Донецк", "Ветеринарная клиника Мурка", "Черногвардейскй", "+380 (713) 17-76-75");
+            OpenChildForm(new TableForm(data, "Ветеринарные клиники"));
         }
 
         private void typeProcButton_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TableForm());
+            DataTable data = new DataTable();
+            data.Columns.Add("Id", typeof(int));
+            data.Columns.Add("Регистрационный номер", typeof(int));
+            data.Columns.Add("Код типа собственности", typeof(int));
+            data.Columns.Add("Год открытия", typeof(int));
+            data.Columns.Add("Адрес пункта", typeof(string));
+            data.Columns.Add("Название пункта", typeof(string));
+            data.Columns.Add("Район города", typeof(string));
+            data.Columns.Add("Телефон", typeof(string));
+
+            data.Rows.Add(1, "4A63", 2, 2019, "просп. Ильича, 94, Донецк", "Ветеринарная клиника Мурка", "Черногвардейскй", "+380 (713) 17-76-75");
+            OpenChildForm(new TableForm(data, "Ветеринарные клиники"));
         }
 
         private void button1_Click(object sender, EventArgs e)//фильтрация
@@ -202,9 +330,19 @@ namespace VeterenaryClinicApp
             showSubMenu(diagramPanel);
         }
 
-        private void button6_Click(object sender, EventArgs e)//диаграммы
+        private void button6_Click(object sender, EventArgs e)//диаграмма лучшие клиники
         {
             OpenChildForm(new StatisticForm());
+        }
+
+        private void button4_Click(object sender, EventArgs e)//диаграмма лучшие сотрудники
+        {
+            OpenChildForm(new StatisticForm2());
+        }
+
+        private void button5_Click(object sender, EventArgs e)//диаграмма доходы клиник
+        {
+            OpenChildForm(new StatisticForm3());
         }
     }
 }

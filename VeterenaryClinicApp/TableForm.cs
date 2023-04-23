@@ -12,9 +12,12 @@ namespace VeterenaryClinicApp
 {
     public partial class TableForm : Form
     {
-        public TableForm()
+        
+        public TableForm(DataTable data,string name)
         {
             InitializeComponent();
+            dataGridView1.DataSource = data;
+            nameTable.Text = name;
         }
 
         private void label1_Click(object sender, EventArgs e)

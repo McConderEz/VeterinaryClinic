@@ -30,10 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.sideMenuPanel = new System.Windows.Forms.Panel();
+            this.diagramPanel = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.requestsPanel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.searchButton = new System.Windows.Forms.Button();
             this.requestButton = new System.Windows.Forms.Button();
+            this.requestsButton = new System.Windows.Forms.Button();
             this.dictionaryPanel = new System.Windows.Forms.Panel();
             this.typeProcButton = new System.Windows.Forms.Button();
             this.licencesButton = new System.Windows.Forms.Button();
@@ -42,30 +46,28 @@
             this.classesButton = new System.Windows.Forms.Button();
             this.disctrictsButton = new System.Windows.Forms.Button();
             this.positionsButton = new System.Windows.Forms.Button();
+            this.dictionaryButton = new System.Windows.Forms.Button();
             this.tablesPanel = new System.Windows.Forms.Panel();
             this.procButton = new System.Windows.Forms.Button();
             this.ownerButton = new System.Windows.Forms.Button();
             this.animalsButton = new System.Windows.Forms.Button();
             this.employeesButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.tablesButton = new System.Windows.Forms.Button();
             this.LogoPanel = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PlayerPanel = new System.Windows.Forms.Panel();
             this.ChildFormPanel = new System.Windows.Forms.Panel();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
-            this.diagramPanel = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.requestsButton = new System.Windows.Forms.Button();
-            this.dictionaryButton = new System.Windows.Forms.Button();
-            this.tablesButton = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.sideMenuPanel.SuspendLayout();
+            this.diagramPanel.SuspendLayout();
             this.requestsPanel.SuspendLayout();
             this.dictionaryPanel.SuspendLayout();
             this.tablesPanel.SuspendLayout();
             this.LogoPanel.SuspendLayout();
-            this.diagramPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -86,9 +88,57 @@
             this.sideMenuPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.sideMenuPanel.Location = new System.Drawing.Point(0, 0);
             this.sideMenuPanel.Name = "sideMenuPanel";
-            this.sideMenuPanel.Size = new System.Drawing.Size(250, 883);
+            this.sideMenuPanel.Size = new System.Drawing.Size(250, 810);
             this.sideMenuPanel.TabIndex = 0;
             this.sideMenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.sideMenuPanel_Paint);
+            // 
+            // diagramPanel
+            // 
+            this.diagramPanel.BackColor = System.Drawing.Color.Teal;
+            this.diagramPanel.Controls.Add(this.button5);
+            this.diagramPanel.Controls.Add(this.button4);
+            this.diagramPanel.Controls.Add(this.button6);
+            this.diagramPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.diagramPanel.Location = new System.Drawing.Point(0, 897);
+            this.diagramPanel.Name = "diagramPanel";
+            this.diagramPanel.Size = new System.Drawing.Size(233, 114);
+            this.diagramPanel.TabIndex = 7;
+            // 
+            // button6
+            // 
+            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button6.Location = new System.Drawing.Point(0, 0);
+            this.button6.Name = "button6";
+            this.button6.Padding = new System.Windows.Forms.Padding(70, 0, 0, 0);
+            this.button6.Size = new System.Drawing.Size(233, 40);
+            this.button6.TabIndex = 4;
+            this.button6.Text = "Лучшие клиники";
+            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button3.Image = global::VeterenaryClinicApp.Properties.Resources.imgonline_com_ua_Resize_jkC1pVw1kI2B;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(0, 852);
+            this.button3.Name = "button3";
+            this.button3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.button3.Size = new System.Drawing.Size(233, 45);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "          Диаграммы и графики";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // requestsPanel
             // 
@@ -152,6 +202,25 @@
             this.requestButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.requestButton.UseVisualStyleBackColor = true;
             this.requestButton.Click += new System.EventHandler(this.requestButton_Click);
+            // 
+            // requestsButton
+            // 
+            this.requestsButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.requestsButton.FlatAppearance.BorderSize = 0;
+            this.requestsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.requestsButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.requestsButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.requestsButton.Image = global::VeterenaryClinicApp.Properties.Resources.imgonline_com_ua_Resize_zT5zWKHADlbchRe;
+            this.requestsButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.requestsButton.Location = new System.Drawing.Point(0, 681);
+            this.requestsButton.Name = "requestsButton";
+            this.requestsButton.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.requestsButton.Size = new System.Drawing.Size(233, 45);
+            this.requestsButton.TabIndex = 4;
+            this.requestsButton.Text = "          Запросы и поиски";
+            this.requestsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.requestsButton.UseVisualStyleBackColor = true;
+            this.requestsButton.Click += new System.EventHandler(this.requestsButton_Click);
             // 
             // dictionaryPanel
             // 
@@ -288,6 +357,25 @@
             this.positionsButton.UseVisualStyleBackColor = true;
             this.positionsButton.Click += new System.EventHandler(this.positionsButton_Click);
             // 
+            // dictionaryButton
+            // 
+            this.dictionaryButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dictionaryButton.FlatAppearance.BorderSize = 0;
+            this.dictionaryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.dictionaryButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dictionaryButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dictionaryButton.Image = global::VeterenaryClinicApp.Properties.Resources.imgonline_com_ua_Resize_ynHjLP48logXe8O;
+            this.dictionaryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dictionaryButton.Location = new System.Drawing.Point(0, 349);
+            this.dictionaryButton.Name = "dictionaryButton";
+            this.dictionaryButton.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.dictionaryButton.Size = new System.Drawing.Size(233, 45);
+            this.dictionaryButton.TabIndex = 2;
+            this.dictionaryButton.Text = "          Справочники";
+            this.dictionaryButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dictionaryButton.UseVisualStyleBackColor = true;
+            this.dictionaryButton.Click += new System.EventHandler(this.dictionaryButton_Click);
+            // 
             // tablesPanel
             // 
             this.tablesPanel.BackColor = System.Drawing.Color.Teal;
@@ -387,122 +475,6 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // LogoPanel
-            // 
-            this.LogoPanel.Controls.Add(this.pictureBox2);
-            this.LogoPanel.Controls.Add(this.pictureBox1);
-            this.LogoPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LogoPanel.Location = new System.Drawing.Point(0, 0);
-            this.LogoPanel.Name = "LogoPanel";
-            this.LogoPanel.Size = new System.Drawing.Size(233, 100);
-            this.LogoPanel.TabIndex = 0;
-            // 
-            // PlayerPanel
-            // 
-            this.PlayerPanel.BackColor = System.Drawing.Color.DarkCyan;
-            this.PlayerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PlayerPanel.Location = new System.Drawing.Point(250, 783);
-            this.PlayerPanel.Name = "PlayerPanel";
-            this.PlayerPanel.Size = new System.Drawing.Size(850, 100);
-            this.PlayerPanel.TabIndex = 1;
-            // 
-            // ChildFormPanel
-            // 
-            this.ChildFormPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChildFormPanel.Location = new System.Drawing.Point(250, 0);
-            this.ChildFormPanel.Name = "ChildFormPanel";
-            this.ChildFormPanel.Size = new System.Drawing.Size(850, 783);
-            this.ChildFormPanel.TabIndex = 2;
-            // 
-            // bunifuElipse1
-            // 
-            this.bunifuElipse1.ElipseRadius = 20;
-            this.bunifuElipse1.TargetControl = this;
-            // 
-            // diagramPanel
-            // 
-            this.diagramPanel.BackColor = System.Drawing.Color.Teal;
-            this.diagramPanel.Controls.Add(this.button6);
-            this.diagramPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.diagramPanel.Location = new System.Drawing.Point(0, 897);
-            this.diagramPanel.Name = "diagramPanel";
-            this.diagramPanel.Size = new System.Drawing.Size(233, 114);
-            this.diagramPanel.TabIndex = 7;
-            // 
-            // button6
-            // 
-            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button6.Location = new System.Drawing.Point(0, 0);
-            this.button6.Name = "button6";
-            this.button6.Padding = new System.Windows.Forms.Padding(70, 0, 0, 0);
-            this.button6.Size = new System.Drawing.Size(233, 40);
-            this.button6.TabIndex = 4;
-            this.button6.Text = "Диаграммы и графики";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button3
-            // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button3.Image = global::VeterenaryClinicApp.Properties.Resources.imgonline_com_ua_Resize_jkC1pVw1kI2B;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(0, 852);
-            this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.button3.Size = new System.Drawing.Size(233, 45);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "          Диаграммы и графики";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // requestsButton
-            // 
-            this.requestsButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.requestsButton.FlatAppearance.BorderSize = 0;
-            this.requestsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.requestsButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.requestsButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.requestsButton.Image = global::VeterenaryClinicApp.Properties.Resources.imgonline_com_ua_Resize_zT5zWKHADlbchRe;
-            this.requestsButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.requestsButton.Location = new System.Drawing.Point(0, 681);
-            this.requestsButton.Name = "requestsButton";
-            this.requestsButton.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.requestsButton.Size = new System.Drawing.Size(233, 45);
-            this.requestsButton.TabIndex = 4;
-            this.requestsButton.Text = "          Запросы и поиски";
-            this.requestsButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.requestsButton.UseVisualStyleBackColor = true;
-            this.requestsButton.Click += new System.EventHandler(this.requestsButton_Click);
-            // 
-            // dictionaryButton
-            // 
-            this.dictionaryButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dictionaryButton.FlatAppearance.BorderSize = 0;
-            this.dictionaryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dictionaryButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dictionaryButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dictionaryButton.Image = global::VeterenaryClinicApp.Properties.Resources.imgonline_com_ua_Resize_ynHjLP48logXe8O;
-            this.dictionaryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.dictionaryButton.Location = new System.Drawing.Point(0, 349);
-            this.dictionaryButton.Name = "dictionaryButton";
-            this.dictionaryButton.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.dictionaryButton.Size = new System.Drawing.Size(233, 45);
-            this.dictionaryButton.TabIndex = 2;
-            this.dictionaryButton.Text = "          Справочники";
-            this.dictionaryButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.dictionaryButton.UseVisualStyleBackColor = true;
-            this.dictionaryButton.Click += new System.EventHandler(this.dictionaryButton_Click);
-            // 
             // tablesButton
             // 
             this.tablesButton.Dock = System.Windows.Forms.DockStyle.Top;
@@ -522,6 +494,16 @@
             this.tablesButton.UseVisualStyleBackColor = true;
             this.tablesButton.UseWaitCursor = true;
             this.tablesButton.Click += new System.EventHandler(this.tablesButton_Click);
+            // 
+            // LogoPanel
+            // 
+            this.LogoPanel.Controls.Add(this.pictureBox2);
+            this.LogoPanel.Controls.Add(this.pictureBox1);
+            this.LogoPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LogoPanel.Location = new System.Drawing.Point(0, 0);
+            this.LogoPanel.Name = "LogoPanel";
+            this.LogoPanel.Size = new System.Drawing.Size(233, 100);
+            this.LogoPanel.TabIndex = 0;
             // 
             // pictureBox2
             // 
@@ -547,12 +529,68 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // PlayerPanel
+            // 
+            this.PlayerPanel.BackColor = System.Drawing.Color.DarkCyan;
+            this.PlayerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PlayerPanel.Location = new System.Drawing.Point(250, 710);
+            this.PlayerPanel.Name = "PlayerPanel";
+            this.PlayerPanel.Size = new System.Drawing.Size(850, 100);
+            this.PlayerPanel.TabIndex = 1;
+            // 
+            // ChildFormPanel
+            // 
+            this.ChildFormPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChildFormPanel.Location = new System.Drawing.Point(250, 0);
+            this.ChildFormPanel.Name = "ChildFormPanel";
+            this.ChildFormPanel.Size = new System.Drawing.Size(850, 710);
+            this.ChildFormPanel.TabIndex = 2;
+            // 
+            // bunifuElipse1
+            // 
+            this.bunifuElipse1.ElipseRadius = 20;
+            this.bunifuElipse1.TargetControl = this;
+            // 
+            // button4
+            // 
+            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button4.Location = new System.Drawing.Point(0, 40);
+            this.button4.Name = "button4";
+            this.button4.Padding = new System.Windows.Forms.Padding(70, 0, 0, 0);
+            this.button4.Size = new System.Drawing.Size(233, 40);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "Лучшие сотрудники";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button5.Location = new System.Drawing.Point(0, 80);
+            this.button5.Name = "button5";
+            this.button5.Padding = new System.Windows.Forms.Padding(70, 0, 0, 0);
+            this.button5.Size = new System.Drawing.Size(233, 34);
+            this.button5.TabIndex = 6;
+            this.button5.Text = "Доходы клиник";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.ClientSize = new System.Drawing.Size(1100, 883);
+            this.ClientSize = new System.Drawing.Size(1100, 810);
             this.Controls.Add(this.ChildFormPanel);
             this.Controls.Add(this.PlayerPanel);
             this.Controls.Add(this.sideMenuPanel);
@@ -562,11 +600,11 @@
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.sideMenuPanel.ResumeLayout(false);
+            this.diagramPanel.ResumeLayout(false);
             this.requestsPanel.ResumeLayout(false);
             this.dictionaryPanel.ResumeLayout(false);
             this.tablesPanel.ResumeLayout(false);
             this.LogoPanel.ResumeLayout(false);
-            this.diagramPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -606,5 +644,7 @@
         private System.Windows.Forms.Panel diagramPanel;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
     }
 }

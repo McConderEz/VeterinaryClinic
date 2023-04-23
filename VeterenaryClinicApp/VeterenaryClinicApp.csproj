@@ -290,6 +290,18 @@
     <Compile Include="StatisticForm.Designer.cs">
       <DependentUpon>StatisticForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StatisticForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatisticForm2.Designer.cs">
+      <DependentUpon>StatisticForm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatisticForm3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatisticForm3.Designer.cs">
+      <DependentUpon>StatisticForm3.cs</DependentUpon>
+    </Compile>
     <Compile Include="TableForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -338,6 +350,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StatisticForm.resx">
       <DependentUpon>StatisticForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatisticForm2.resx">
+      <DependentUpon>StatisticForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatisticForm3.resx">
+      <DependentUpon>StatisticForm3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TableForm.resx">
       <DependentUpon>TableForm.cs</DependentUpon>
