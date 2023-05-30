@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3415fcaf0fea4ce7afe978fb05e2941d" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Ветеринарные_клиники" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Виды_животных" Width="1.5" PointX="6" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Виды_процедуры" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Владельцы" Width="1.5" PointX="6" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Должности" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Животные" Width="1.5" PointX="8.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Классы_животных" Width="1.5" PointX="3.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Лицензии" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Процедуры" Width="1.5" PointX="10.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Районы" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Сотрудники" Width="1.5" PointX="8.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Тип_собственности" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Условия_содержания_животного" Width="1.5" PointX="2.75" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Ветеринарные_клиники_Районы" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Ветеринарные_клиники_Тип_собственности" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Лицензии_Ветеринарные_клиники" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Сотрудники_Ветеринарные_клиники" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Виды_животных_Классы_животных" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Животные_Виды_животных" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Процедуры_Виды_процедуры" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Животные_Владельцы" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Сотрудники_Должности" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Процедуры_Животные" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Процедуры_Сотрудники" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

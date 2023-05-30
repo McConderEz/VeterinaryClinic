@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\VeterenaryClinicApp"
+    "\\VeterenaryClinicApp",
+    "\\VeterenaryClinicApp\\Model"
   ],
-  "SelectedNode": "\\VeterenaryClinicApp\\AddForm.cs",
+  "SelectedNode": "\\VeterenaryClinicApp\\Model\\ApplicationContext.cs",
   "PreviewInSolutionExplorer": false
 }

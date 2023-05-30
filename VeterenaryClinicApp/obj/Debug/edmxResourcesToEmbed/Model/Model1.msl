@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Veterinary_ClinicEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Model.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ветеринарные_клиники">
+      <EntityTypeMapping TypeName="Model.Ветеринарные_клиники">
+        <MappingFragment StoreEntitySet="Ветеринарные клиники">
+          <ScalarProperty Name="Код_ветеринарной_клиники" ColumnName="Код ветеринарной клинки" />
+          <ScalarProperty Name="Номер_регистрационного_пункта" ColumnName="Номер регистрационного пункта" />
+          <ScalarProperty Name="Код_типа_собственности" ColumnName="Код типа собственности" />
+          <ScalarProperty Name="Год_открытия" ColumnName="Год открытия" />
+          <ScalarProperty Name="Адрес_пункта" ColumnName="Адрес пункта" />
+          <ScalarProperty Name="Название_пункта" ColumnName="Название пункта" />
+          <ScalarProperty Name="Код_район_города" ColumnName="Код район города" />
+          <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Виды_животных">
+      <EntityTypeMapping TypeName="Model.Виды_животных">
+        <MappingFragment StoreEntitySet="Виды животных">
+          <ScalarProperty Name="Код_вида_животного" ColumnName="Код вида животного" />
+          <ScalarProperty Name="Вид_животного" ColumnName="Вид животного" />
+          <ScalarProperty Name="Код_класса_животного" ColumnName="Код класса животного" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Виды_процедуры">
+      <EntityTypeMapping TypeName="Model.Виды_процедуры">
+        <MappingFragment StoreEntitySet="Виды процедуры">
+          <ScalarProperty Name="Код_вида_процедуры" ColumnName="Код вида процедуры" />
+          <ScalarProperty Name="Вид_процедуры" ColumnName="Вид процедуры" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Владельцы">
+      <EntityTypeMapping TypeName="Model.Владельцы">
+        <MappingFragment StoreEntitySet="Владельцы">
+          <ScalarProperty Name="Код_владельца" ColumnName="Код владельца" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+          <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+          <ScalarProperty Name="Дата_рождения_хозяина" ColumnName="Дата рождения хозяина" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Должности">
+      <EntityTypeMapping TypeName="Model.Должности">
+        <MappingFragment StoreEntitySet="Должности">
+          <ScalarProperty Name="Код_должности" ColumnName="Код должности" />
+          <ScalarProperty Name="Должность" ColumnName="Должность" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Животные">
+      <EntityTypeMapping TypeName="Model.Животные">
+        <MappingFragment StoreEntitySet="Животные">
+          <ScalarProperty Name="Код_животного" ColumnName="Код животного" />
+          <ScalarProperty Name="Кличка_Животного" ColumnName="Кличка Животного" />
+          <ScalarProperty Name="Возраст_Животного" ColumnName="Возраст Животного" />
+          <ScalarProperty Name="Условия_содержания_животного" ColumnName="Условия содержания животного" />
+          <ScalarProperty Name="Код_владельца" ColumnName="Код владельца" />
+          <ScalarProperty Name="Код_вида_животного" ColumnName="Код вида животного" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Классы_животных">
+      <EntityTypeMapping TypeName="Model.Классы_животных">
+        <MappingFragment StoreEntitySet="Классы животных">
+          <ScalarProperty Name="Код_класса_животного" ColumnName="Код класса животного" />
+          <ScalarProperty Name="Класс_животного" ColumnName="Класс животного" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Лицензии">
+      <EntityTypeMapping TypeName="Model.Лицензии">
+        <MappingFragment StoreEntitySet="Лицензии">
+          <ScalarProperty Name="Код_лицензии" ColumnName="Код лицензии" />
+          <ScalarProperty Name="Лицензия__" ColumnName="Лицензия №" />
+          <ScalarProperty Name="Срок_окончания_лицензии" ColumnName="Срок окончания лицензии" />
+          <ScalarProperty Name="Фото_лицензии" ColumnName="Фото лицензии" />
+          <ScalarProperty Name="Код_ветеринарной_клинки" ColumnName="Код ветеринарной клинки" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Процедуры">
+      <EntityTypeMapping TypeName="Model.Процедуры">
+        <MappingFragment StoreEntitySet="Процедуры">
+          <ScalarProperty Name="Код_процедуры" ColumnName="Код процедуры" />
+          <ScalarProperty Name="Дата_оказания_помощи_животному" ColumnName="Дата оказания помощи животному" />
+          <ScalarProperty Name="Код_вида_процедуры" ColumnName="Код вида процедуры" />
+          <ScalarProperty Name="Цена_процедуры" ColumnName="Цена процедуры" />
+          <ScalarProperty Name="Скидка_на_эту_процедуру" ColumnName="Скидка на эту процедуру" />
+          <ScalarProperty Name="Цена_материала_по_этой_процедуре" ColumnName="Цена материала по этой процедуре" />
+          <ScalarProperty Name="Код_сотрудника" ColumnName="Код сотрудника" />
+          <ScalarProperty Name="Код_животного" ColumnName="Код животного" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Районы">
+      <EntityTypeMapping TypeName="Model.Районы">
+        <MappingFragment StoreEntitySet="Районы">
+          <ScalarProperty Name="Код_района" ColumnName="Код района" />
+          <ScalarProperty Name="Район_города" ColumnName="Район города" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Сотрудники">
+      <EntityTypeMapping TypeName="Model.Сотрудники">
+        <MappingFragment StoreEntitySet="Сотрудники">
+          <ScalarProperty Name="Код_сотрудника" ColumnName="Код сотрудника" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+          <ScalarProperty Name="Дата_рождения" ColumnName="Дата рождения" />
+          <ScalarProperty Name="Код_должности" ColumnName="Код должности" />
+          <ScalarProperty Name="Стаж" ColumnName="Стаж" />
+          <ScalarProperty Name="Оклад" ColumnName="Оклад" />
+          <ScalarProperty Name="Код_ветеринарной_клиники" ColumnName="Код ветеринарной клиники" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Тип_собственности">
+      <EntityTypeMapping TypeName="Model.Тип_собственности">
+        <MappingFragment StoreEntitySet="Тип собственности">
+          <ScalarProperty Name="Код_типа_собственности" ColumnName="Код типа собственности" />
+          <ScalarProperty Name="Тип_собственности1" ColumnName="Тип собственности" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Условия_содержания_животного">
+      <EntityTypeMapping TypeName="Model.Условия_содержания_животного">
+        <MappingFragment StoreEntitySet="Условия содержания животного">
+          <ScalarProperty Name="Код_условия_содержания_животного" ColumnName="Код условия содержания животного" />
+          <ScalarProperty Name="Условия_содержания_животного1" ColumnName="Условия содержания животного" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

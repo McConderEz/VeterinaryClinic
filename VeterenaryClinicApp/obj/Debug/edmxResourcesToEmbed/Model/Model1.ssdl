@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Ветеринарные клиники">
+    <Key>
+      <PropertyRef Name="Код ветеринарной клинки" />
+    </Key>
+    <Property Name="Код ветеринарной клинки" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Номер регистрационного пункта" Type="int" Nullable="false" />
+    <Property Name="Код типа собственности" Type="int" Nullable="false" />
+    <Property Name="Год открытия" Type="int" Nullable="false" />
+    <Property Name="Адрес пункта" Type="nchar" MaxLength="40" Nullable="false" />
+    <Property Name="Название пункта" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="Код район города" Type="int" Nullable="false" />
+    <Property Name="Телефон" Type="nchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Виды животных">
+    <Key>
+      <PropertyRef Name="Код вида животного" />
+    </Key>
+    <Property Name="Код вида животного" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Вид животного" Type="nchar" MaxLength="15" Nullable="false" />
+    <Property Name="Код класса животного" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Виды процедуры">
+    <Key>
+      <PropertyRef Name="Код вида процедуры" />
+    </Key>
+    <Property Name="Код вида процедуры" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Вид процедуры" Type="nchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Владельцы">
+    <Key>
+      <PropertyRef Name="Код владельца" />
+    </Key>
+    <Property Name="Код владельца" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Имя" Type="nchar" MaxLength="40" Nullable="false" />
+    <Property Name="Фамилия" Type="nchar" MaxLength="40" Nullable="false" />
+    <Property Name="Отчество" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Телефон" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Дата рождения хозяина" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Должности">
+    <Key>
+      <PropertyRef Name="Код должности" />
+    </Key>
+    <Property Name="Код должности" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Должность" Type="nchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Животные">
+    <Key>
+      <PropertyRef Name="Код животного" />
+    </Key>
+    <Property Name="Код животного" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Кличка Животного" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Возраст Животного" Type="int" Nullable="false" />
+    <Property Name="Условия содержания животного" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Код владельца" Type="int" Nullable="false" />
+    <Property Name="Код вида животного" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Классы животных">
+    <Key>
+      <PropertyRef Name="Код класса животного" />
+    </Key>
+    <Property Name="Код класса животного" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Класс животного" Type="nchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Лицензии">
+    <Key>
+      <PropertyRef Name="Код лицензии" />
+    </Key>
+    <Property Name="Код лицензии" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Лицензия №" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Срок окончания лицензии" Type="datetime" Nullable="false" />
+    <Property Name="Фото лицензии" Type="varbinary(max)" />
+    <Property Name="Код ветеринарной клинки" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Процедуры">
+    <Key>
+      <PropertyRef Name="Код процедуры" />
+    </Key>
+    <Property Name="Код процедуры" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Дата оказания помощи животному" Type="datetime" Nullable="false" />
+    <Property Name="Код вида процедуры" Type="int" Nullable="false" />
+    <Property Name="Цена процедуры" Type="decimal" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="Скидка на эту процедуру" Type="decimal" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="Цена материала по этой процедуре" Type="decimal" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="Код сотрудника" Type="int" Nullable="false" />
+    <Property Name="Код животного" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Районы">
+    <Key>
+      <PropertyRef Name="Код района" />
+    </Key>
+    <Property Name="Код района" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Район города" Type="nchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Сотрудники">
+    <Key>
+      <PropertyRef Name="Код сотрудника" />
+    </Key>
+    <Property Name="Код сотрудника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Имя" Type="nchar" MaxLength="40" Nullable="false" />
+    <Property Name="Фамилия" Type="nchar" MaxLength="40" Nullable="false" />
+    <Property Name="Отчество" Type="nchar" MaxLength="40" Nullable="false" />
+    <Property Name="Дата рождения" Type="datetime" Nullable="false" />
+    <Property Name="Код должности" Type="int" Nullable="false" />
+    <Property Name="Стаж" Type="int" Nullable="false" />
+    <Property Name="Оклад" Type="int" Nullable="false" />
+    <Property Name="Код ветеринарной клиники" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Тип собственности">
+    <Key>
+      <PropertyRef Name="Код типа собственности" />
+    </Key>
+    <Property Name="Код типа собственности" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Тип собственности" Type="nchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Условия содержания животного">
+    <Key>
+      <PropertyRef Name="Код условия содержания животного" />
+    </Key>
+    <Property Name="Код условия содержания животного" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Условия содержания животного" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Ветеринарные клиники_Районы">
+    <End Role="Районы" Type="Self.Районы" Multiplicity="1" />
+    <End Role="Ветеринарные клиники" Type="Self.Ветеринарные клиники" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Районы">
+        <PropertyRef Name="Код района" />
+      </Principal>
+      <Dependent Role="Ветеринарные клиники">
+        <PropertyRef Name="Код район города" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ветеринарные клиники_Тип собственности">
+    <End Role="Тип собственности" Type="Self.Тип собственности" Multiplicity="1" />
+    <End Role="Ветеринарные клиники" Type="Self.Ветеринарные клиники" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Тип собственности">
+        <PropertyRef Name="Код типа собственности" />
+      </Principal>
+      <Dependent Role="Ветеринарные клиники">
+        <PropertyRef Name="Код типа собственности" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Виды животных_Классы животных">
+    <End Role="Классы животных" Type="Self.Классы животных" Multiplicity="1" />
+    <End Role="Виды животных" Type="Self.Виды животных" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Классы животных">
+        <PropertyRef Name="Код класса животного" />
+      </Principal>
+      <Dependent Role="Виды животных">
+        <PropertyRef Name="Код класса животного" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Животные_Виды животных">
+    <End Role="Виды животных" Type="Self.Виды животных" Multiplicity="1" />
+    <End Role="Животные" Type="Self.Животные" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Виды животных">
+        <PropertyRef Name="Код вида животного" />
+      </Principal>
+      <Dependent Role="Животные">
+        <PropertyRef Name="Код вида животного" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Животные_Владельцы">
+    <End Role="Владельцы" Type="Self.Владельцы" Multiplicity="1" />
+    <End Role="Животные" Type="Self.Животные" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Владельцы">
+        <PropertyRef Name="Код владельца" />
+      </Principal>
+      <Dependent Role="Животные">
+        <PropertyRef Name="Код владельца" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Лицензии_Ветеринарные клиники">
+    <End Role="Ветеринарные клиники" Type="Self.Ветеринарные клиники" Multiplicity="1" />
+    <End Role="Лицензии" Type="Self.Лицензии" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ветеринарные клиники">
+        <PropertyRef Name="Код ветеринарной клинки" />
+      </Principal>
+      <Dependent Role="Лицензии">
+        <PropertyRef Name="Код ветеринарной клинки" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Процедуры_Виды процедуры">
+    <End Role="Виды процедуры" Type="Self.Виды процедуры" Multiplicity="1" />
+    <End Role="Процедуры" Type="Self.Процедуры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Виды процедуры">
+        <PropertyRef Name="Код вида процедуры" />
+      </Principal>
+      <Dependent Role="Процедуры">
+        <PropertyRef Name="Код вида процедуры" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Процедуры_Животные">
+    <End Role="Животные" Type="Self.Животные" Multiplicity="1" />
+    <End Role="Процедуры" Type="Self.Процедуры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Животные">
+        <PropertyRef Name="Код животного" />
+      </Principal>
+      <Dependent Role="Процедуры">
+        <PropertyRef Name="Код животного" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Процедуры_Сотрудники">
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="1" />
+    <End Role="Процедуры" Type="Self.Процедуры" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Сотрудники">
+        <PropertyRef Name="Код сотрудника" />
+      </Principal>
+      <Dependent Role="Процедуры">
+        <PropertyRef Name="Код сотрудника" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Сотрудники_Ветеринарные клиники">
+    <End Role="Ветеринарные клиники" Type="Self.Ветеринарные клиники" Multiplicity="1" />
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ветеринарные клиники">
+        <PropertyRef Name="Код ветеринарной клинки" />
+      </Principal>
+      <Dependent Role="Сотрудники">
+        <PropertyRef Name="Код ветеринарной клиники" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Сотрудники_Должности">
+    <End Role="Должности" Type="Self.Должности" Multiplicity="1" />
+    <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Должности">
+        <PropertyRef Name="Код должности" />
+      </Principal>
+      <Dependent Role="Сотрудники">
+        <PropertyRef Name="Код должности" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ModelContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ветеринарные клиники" EntityType="Self.Ветеринарные клиники" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Виды животных" EntityType="Self.Виды животных" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Виды процедуры" EntityType="Self.Виды процедуры" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Владельцы" EntityType="Self.Владельцы" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Должности" EntityType="Self.Должности" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Животные" EntityType="Self.Животные" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Классы животных" EntityType="Self.Классы животных" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Лицензии" EntityType="Self.Лицензии" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Процедуры" EntityType="Self.Процедуры" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Районы" EntityType="Self.Районы" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Тип собственности" EntityType="Self.Тип собственности" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Условия содержания животного" EntityType="Self.Условия содержания животного" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Ветеринарные клиники_Районы" Association="Self.FK_Ветеринарные клиники_Районы">
+      <End Role="Районы" EntitySet="Районы" />
+      <End Role="Ветеринарные клиники" EntitySet="Ветеринарные клиники" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ветеринарные клиники_Тип собственности" Association="Self.FK_Ветеринарные клиники_Тип собственности">
+      <End Role="Тип собственности" EntitySet="Тип собственности" />
+      <End Role="Ветеринарные клиники" EntitySet="Ветеринарные клиники" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Виды животных_Классы животных" Association="Self.FK_Виды животных_Классы животных">
+      <End Role="Классы животных" EntitySet="Классы животных" />
+      <End Role="Виды животных" EntitySet="Виды животных" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Животные_Виды животных" Association="Self.FK_Животные_Виды животных">
+      <End Role="Виды животных" EntitySet="Виды животных" />
+      <End Role="Животные" EntitySet="Животные" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Животные_Владельцы" Association="Self.FK_Животные_Владельцы">
+      <End Role="Владельцы" EntitySet="Владельцы" />
+      <End Role="Животные" EntitySet="Животные" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Лицензии_Ветеринарные клиники" Association="Self.FK_Лицензии_Ветеринарные клиники">
+      <End Role="Ветеринарные клиники" EntitySet="Ветеринарные клиники" />
+      <End Role="Лицензии" EntitySet="Лицензии" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Процедуры_Виды процедуры" Association="Self.FK_Процедуры_Виды процедуры">
+      <End Role="Виды процедуры" EntitySet="Виды процедуры" />
+      <End Role="Процедуры" EntitySet="Процедуры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Процедуры_Животные" Association="Self.FK_Процедуры_Животные">
+      <End Role="Животные" EntitySet="Животные" />
+      <End Role="Процедуры" EntitySet="Процедуры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Процедуры_Сотрудники" Association="Self.FK_Процедуры_Сотрудники">
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+      <End Role="Процедуры" EntitySet="Процедуры" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Сотрудники_Ветеринарные клиники" Association="Self.FK_Сотрудники_Ветеринарные клиники">
+      <End Role="Ветеринарные клиники" EntitySet="Ветеринарные клиники" />
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Сотрудники_Должности" Association="Self.FK_Сотрудники_Должности">
+      <End Role="Должности" EntitySet="Должности" />
+      <End Role="Сотрудники" EntitySet="Сотрудники" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
