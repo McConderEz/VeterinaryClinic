@@ -331,6 +331,13 @@ namespace VeterenaryClinicApp
                     while (!editOwnershipForm.IsDisposed) { }
                     Refresh();
                     break;
+                case "Лицензии":
+                    var selectedLicenseRow = dataGridView1.SelectedRows[0];
+                    EditLicenseForm editLicenseForm = new EditLicenseForm(selectedLicenseRow);
+                    editLicenseForm.ShowDialog();
+                    while (!editLicenseForm.IsDisposed) { }
+                    Refresh();
+                    break;
                 default:
                     break;
             }           
@@ -387,31 +394,37 @@ namespace VeterenaryClinicApp
                     break;
                 case "Должности":
                     var dataTablePosition = Refresher.RefreshPosition();
+                    dataGridView1.DataSource = dataTablePosition;
                     dataGridView1.Invalidate();
                     counter.Text = "" + (dataGridView1.RowCount);
                     break;
                 case "Классы животных":
                     var dataTableAnimalClass = Refresher.RefreshAnimalClass();
+                    dataGridView1.DataSource = dataTableAnimalClass;
                     dataGridView1.Invalidate();
                     counter.Text = "" + (dataGridView1.RowCount);
                     break;
                 case "Виды животных":
                     var dataTableAnimalType = Refresher.RefreshAnimalType();
+                    dataGridView1.DataSource = dataTableAnimalType;
                     dataGridView1.Invalidate();
                     counter.Text = "" + (dataGridView1.RowCount);
                     break;
                 case "Районы":
                     var dataTableDistrict = Refresher.RefreshDistrict();
+                    dataGridView1.DataSource = dataTableDistrict;
                     dataGridView1.Invalidate();
                     counter.Text = "" + (dataGridView1.RowCount);
                     break;
                 case "Типы собственности":
                     var dataTableOwnership = Refresher.RefreshDistrict();
+                    dataGridView1.DataSource = dataTableOwnership;
                     dataGridView1.Invalidate();
                     counter.Text = "" + (dataGridView1.RowCount);
                     break;
                 case "Лицензии":
                     var dataTableLicense = Refresher.RefreshLicense();
+                    dataGridView1.DataSource = dataTableLicense;
                     dataGridView1.Invalidate();
                     counter.Text = "" + (dataGridView1.RowCount);
                     break;

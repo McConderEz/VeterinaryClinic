@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <EntityType Name="Ветеринарные клиники">
     <Key>
       <PropertyRef Name="Код ветеринарной клинки" />
@@ -124,13 +114,6 @@
     </Key>
     <Property Name="Код типа собственности" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Тип собственности" Type="nchar" MaxLength="15" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Условия содержания животного">
-    <Key>
-      <PropertyRef Name="Код условия содержания животного" />
-    </Key>
-    <Property Name="Код условия содержания животного" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Условия содержания животного" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="FK_Ветеринарные клиники_Районы">
     <End Role="Районы" Type="Self.Районы" Multiplicity="1" />
@@ -265,7 +248,6 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="Хранилище ModelContainer">
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ветеринарные клиники" EntityType="Self.Ветеринарные клиники" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Виды животных" EntityType="Self.Виды животных" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Виды процедуры" EntityType="Self.Виды процедуры" Schema="dbo" store:Type="Tables" />
@@ -278,7 +260,6 @@
     <EntitySet Name="Районы" EntityType="Self.Районы" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Тип собственности" EntityType="Self.Тип собственности" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Условия содержания животного" EntityType="Self.Условия содержания животного" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Ветеринарные клиники_Районы" Association="Self.FK_Ветеринарные клиники_Районы">
       <End Role="Районы" EntitySet="Районы" />
       <End Role="Ветеринарные клиники" EntitySet="Ветеринарные клиники" />

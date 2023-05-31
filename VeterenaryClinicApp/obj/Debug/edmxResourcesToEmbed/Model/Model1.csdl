@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
   <EntityType Name="Ветеринарные_клиники">
     <Key>
       <PropertyRef Name="Код_ветеринарной_клиники" />
@@ -147,13 +137,6 @@
     <Property Name="Тип_собственности1" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Ветеринарные_клиники" Relationship="Self.FK_Ветеринарные_клиники_Тип_собственности" FromRole="Тип_собственности" ToRole="Ветеринарные_клиники" />
   </EntityType>
-  <EntityType Name="Условия_содержания_животного">
-    <Key>
-      <PropertyRef Name="Код_условия_содержания_животного" />
-    </Key>
-    <Property Name="Код_условия_содержания_животного" Type="Int32" Nullable="false" ConcurrencyMode="None" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Условия_содержания_животного1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
   <Association Name="FK_Ветеринарные_клиники_Районы">
     <End Role="Районы" Type="Self.Районы" Multiplicity="1" />
     <End Role="Ветеринарные_клиники" Type="Self.Ветеринарные_клиники" Multiplicity="*" />
@@ -287,7 +270,6 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="Veterinary_ClinicEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="Ветеринарные_клиники" EntityType="Self.Ветеринарные_клиники" />
     <EntitySet Name="Виды_животных" EntityType="Self.Виды_животных" />
     <EntitySet Name="Виды_процедуры" EntityType="Self.Виды_процедуры" />
@@ -300,7 +282,6 @@
     <EntitySet Name="Районы" EntityType="Self.Районы" />
     <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
     <EntitySet Name="Тип_собственности" EntityType="Self.Тип_собственности" />
-    <EntitySet Name="Условия_содержания_животного" EntityType="Self.Условия_содержания_животного" />
     <AssociationSet Name="FK_Ветеринарные_клиники_Районы" Association="Self.FK_Ветеринарные_клиники_Районы">
       <End Role="Районы" EntitySet="Районы" />
       <End Role="Ветеринарные_клиники" EntitySet="Ветеринарные_клиники" />

@@ -102,5 +102,19 @@ namespace VeterenaryClinicApp
         {
             label1.ForeColor = Color.Black;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(textBox1.Text == "Admin" && textBox2.Text == "1234")
+            {
+                MainForm mainForm = new MainForm();
+                mainForm.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Неверные данные для входа!");
+            }
+        }
     }
 }

@@ -25,7 +25,6 @@ namespace VeterenaryClinicApp.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Ветеринарные_клиники> Ветеринарные_клиники { get; set; }
         public virtual DbSet<Виды_животных> Виды_животных { get; set; }
         public virtual DbSet<Виды_процедуры> Виды_процедуры { get; set; }
@@ -38,6 +37,5 @@ namespace VeterenaryClinicApp.Model
         public virtual DbSet<Районы> Районы { get; set; }
         public virtual DbSet<Сотрудники> Сотрудники { get; set; }
         public virtual DbSet<Тип_собственности> Тип_собственности { get; set; }
-        public virtual DbSet<Условия_содержания_животного> Условия_содержания_животного { get; set; }
     }
 }

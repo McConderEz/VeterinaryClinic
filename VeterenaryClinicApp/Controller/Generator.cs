@@ -164,20 +164,20 @@ namespace VeterenaryClinicApp.Controller
         /// <summary>
         /// Создаём справочник с условиями содержания животных
         /// </summary>
-        public static void CreateConditions()
-        {
-            using(var db = new Veterinary_ClinicEntities())
-            {
-                for(var i = 0;i < conditions.Count; i++)
-                {
-                    db.Условия_содержания_животного.Add(new Условия_содержания_животного
-                    {
-                        Условия_содержания_животного1 = conditions[i],
-                    });
-                }
-                db.SaveChanges();
-            }
-        }
+        //public static void CreateConditions()
+        //{
+        //    using(var db = new Veterinary_ClinicEntities())
+        //    {
+        //        for(var i = 0;i < conditions.Count; i++)
+        //        {
+        //            db.Условия_содержания_животного.Add(new Условия_содержания_животного
+        //            {
+        //                Условия_содержания_животного1 = conditions[i],
+        //            });
+        //        }
+        //        db.SaveChanges();
+        //    }
+        //}
         /// <summary>
         /// Создаём справочник с типами собственности
         /// </summary>
@@ -262,7 +262,7 @@ namespace VeterenaryClinicApp.Controller
                                 
             using (var db = new Veterinary_ClinicEntities())
             {
-                for(var i = 0;i < 2000; i++)
+                for(var i = 0;i < 100; i++)
                 {                    
                     int uniqueNumber = rnd.Next(1000, 10000);
                     db.Ветеринарные_клиники.Add(new Ветеринарные_клиники
@@ -390,13 +390,12 @@ namespace VeterenaryClinicApp.Controller
         {
             //CreateAnimalClasses();
             //CreateAnimalTypes();
-            //CreateConditions();
             //CreateDistricts();   
             //CreateOwnerships();
             //CreateProceduresType();
             //GenerateOwner();
             //CreatePositions();
-            //GenerateVeterinaryClinic();
+            GenerateVeterinaryClinic();
             //GenerateAnimals();
             //GenerateEmployees();
             //GenerateProcedure();

@@ -5,16 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="Ветеринарные клиники">
           <Key>
             <PropertyRef Name="Код ветеринарной клинки" />
@@ -129,13 +119,6 @@
           </Key>
           <Property Name="Код типа собственности" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Тип собственности" Type="nchar" MaxLength="15" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Условия содержания животного">
-          <Key>
-            <PropertyRef Name="Код условия содержания животного" />
-          </Key>
-          <Property Name="Код условия содержания животного" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Условия содержания животного" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <Association Name="FK_Ветеринарные клиники_Районы">
           <End Role="Районы" Type="Self.Районы" Multiplicity="1" />
@@ -270,7 +253,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище ModelContainer">
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ветеринарные клиники" EntityType="Self.Ветеринарные клиники" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Виды животных" EntityType="Self.Виды животных" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Виды процедуры" EntityType="Self.Виды процедуры" Schema="dbo" store:Type="Tables" />
@@ -283,7 +265,6 @@
           <EntitySet Name="Районы" EntityType="Self.Районы" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Тип собственности" EntityType="Self.Тип собственности" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Условия содержания животного" EntityType="Self.Условия содержания животного" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Ветеринарные клиники_Районы" Association="Self.FK_Ветеринарные клиники_Районы">
             <End Role="Районы" EntitySet="Районы" />
             <End Role="Ветеринарные клиники" EntitySet="Ветеринарные клиники" />
@@ -334,16 +315,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="Ветеринарные_клиники">
           <Key>
             <PropertyRef Name="Код_ветеринарной_клиники" />
@@ -481,13 +452,6 @@
           <Property Name="Тип_собственности1" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Ветеринарные_клиники" Relationship="Self.FK_Ветеринарные_клиники_Тип_собственности" FromRole="Тип_собственности" ToRole="Ветеринарные_клиники" />
         </EntityType>
-        <EntityType Name="Условия_содержания_животного">
-          <Key>
-            <PropertyRef Name="Код_условия_содержания_животного" />
-          </Key>
-          <Property Name="Код_условия_содержания_животного" Type="Int32" Nullable="false" ConcurrencyMode="None" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Условия_содержания_животного1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <Association Name="FK_Ветеринарные_клиники_Районы">
           <End Role="Районы" Type="Self.Районы" Multiplicity="1" />
           <End Role="Ветеринарные_клиники" Type="Self.Ветеринарные_клиники" Multiplicity="*" />
@@ -621,7 +585,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Veterinary_ClinicEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Ветеринарные_клиники" EntityType="Self.Ветеринарные_клиники" />
           <EntitySet Name="Виды_животных" EntityType="Self.Виды_животных" />
           <EntitySet Name="Виды_процедуры" EntityType="Self.Виды_процедуры" />
@@ -634,7 +597,6 @@
           <EntitySet Name="Районы" EntityType="Self.Районы" />
           <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
           <EntitySet Name="Тип_собственности" EntityType="Self.Тип_собственности" />
-          <EntitySet Name="Условия_содержания_животного" EntityType="Self.Условия_содержания_животного" />
           <AssociationSet Name="FK_Ветеринарные_клиники_Районы" Association="Self.FK_Ветеринарные_клиники_Районы">
             <End Role="Районы" EntitySet="Районы" />
             <End Role="Ветеринарные_клиники" EntitySet="Ветеринарные_клиники" />
@@ -686,17 +648,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Veterinary_ClinicEntities">
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Model.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Ветеринарные_клиники">
             <EntityTypeMapping TypeName="Model.Ветеринарные_клиники">
               <MappingFragment StoreEntitySet="Ветеринарные клиники">
@@ -821,14 +772,6 @@
               <MappingFragment StoreEntitySet="Тип собственности">
                 <ScalarProperty Name="Код_типа_собственности" ColumnName="Код типа собственности" />
                 <ScalarProperty Name="Тип_собственности1" ColumnName="Тип собственности" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Условия_содержания_животного">
-            <EntityTypeMapping TypeName="Model.Условия_содержания_животного">
-              <MappingFragment StoreEntitySet="Условия содержания животного">
-                <ScalarProperty Name="Код_условия_содержания_животного" ColumnName="Код условия содержания животного" />
-                <ScalarProperty Name="Условия_содержания_животного1" ColumnName="Условия содержания животного" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

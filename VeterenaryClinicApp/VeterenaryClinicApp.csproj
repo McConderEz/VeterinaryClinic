@@ -254,9 +254,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\Ветеринарные_клиники.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -293,8 +290,10 @@
     <Compile Include="Model\Тип_собственности.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Условия_содержания_животного.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Veterinary_ClinicDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Veterinary_ClinicDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="View\AnimalClass\AddAnimalClassForm.cs">
       <SubType>Form</SubType>
@@ -541,6 +540,9 @@
     <EmbeddedResource Include="View\Licenses\AddLicenseForm.resx">
       <DependentUpon>AddLicenseForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Licenses\EditLicenseForm.resx">
+      <DependentUpon>EditLicenseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\OwnershipTypes\AddOwnershipTypeForm.resx">
       <DependentUpon>AddOwnershipTypeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -638,6 +640,17 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Veterinary_ClinicDataSet.xsc">
+      <DependentUpon>Veterinary_ClinicDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Veterinary_ClinicDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Veterinary_ClinicDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Veterinary_ClinicDataSet.xss">
+      <DependentUpon>Veterinary_ClinicDataSet.xsd</DependentUpon>
+    </None>
     <None Include="View\packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

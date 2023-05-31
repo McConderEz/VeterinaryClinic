@@ -30,6 +30,7 @@ namespace VeterenaryClinicApp
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -38,9 +39,13 @@ namespace VeterenaryClinicApp
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.veterinaryClinicDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.veterinary_ClinicDataSet = new VeterenaryClinicApp.Veterinary_ClinicDataSet();
             this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.veterinaryClinicDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.veterinary_ClinicDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -108,14 +113,6 @@ namespace VeterenaryClinicApp
             // 
             this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Регистрационный номер",
-            "Код типа собственности",
-            "Год открытия",
-            "Адрес пункта",
-            "Название пункта",
-            "Район города",
-            "Телефон"});
             this.comboBox1.Location = new System.Drawing.Point(160, 409);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
@@ -139,22 +136,21 @@ namespace VeterenaryClinicApp
             // 
             this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Ветеринарные клиники",
-            "Процедуры",
-            "Владельцы",
-            "Сотрудники",
-            "Животные",
-            "Должности",
-            "Виды животных",
-            "Классы животных",
-            "Лицензии",
-            "Типы собственности",
-            "Районы"});
             this.comboBox2.Location = new System.Drawing.Point(160, 382);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 28;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // veterinaryClinicDataSetBindingSource
+            // 
+            this.veterinaryClinicDataSetBindingSource.DataSource = this.veterinary_ClinicDataSet;
+            this.veterinaryClinicDataSetBindingSource.Position = 0;
+            // 
+            // veterinary_ClinicDataSet
+            // 
+            this.veterinary_ClinicDataSet.DataSetName = "Veterinary_ClinicDataSet";
+            this.veterinary_ClinicDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label4
             // 
@@ -189,6 +185,8 @@ namespace VeterenaryClinicApp
             this.Load += new System.EventHandler(this.SearchingForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.veterinaryClinicDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.veterinary_ClinicDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,5 +205,7 @@ namespace VeterenaryClinicApp
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.BindingSource veterinaryClinicDataSetBindingSource;
+        private Veterinary_ClinicDataSet veterinary_ClinicDataSet;
     }
 }
