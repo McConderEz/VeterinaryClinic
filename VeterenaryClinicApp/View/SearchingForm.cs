@@ -1,18 +1,24 @@
-﻿using System;
+﻿using Bunifu.UI.WinForms.Helpers.Transitions;
+using Microsoft.Build.Framework.XamlTypes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Forms;
 
 namespace VeterenaryClinicApp
 {
     public partial class SearchingForm : Form
     {
+        DataTable table;
         public SearchingForm()
         {
             InitializeComponent();
@@ -77,16 +83,23 @@ namespace VeterenaryClinicApp
             string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
             SqlConnection myConnection = new SqlConnection(connectionString);
             myConnection.Open();
-            
-            string sql = "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_catalog = 'Veterinary Clinic'";
+
+            //string sql = "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_catalog = 'Veterinary Clinic'";
+            //SqlCommand command = new SqlCommand(sql, myConnection);
+            //SqlDataAdapter adapter = new SqlDataAdapter(command);
+            //DataTable table = new DataTable();
+            //adapter.Fill(table);
+            //comboBox2.DataSource = table;
+            //comboBox2.DisplayMember = "table_name";
+            //comboBox2.ValueMember = "table_name";
+
+            string sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'";
             SqlCommand command = new SqlCommand(sql, myConnection);
             SqlDataAdapter adapter = new SqlDataAdapter(command);
-            DataTable table = new DataTable();
+            table = new DataTable();
             adapter.Fill(table);
             comboBox2.DataSource = table;
             comboBox2.DisplayMember = "table_name";
-            comboBox2.ValueMember = "table_name";
-
 
         }
 
@@ -96,31 +109,86 @@ namespace VeterenaryClinicApp
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBox1.Items.Clear();
-            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
-            SqlConnection myConnection = new SqlConnection(connectionString);
-            myConnection.Open();
-            string selectedTable = comboBox2.SelectedItem.ToString();
-
-            // Создание команды SQL для выборки списка полей выбранной таблицы
-            string sql = $"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{selectedTable}'";
-            SqlCommand command = new SqlCommand(sql, myConnection);
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
+            var tableName = comboBox2.GetItemText(comboBox2.SelectedItem);
+            label5.Text = tableName;
+            List<string> columnName = new List<string>();
+            if (tableName != "System.Data.DataRowView" && !string.IsNullOrWhiteSpace(tableName))
             {
-                string columnName = reader.GetString(0);
-                comboBox2.Items.Add(columnName);
-            }
-            reader.Close();
-            // Создание адаптера данных и заполнение DataTable
-            //SqlDataAdapter adapter = new SqlDataAdapter(command);
-            //DataTable table = new DataTable();
-            //adapter.Fill(table);
+                string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
 
-            //// Настройка свойств второго ComboBox для отображения данных полей выбранной таблицы
-            //comboBox1.DataSource = table;
-            //comboBox1.DisplayMember = "COLUMN_NAME";
-            //comboBox1.ValueMember = "COLUMN_NAME";
+                    var command = new SqlCommand($"SELECT * FROM [{tableName}]", connection);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        var schemaTable = reader.GetSchemaTable();
+                        foreach (DataRow row in schemaTable.Rows)
+                        {
+                            columnName.Add(row["ColumnName"].ToString());
+                            //Console.WriteLine(columnName);
+                        }
+                    }
+
+                    comboBox1.DataSource = columnName;
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (valueBox != null)
+                {
+                    string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+                    SqlConnection myConnection = new SqlConnection(connectionString);
+                    myConnection.Open();
+                    string sql;
+                    int intValue;
+                    decimal decValue;
+                    DateTime dateValue;
+
+                    if(int.TryParse(valueBox.Text, out intValue))
+                    {
+                        sql = $"SELECT * FROM [Veterinary Clinic].[dbo].[{label5.Text}] WHERE [{label6.Text}] {label9.Text} {intValue}";
+                    }
+                    else if(decimal.TryParse(valueBox.Text, out decValue))
+                    {
+                        sql = $"SELECT * FROM [Veterinary Clinic].[dbo].[{label5.Text}] WHERE [{label6.Text}] {label9.Text} {decValue}";
+                    }
+                    else if(DateTime.TryParse(valueBox.Text, out dateValue))
+                    {
+                        string date = $"{dateValue.Month}-{dateValue.Day}-{dateValue.Year}";
+                        sql = $"SELECT * FROM [Veterinary Clinic].[dbo].[{label5.Text}] WHERE CONVERT(date,[{label6.Text}]) {label9.Text} '{date}'";
+                    }
+                    else
+                    {
+                        sql = $"SELECT * FROM [Veterinary Clinic].[dbo].[{label5.Text}] WHERE LEFT(CONVERT(VARCHAR(20),[{label6.Text}]),20) = '%{valueBox.Text}%'";
+                    }                    
+                    SqlCommand command = new SqlCommand(sql, myConnection);
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    var searchBox = new DataTable();
+                    adapter.Fill(searchBox);
+                    dataGridView1.DataSource = searchBox;
+                }
+             }catch(Exception ex)
+                {
+                MessageBox.Show("Вы ввели недопустимые данные!Попробуйте иначе.");
+                }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var tableName = comboBox1.GetItemText(comboBox1.SelectedItem);
+            label6.Text = tableName;
+        }
+
+        private void operatorBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var tableName = operatorBox.GetItemText(operatorBox.SelectedItem);
+            label9.Text = tableName;
         }
     }
 }
