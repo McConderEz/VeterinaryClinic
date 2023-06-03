@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Forms;
+using VeterenaryClinicApp.Model;
 
 namespace VeterenaryClinicApp
 {
@@ -84,15 +85,6 @@ namespace VeterenaryClinicApp
             SqlConnection myConnection = new SqlConnection(connectionString);
             myConnection.Open();
 
-            //string sql = "SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_catalog = 'Veterinary Clinic'";
-            //SqlCommand command = new SqlCommand(sql, myConnection);
-            //SqlDataAdapter adapter = new SqlDataAdapter(command);
-            //DataTable table = new DataTable();
-            //adapter.Fill(table);
-            //comboBox2.DataSource = table;
-            //comboBox2.DisplayMember = "table_name";
-            //comboBox2.ValueMember = "table_name";
-
             string sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'";
             SqlCommand command = new SqlCommand(sql, myConnection);
             SqlDataAdapter adapter = new SqlDataAdapter(command);
@@ -126,7 +118,6 @@ namespace VeterenaryClinicApp
                         foreach (DataRow row in schemaTable.Rows)
                         {
                             columnName.Add(row["ColumnName"].ToString());
-                            //Console.WriteLine(columnName);
                         }
                     }
 
@@ -152,31 +143,249 @@ namespace VeterenaryClinicApp
 
                     if(int.TryParse(valueBox.Text, out intValue))
                     {
-                        sql = $"SELECT * FROM [Veterinary Clinic].[dbo].[{label5.Text}] WHERE [{label6.Text}] {label9.Text} {intValue}";
+                        if (comboBox2.Text == "Ветеринарные клиники")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Номер регистрационного пункта]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Год открытия]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Адрес пункта]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта]," +
+                "[Veterinary Clinic].[dbo].[Районы].[Район города]," +
+                "[Veterinary Clinic].[dbo].[Тип собственности].[Тип собственности]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Телефон] FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники]" +
+            "INNER JOIN [Veterinary Clinic].[dbo].[Тип собственности] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код типа собственности]) = [Veterinary Clinic].[dbo].[Тип собственности].[Код типа собственности]" +
+            $"INNER JOIN [Veterinary Clinic].[dbo].[Районы] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код район города]) = [Veterinary Clinic].[dbo].[Районы].[Код района] WHERE [{label6.Text}] {label9.Text} {intValue}";
+                        }
+                        else if(comboBox2.Text == "Сотрудники")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Сотрудники].[Код сотрудника]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Имя]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Фамилия]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Отчество]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Дата рождения]," +
+                "[Veterinary Clinic].[dbo].[Должности].[Должность]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Стаж]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Оклад]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта] FROM [Veterinary Clinic].[dbo].[Сотрудники]" +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники]) = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]" +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код должности]) = [Veterinary Clinic].[dbo].[Должности].[Код должности]  WHERE [{label6.Text}] {label9.Text} {intValue}";
+                        }
+                        else if(comboBox2.Text == "Животные")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Животные].[Код животного]," +
+                "[Veterinary Clinic].[dbo].[Животные].[Кличка Животного]," +
+                "[Veterinary Clinic].[dbo].[Животные].[Возраст Животного]," +
+                "[Veterinary Clinic].[dbo].[Животные].[Условия содержания животного]," +
+                "[Veterinary Clinic].[dbo].[Владельцы].[Фамилия]," +
+                "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного] FROM [Veterinary Clinic].[dbo].[Животные]" +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Владельцы] ON ([Veterinary Clinic].[dbo].[Животные].[Код владельца]) = [Veterinary Clinic].[dbo].[Владельцы].[Код владельца] " +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного] WHERE [{label6.Text}] {label9.Text} {intValue}";
+                        }
+                        else if(comboBox2.Text == "Процедуры")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Процедуры].[Код процедуры]," +
+                "[Veterinary Clinic].[dbo].[Процедуры].[Дата оказания помощи животному]," +
+                "[Veterinary Clinic].[dbo].[Процедуры].[Цена процедуры]," +
+                "[Veterinary Clinic].[dbo].[Процедуры].[Скидка на эту процедуру]," +
+                "[Veterinary Clinic].[dbo].[Процедуры].[Цена материала по этой процедуре]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Фамилия]," +
+                "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного]," +
+                "[Veterinary Clinic].[dbo].[Виды процедуры].[Вид процедуры] FROM [Veterinary Clinic].[dbo].[Процедуры]" +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Сотрудники] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код сотрудника]) = [Veterinary Clinic].[dbo].[Сотрудники].[Код сотрудника]" +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Животные] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код животного]) = [Veterinary Clinic].[dbo].[Животные].[Код животного] " +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного] " +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Виды процедуры] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код вида процедуры]) = [Veterinary Clinic].[dbo].[Виды процедуры].[Код вида процедуры] WHERE [{label6.Text}] {label9.Text} {intValue}";
+                        }
+                        else if(comboBox2.Text == "Виды животных")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного]," +
+                "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного]," +
+                "[Veterinary Clinic].[dbo].[Классы животных].[Класс животного] FROM [Veterinary Clinic].[dbo].[Виды животных]" +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Классы животных] ON ([Veterinary Clinic].[dbo].[Виды животных].[Код класса животного]) = [Veterinary Clinic].[dbo].[Классы животных].[Код класса животного] WHERE [{label6.Text}] {label9.Text} {intValue}";
+                        }
+                        else if(comboBox2.Text == "Лицензии")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Лицензии].[Код лицензии]," +
+                "[Veterinary Clinic].[dbo].[Лицензии].[Лицензия №]," +
+                "[Veterinary Clinic].[dbo].[Лицензии].[Срок окончания лицензии]," +
+                "[Veterinary Clinic].[dbo].[Лицензии].[Фото лицензии]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта] FROM [Veterinary Clinic].[dbo].[Лицензии]" +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Лицензии].[Код ветеринарной клинки]) = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки] WHERE [{label6.Text}] {label9.Text} {intValue}";
+                        }
+                        else 
+                        {
+                            sql = $"SELECT * FROM [Veterinary Clinic].[dbo].[{label5.Text}] WHERE [{label6.Text}] {label9.Text} {intValue}";
+                        }
                     }
                     else if(decimal.TryParse(valueBox.Text, out decValue))
                     {
-                        sql = $"SELECT * FROM [Veterinary Clinic].[dbo].[{label5.Text}] WHERE [{label6.Text}] {label9.Text} {decValue}";
+                        if (comboBox2.Text == "Ветеринарные клиники")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Номер регистрационного пункта]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Год открытия]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Адрес пункта]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта]," +
+                "[Veterinary Clinic].[dbo].[Районы].[Район города]," +
+                "[Veterinary Clinic].[dbo].[Тип собственности].[Тип собственности]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Телефон] FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники]" +
+            "INNER JOIN [Veterinary Clinic].[dbo].[Тип собственности] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код типа собственности]) = [Veterinary Clinic].[dbo].[Тип собственности].[Код типа собственности]" +
+            $"INNER JOIN [Veterinary Clinic].[dbo].[Районы] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код район города]) = [Veterinary Clinic].[dbo].[Районы].[Код района] WHERE [{label6.Text}] {label9.Text} {decValue}";
+                        }
+                        else if (comboBox2.Text == "Сотрудники")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Сотрудники].[Код сотрудника]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Имя]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Фамилия]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Отчество]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Дата рождения]," +
+                "[Veterinary Clinic].[dbo].[Должности].[Должность]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Стаж]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Оклад]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта] FROM [Veterinary Clinic].[dbo].[Сотрудники]" +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники]) = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]" +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код должности]) = [Veterinary Clinic].[dbo].[Должности].[Код должности]  WHERE [{label6.Text}] {label9.Text} {decValue}";
+                        }
+                        else if (comboBox2.Text == "Животные")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Животные].[Код животного]," +
+                "[Veterinary Clinic].[dbo].[Животные].[Кличка Животного]," +
+                "[Veterinary Clinic].[dbo].[Животные].[Возраст Животного]," +
+                "[Veterinary Clinic].[dbo].[Животные].[Условия содержания животного]," +
+                "[Veterinary Clinic].[dbo].[Владельцы].[Фамилия]," +
+                "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного] FROM [Veterinary Clinic].[dbo].[Животные]" +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Владельцы] ON ([Veterinary Clinic].[dbo].[Животные].[Код владельца]) = [Veterinary Clinic].[dbo].[Владельцы].[Код владельца] " +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного] WHERE [{label6.Text}] {label9.Text} {decValue}";
+                        }
+                        else if (comboBox2.Text == "Процедуры")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Процедуры].[Код процедуры]," +
+                "[Veterinary Clinic].[dbo].[Процедуры].[Дата оказания помощи животному]," +
+                "[Veterinary Clinic].[dbo].[Процедуры].[Цена процедуры]," +
+                "[Veterinary Clinic].[dbo].[Процедуры].[Скидка на эту процедуру]," +
+                "[Veterinary Clinic].[dbo].[Процедуры].[Цена материала по этой процедуре]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Фамилия]," +
+                "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного]," +
+                "[Veterinary Clinic].[dbo].[Виды процедуры].[Вид процедуры] FROM [Veterinary Clinic].[dbo].[Процедуры]" +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Сотрудники] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код сотрудника]) = [Veterinary Clinic].[dbo].[Сотрудники].[Код сотрудника]" +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Животные] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код животного]) = [Veterinary Clinic].[dbo].[Животные].[Код животного] " +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного] " +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Виды процедуры] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код вида процедуры]) = [Veterinary Clinic].[dbo].[Виды процедуры].[Код вида процедуры] WHERE [{label6.Text}] {label9.Text} {decValue}";
+                        }
+                        else if (comboBox2.Text == "Виды животных")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного]," +
+                "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного]," +
+                "[Veterinary Clinic].[dbo].[Классы животных].[Класс животного] FROM [Veterinary Clinic].[dbo].[Виды животных]" +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Классы животных] ON ([Veterinary Clinic].[dbo].[Виды животных].[Код класса животного]) = [Veterinary Clinic].[dbo].[Классы животных].[Код класса животного] WHERE [{label6.Text}] {label9.Text} {decValue}";
+                        }
+                        else if (comboBox2.Text == "Лицензии")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Лицензии].[Код лицензии]," +
+                "[Veterinary Clinic].[dbo].[Лицензии].[Лицензия №]," +
+                "[Veterinary Clinic].[dbo].[Лицензии].[Срок окончания лицензии]," +
+                "[Veterinary Clinic].[dbo].[Лицензии].[Фото лицензии]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта] FROM [Veterinary Clinic].[dbo].[Лицензии]" +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Лицензии].[Код ветеринарной клинки]) = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки] WHERE [{label6.Text}] {label9.Text} {decValue}";
+                        }
+                        else
+                        {
+                            sql = $"SELECT * FROM [Veterinary Clinic].[dbo].[{label5.Text}] WHERE [{label6.Text}] {label9.Text} {decValue}";
+                        }
                     }
                     else if(DateTime.TryParse(valueBox.Text, out dateValue))
                     {
                         string date = $"{dateValue.Month}-{dateValue.Day}-{dateValue.Year}";
-                        sql = $"SELECT * FROM [Veterinary Clinic].[dbo].[{label5.Text}] WHERE CONVERT(date,[{label6.Text}]) {label9.Text} '{date}'";
+                        if (comboBox2.Text == "Ветеринарные клиники")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Номер регистрационного пункта]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Год открытия]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Адрес пункта]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта]," +
+                "[Veterinary Clinic].[dbo].[Районы].[Район города]," +
+                "[Veterinary Clinic].[dbo].[Тип собственности].[Тип собственности]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Телефон] FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники]" +
+            "INNER JOIN [Veterinary Clinic].[dbo].[Тип собственности] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код типа собственности]) = [Veterinary Clinic].[dbo].[Тип собственности].[Код типа собственности]" +
+            $"INNER JOIN [Veterinary Clinic].[dbo].[Районы] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код район города]) = [Veterinary Clinic].[dbo].[Районы].[Код района] WHERE [{label6.Text}] {label9.Text} {date}";
+                        }
+                        else if (comboBox2.Text == "Сотрудники")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Сотрудники].[Код сотрудника]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Имя]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Фамилия]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Отчество]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Дата рождения]," +
+                "[Veterinary Clinic].[dbo].[Должности].[Должность]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Стаж]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Оклад]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта] FROM [Veterinary Clinic].[dbo].[Сотрудники]" +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники]) = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]" +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код должности]) = [Veterinary Clinic].[dbo].[Должности].[Код должности]  WHERE [{label6.Text}] {label9.Text} {date}";
+                        }
+                        else if (comboBox2.Text == "Животные")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Животные].[Код животного]," +
+                "[Veterinary Clinic].[dbo].[Животные].[Кличка Животного]," +
+                "[Veterinary Clinic].[dbo].[Животные].[Возраст Животного]," +
+                "[Veterinary Clinic].[dbo].[Животные].[Условия содержания животного]," +
+                "[Veterinary Clinic].[dbo].[Владельцы].[Фамилия]," +
+                "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного] FROM [Veterinary Clinic].[dbo].[Животные]" +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Владельцы] ON ([Veterinary Clinic].[dbo].[Животные].[Код владельца]) = [Veterinary Clinic].[dbo].[Владельцы].[Код владельца] " +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного] WHERE [{label6.Text}] {label9.Text} {date}";
+                        }
+                        else if (comboBox2.Text == "Процедуры")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Процедуры].[Код процедуры]," +
+                "[Veterinary Clinic].[dbo].[Процедуры].[Дата оказания помощи животному]," +
+                "[Veterinary Clinic].[dbo].[Процедуры].[Цена процедуры]," +
+                "[Veterinary Clinic].[dbo].[Процедуры].[Скидка на эту процедуру]," +
+                "[Veterinary Clinic].[dbo].[Процедуры].[Цена материала по этой процедуре]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Фамилия]," +
+                "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного]," +
+                "[Veterinary Clinic].[dbo].[Виды процедуры].[Вид процедуры] FROM [Veterinary Clinic].[dbo].[Процедуры]" +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Сотрудники] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код сотрудника]) = [Veterinary Clinic].[dbo].[Сотрудники].[Код сотрудника]" +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Животные] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код животного]) = [Veterinary Clinic].[dbo].[Животные].[Код животного] " +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного] " +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Виды процедуры] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код вида процедуры]) = [Veterinary Clinic].[dbo].[Виды процедуры].[Код вида процедуры] WHERE [{label6.Text}] {label9.Text} {date}";
+                        }
+                        else if (comboBox2.Text == "Виды животных")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного]," +
+                "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного]," +
+                "[Veterinary Clinic].[dbo].[Классы животных].[Класс животного] FROM [Veterinary Clinic].[dbo].[Виды животных]" +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Классы животных] ON ([Veterinary Clinic].[dbo].[Виды животных].[Код класса животного]) = [Veterinary Clinic].[dbo].[Классы животных].[Код класса животного] WHERE [{label6.Text}] {label9.Text} {date}";
+                        }
+                        else if (comboBox2.Text == "Лицензии")
+                        {
+                            sql = "SELECT [Veterinary Clinic].[dbo].[Лицензии].[Код лицензии]," +
+                "[Veterinary Clinic].[dbo].[Лицензии].[Лицензия №]," +
+                "[Veterinary Clinic].[dbo].[Лицензии].[Срок окончания лицензии]," +
+                "[Veterinary Clinic].[dbo].[Лицензии].[Фото лицензии]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта] FROM [Veterinary Clinic].[dbo].[Лицензии]" +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Лицензии].[Код ветеринарной клинки]) = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки] WHERE [{label6.Text}] {label9.Text} {date}";
+                        }
+                        else
+                        {
+                            sql = $"SELECT * FROM [Veterinary Clinic].[dbo].[{label5.Text}] WHERE CONVERT(date,[{label6.Text}]) {label9.Text} '{date}'";
+                        }
                     }
                     else
                     {
-                        sql = $"SELECT * FROM [Veterinary Clinic].[dbo].[{label5.Text}] WHERE LEFT(CONVERT(VARCHAR(20),[{label6.Text}]),20) = '%{valueBox.Text}%'";
-                    }                    
+                        sql = $"SELECT * FROM [Veterinary Clinic].[dbo].[{label5.Text}] WHERE [Veterinary Clinic].[dbo].[{label5.Text}].[{label6.Text}] = N'{valueBox.Text}'";                                                                
+                    }
                     SqlCommand command = new SqlCommand(sql, myConnection);
+                    Console.WriteLine(command);
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     var searchBox = new DataTable();
                     adapter.Fill(searchBox);
                     dataGridView1.DataSource = searchBox;
                 }
-             }catch(Exception ex)
-                {
+            }
+            catch(Exception ex)
+            {
                 MessageBox.Show("Вы ввели недопустимые данные!Попробуйте иначе.");
-                }
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
