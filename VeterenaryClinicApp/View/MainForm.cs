@@ -187,6 +187,7 @@ namespace VeterenaryClinicApp
                 "[Veterinary Clinic].[dbo].[Должности].[Должность]," +
                 "[Veterinary Clinic].[dbo].[Сотрудники].[Стаж]," +
                 "[Veterinary Clinic].[dbo].[Сотрудники].[Оклад]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Номер регистрационного пункта]," +
                 "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта] FROM [Veterinary Clinic].[dbo].[Сотрудники]" +
                 "INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники]) = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]" +
                 "INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код должности]) = [Veterinary Clinic].[dbo].[Должности].[Код должности]";
@@ -210,9 +211,11 @@ namespace VeterenaryClinicApp
                 "[Veterinary Clinic].[dbo].[Животные].[Кличка Животного]," +
                 "[Veterinary Clinic].[dbo].[Животные].[Возраст Животного]," +
                 "[Veterinary Clinic].[dbo].[Животные].[Условия содержания животного]," +
+                "[Veterinary Clinic].[dbo].[Владельцы].[Имя]," +
                 "[Veterinary Clinic].[dbo].[Владельцы].[Фамилия]," +
+                "[Veterinary Clinic].[dbo].[Владельцы].[Отчество]," +
                 "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного] FROM [Veterinary Clinic].[dbo].[Животные]" +
-                "INNER JOIN [Veterinary Clinic].[dbo].[Владельцы] ON ([Veterinary Clinic].[dbo].[Животные].[Код владельца]) = [Veterinary Clinic].[dbo].[Владельцы].[Код владельца] " +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Владельцы] ON ([Veterinary Clinic].[dbo].[Животные].[Код владельца]) = [Veterinary Clinic].[dbo].[Владельцы].[Код владельца] " +                
                 "INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного]";
             SqlDataAdapter adapter = new SqlDataAdapter(query, myConnection);
             var dataTable = new DataTable();
@@ -235,7 +238,10 @@ namespace VeterenaryClinicApp
                 "[Veterinary Clinic].[dbo].[Процедуры].[Цена процедуры]," +
                 "[Veterinary Clinic].[dbo].[Процедуры].[Скидка на эту процедуру]," +
                 "[Veterinary Clinic].[dbo].[Процедуры].[Цена материала по этой процедуре]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Имя]," +
                 "[Veterinary Clinic].[dbo].[Сотрудники].[Фамилия]," +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Отчество]," +
+                "[Veterinary Clinic].[dbo].[Животные].[Кличка животного]," +
                 "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного]," +
                 "[Veterinary Clinic].[dbo].[Виды процедуры].[Вид процедуры] FROM [Veterinary Clinic].[dbo].[Процедуры]" +
                 "INNER JOIN [Veterinary Clinic].[dbo].[Сотрудники] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код сотрудника]) = [Veterinary Clinic].[dbo].[Сотрудники].[Код сотрудника]" +
