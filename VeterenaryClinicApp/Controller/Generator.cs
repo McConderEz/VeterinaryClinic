@@ -11,7 +11,7 @@ namespace VeterenaryClinicApp.Controller
 {
     internal class Generator
     {
-        
+        //TODO: Сделать генерацию таблиц
         public static List<string> disctricts = new List<string> { "Арбат", "Тверской", "Замоскворечье", "Якиманка", "Басманный", "Красносельский", "Пресненский", "Мещанский", "Таганский", "Западное Дегунино" };
         public static List<string> ownership = new List<string> { "Частная собственность", "Государственная собственность", "Частно-государственная" };
         public static List<string> conditions = new List<string> { "Еда/Вода", "Гигиена", "Пространство", "Медицинский уход" };
