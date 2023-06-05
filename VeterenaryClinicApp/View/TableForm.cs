@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,6 +34,8 @@ namespace VeterenaryClinicApp
             nameTable.Text = name;           
             counter.Text = "" + (dataGridView1.RowCount);
         }
+
+        bool flag = false;
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -141,109 +144,205 @@ namespace VeterenaryClinicApp
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-            var selectedRows = dataGridView1.SelectedRows;
-            List<int> ids = new List<int>();
-            switch (nameTable.Text)
+            try
             {
-                case "Ветеринарные клиники":
-                    for (var i = 0; i < selectedRows.Count; i++)
-                    {
-                        ids.Add((int)selectedRows[i].Cells["Код ветеринарной клинки"].Value);
-                    }
-                    Remover.RemoveVeterinaryClinic(ids);
-                    Refresh();                                        
-                    break;
-                case "Владельцы":
-                    for (var i = 0; i < selectedRows.Count; i++)
-                    {
-                        ids.Add((int)selectedRows[i].Cells["Код владельца"].Value);
-                    }
-                    Remover.RemoveOwner(ids);
-                    Refresh();
-                    break;
-                case "Процедуры":
-                    for (var i = 0; i < selectedRows.Count; i++)
-                    {
-                        ids.Add((int)selectedRows[i].Cells["Код процедуры"].Value);
-                    }
-                    Remover.RemoveProcedure(ids);
-                    Refresh();
-                    break;
-                case "Сотрудники":
-                    for (var i = 0; i < selectedRows.Count; i++)
-                    {
-                        ids.Add((int)selectedRows[i].Cells["Код сотрудника"].Value);
-                    }
-                    Remover.RemoveEmployee(ids);
-                    Refresh();
-                    break;
-                case "Животные":
-                    for (var i = 0; i < selectedRows.Count; i++)
-                    {
-                        ids.Add((int)selectedRows[i].Cells["Код животного"].Value);
-                    }
-                    Remover.RemoveAnimal(ids);
-                    Refresh();
-                    break;
-                case "Виды процедуры":
-                    for (var i = 0; i < selectedRows.Count; i++)
-                    {
-                        ids.Add((int)selectedRows[i].Cells["Код вида процедуры"].Value);
-                    }
-                    Remover.RemoveProcedureType(ids);
-                    Refresh();
-                    break;
-                case "Должности":
-                    for (var i = 0; i < selectedRows.Count; i++)
-                    {
-                        ids.Add((int)selectedRows[i].Cells["Код должности"].Value);
-                    }
-                    Remover.RemovePosition(ids);
-                    Refresh();
-                    break;
-                case "Классы животных":
-                    for (var i = 0; i < selectedRows.Count; i++)
-                    {
-                        ids.Add((int)selectedRows[i].Cells["Код класса животного"].Value);
-                    }
-                    Remover.RemoveAnimalClass(ids);
-                    Refresh();
-                    break;
-                case "Виды животных":
-                    for (var i = 0; i < selectedRows.Count; i++)
-                    {
-                        ids.Add((int)selectedRows[i].Cells["Код вида животного"].Value);
-                    }
-                    Remover.RemoveAnimalType(ids);
-                    Refresh();
-                    break;
-                case "Районы":
-                    for (var i = 0; i < selectedRows.Count; i++)
-                    {
-                        ids.Add((int)selectedRows[i].Cells["Код района"].Value);
-                    }
-                    Remover.RemoveDistrict(ids);
-                    Refresh();
-                    break;
-                case "Типы собственности":
-                    for (var i = 0; i < selectedRows.Count; i++)
-                    {
-                        ids.Add((int)selectedRows[i].Cells["Код типа собственности"].Value);
-                    }
-                    Remover.RemoveOwnership(ids);
-                    Refresh();
-                    break;
-                case "Лицензии":
-                    for (var i = 0; i < selectedRows.Count; i++)
-                    {
-                        ids.Add((int)selectedRows[i].Cells["Код лицензии"].Value);
-                    }
-                    Remover.RemoveLicense(ids);
-                    Refresh();
-                    break;
-                default:
-                    break;
-            }           
+                flag = false;
+                var selectedRows = dataGridView1.SelectedRows;
+                List<int> ids = new List<int>();
+                switch (nameTable.Text)
+                {
+                    case "Ветеринарные клиники":
+                        for (var i = 0; i < selectedRows.Count; i++)
+                        {
+                            ids.Add((int)selectedRows[i].Cells["Код ветеринарной клинки"].Value);
+                        }
+                        (int, int) countRemoveVetClinic = Remover.CountRemoveVeterinaryClinic(ids);
+
+                        DialogResult resultVetClinic = MessageBox.Show($"Будут удалены также записи из следующих таблиц:\nСотрудники - {countRemoveVetClinic.Item1}" +
+                            $"\nЛицензии - {countRemoveVetClinic.Item2}\nПродолжить?", "Каскадное удаление", MessageBoxButtons.YesNo);
+                        if (resultVetClinic == DialogResult.No)
+                        {
+                            return;
+                        }
+
+                        Remover.RemoveVeterinaryClinic(ids);
+                        Refresh();
+                        break;
+                    case "Владельцы":
+                        for (var i = 0; i < selectedRows.Count; i++)
+                        {
+                            ids.Add((int)selectedRows[i].Cells["Код владельца"].Value);
+                        }
+                        int countRemoveOwner = Remover.CountRemoveOwner(ids);
+
+                        DialogResult resultOwner = MessageBox.Show($"Будут удалены также записи из следующих таблиц:\nЖивотные - {countRemoveOwner}" +
+                            $"\nПродолжить?", "Каскадное удаление", MessageBoxButtons.YesNo);
+                        if (resultOwner == DialogResult.No)
+                        {
+                            return;
+                        }
+                        Remover.RemoveOwner(ids);
+                        Refresh();
+                        break;
+                    case "Процедуры":
+                        for (var i = 0; i < selectedRows.Count; i++)
+                        {
+                            ids.Add((int)selectedRows[i].Cells["Код процедуры"].Value);
+                        }
+                        Remover.RemoveProcedure(ids);
+                        Refresh();
+                        break;
+                    case "Сотрудники":
+                        for (var i = 0; i < selectedRows.Count; i++)
+                        {
+                            ids.Add((int)selectedRows[i].Cells["Код сотрудника"].Value);
+                        }
+                        int countRemoveEmployee = Remover.CountRemoveEmployee(ids);
+
+                        DialogResult resultEmployee = MessageBox.Show($"Будут удалены также записи из следующих таблиц:\nПроцедуры - {countRemoveEmployee}" +
+                            $"\nПродолжить?", "Каскадное удаление", MessageBoxButtons.YesNo);
+                        if (resultEmployee == DialogResult.No)
+                        {
+                            return;
+                        }
+                        Remover.RemoveEmployee(ids);
+                        Refresh();
+                        break;
+                    case "Животные":
+                        for (var i = 0; i < selectedRows.Count; i++)
+                        {
+                            ids.Add((int)selectedRows[i].Cells["Код животного"].Value);
+                        }
+                        int countRemoveAnimal = Remover.CountRemoveAnimal(ids);
+
+                        DialogResult resultAnimal = MessageBox.Show($"Будут удалены также записи из следующих таблиц:\nПроцедуры - {countRemoveAnimal}" +
+                            $"\nПродолжить?", "Каскадное удаление", MessageBoxButtons.YesNo);
+                        if (resultAnimal == DialogResult.No)
+                        {
+                            return;
+                        }
+                        Remover.RemoveAnimal(ids);
+                        Refresh();
+                        break;
+                    case "Виды процедуры":
+                        for (var i = 0; i < selectedRows.Count; i++)
+                        {
+                            ids.Add((int)selectedRows[i].Cells["Код вида процедуры"].Value);
+                        }
+                        int countRemoveProcedureType = Remover.CountRemoveProcedureType(ids);
+
+                        DialogResult resultProcedureType = MessageBox.Show($"Будут удалены также записи из следующих таблиц:\nПроцедуры - {countRemoveProcedureType}" +
+                            $"\nПродолжить?", "Каскадное удаление", MessageBoxButtons.YesNo);
+                        if (resultProcedureType == DialogResult.No)
+                        {
+                            return;
+                        }
+                        Remover.RemoveProcedureType(ids);
+                        Refresh();
+                        break;
+                    case "Должности":
+                        for (var i = 0; i < selectedRows.Count; i++)
+                        {
+                            ids.Add((int)selectedRows[i].Cells["Код должности"].Value);
+                        }
+                        (int, int) countRemovePosition = Remover.CountRemovePosition(ids);
+
+                        DialogResult resultPosition = MessageBox.Show($"Будут удалены также записи из следующих таблиц:\nСотрудники - {countRemovePosition.Item1}" +
+                            $"\nПроцедуры - {countRemovePosition.Item2}\nПродолжить?", "Каскадное удаление", MessageBoxButtons.YesNo);
+                        if (resultPosition == DialogResult.No)
+                        {
+                            return;
+                        }
+                        Remover.RemovePosition(ids);
+                        Refresh();
+                        break;
+                    case "Классы животных":
+                        for (var i = 0; i < selectedRows.Count; i++)
+                        {
+                            ids.Add((int)selectedRows[i].Cells["Код класса животного"].Value);
+                        }
+                        (int, int, int) countRemoveAnimalClass= Remover.CountRemoveAnimalClass(ids);
+
+                        DialogResult resultAnimalClass = MessageBox.Show($"Будут удалены также записи из следующих таблиц:\nВиды животных - {countRemoveAnimalClass.Item1}\n" +
+                            $"Животные - {countRemoveAnimalClass.Item2}" +
+                            $"\nПроцедуры - {countRemoveAnimalClass.Item3}" +
+                            $"\nПродолжить?", "Каскадное удаление", MessageBoxButtons.YesNo);
+                        if (resultAnimalClass == DialogResult.No)
+                        {
+                            return;
+                        }
+                        Remover.RemoveAnimalClass(ids);
+                        Refresh();
+                        break;
+                    case "Виды животных":
+                        for (var i = 0; i < selectedRows.Count; i++)
+                        {
+                            ids.Add((int)selectedRows[i].Cells["Код вида животного"].Value);
+                        }
+                        (int, int) countRemoveAnimalType = Remover.CountRemoveAnimalType(ids);
+
+                        DialogResult resultAnimalType = MessageBox.Show($"Будут удалены также записи из следующих таблиц:\nЖивотные - {countRemoveAnimalType.Item1}" +
+                            $"\nПроцедуры - {countRemoveAnimalType.Item2}\nПродолжить?", "Каскадное удаление", MessageBoxButtons.YesNo);
+                        if (resultAnimalType == DialogResult.No)
+                        {
+                            return;
+                        }
+                        Remover.RemoveAnimalType(ids);
+                        Refresh();
+                        break;
+                    case "Районы":
+                        for (var i = 0; i < selectedRows.Count; i++)
+                        {
+                            ids.Add((int)selectedRows[i].Cells["Код района"].Value);
+                        }
+                        (int, int, int) countRemoveDistrict = Remover.CountRemoveDistrict(ids);
+
+                        DialogResult resultDistrict = MessageBox.Show($"Будут удалены также записи из следующих таблиц:\nВетеринарные клиники - {countRemoveDistrict.Item1}\n" +
+                            $"Сотрудники - {countRemoveDistrict.Item2}" +
+                            $"\nЛицензии - {countRemoveDistrict.Item3}" +
+                            $"\nПродолжить?", "Каскадное удаление", MessageBoxButtons.YesNo);
+                        if (resultDistrict == DialogResult.No)
+                        {
+                            return;
+                        }
+                        Remover.RemoveDistrict(ids);
+                        Refresh();
+                        break;
+                    case "Типы собственности":
+                        for (var i = 0; i < selectedRows.Count; i++)
+                        {
+                            ids.Add((int)selectedRows[i].Cells["Код типа собственности"].Value);
+                        }
+
+                        (int, int, int) countRemoveOwnershipType = Remover.CountRemoveOwnershipType(ids);
+
+                        DialogResult resultOwnershipType = MessageBox.Show($"Будут удалены также записи из следующих таблиц:\nВетеринарные клиники - {countRemoveOwnershipType.Item1}" +
+                            $"\nСотрудники - {countRemoveOwnershipType.Item2}\n" +
+                            $"Лицензии - {countRemoveOwnershipType.Item3}" +
+                            $"\nПродолжить?", "Каскадное удаление", MessageBoxButtons.YesNo);
+                        if (resultOwnershipType == DialogResult.No)
+                        {
+                            return;
+                        }
+                        Remover.RemoveOwnership(ids);
+                        Refresh();
+                        break;
+                    case "Лицензии":
+                        for (var i = 0; i < selectedRows.Count; i++)
+                        {
+                            ids.Add((int)selectedRows[i].Cells["Код лицензии"].Value);
+                        }
+                        Remover.RemoveLicense(ids);
+                        Refresh();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}\nВероятно вы не правильно выделили запись для удаление, попробуйте ещё раз.");
+            }
         }
         /// <summary>
         /// Изменение записи
