@@ -29,7 +29,7 @@ namespace VeterenaryClinicApp.View.Animals
         int id;
         public EditAnimalForm(DataGridViewRow dataGridViewRow)
         {
-            id = (int)dataGridViewRow.Cells["Код жвиотного"].Value;
+            id = (int)dataGridViewRow.Cells["Код животного"].Value;
             InitializeComponent();
         }
 

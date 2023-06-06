@@ -8,6 +8,7 @@ using System.Linq;
 using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using VeterenaryClinicApp.Controller;
 using VeterenaryClinicApp.Model;
@@ -121,7 +122,7 @@ namespace VeterenaryClinicApp
                     while (!addDistrictForm.IsDisposed) { }
                     Refresh();
                     break;
-                case "Типы собственности":
+                case "Тип собственности":
                     var addOwnershipForm = new AddOwnershipTypeForm();
                     addOwnershipForm.ShowDialog();
                     while (!addOwnershipForm.IsDisposed) { }
@@ -308,7 +309,7 @@ namespace VeterenaryClinicApp
                         Remover.RemoveDistrict(ids);
                         Refresh();
                         break;
-                    case "Типы собственности":
+                    case "Тип собственности":
                         for (var i = 0; i < selectedRows.Count; i++)
                         {
                             ids.Add((int)selectedRows[i].Cells["Код типа собственности"].Value);
@@ -423,7 +424,7 @@ namespace VeterenaryClinicApp
                     while (!editDistrictForm.IsDisposed) { }
                     Refresh();
                     break;
-                case "Типы собственности":
+                case "Тип собственности":
                     var selectedOwnershipRow = dataGridView1.SelectedRows[0];
                     EditOwnershipTypeForm editOwnershipForm = new EditOwnershipTypeForm(selectedOwnershipRow);
                     editOwnershipForm.ShowDialog();
@@ -444,7 +445,110 @@ namespace VeterenaryClinicApp
 
         private void TableForm_Load(object sender, EventArgs e)
         {
+            
+            labelTemp.Text = nameTable.Text;
+            string sql;
+            List<string> columnName = new List<string>();
+            if (labelTemp.Text != "System.Data.DataRowView" && !string.IsNullOrWhiteSpace(labelTemp.Text))
+            {
+                string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
 
+                    if (labelTemp.Text == "Ветеринарные клиники")
+                    {
+                        sql = "SELECT [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]," +
+            "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Номер регистрационного пункта]," +
+            "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Год открытия]," +
+            "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Адрес пункта]," +
+            "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта]," +
+            "[Veterinary Clinic].[dbo].[Районы].[Район города]," +
+            "[Veterinary Clinic].[dbo].[Тип собственности].[Тип собственности]," +
+            "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Телефон] FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники]" +
+        "INNER JOIN [Veterinary Clinic].[dbo].[Тип собственности] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код типа собственности]) = [Veterinary Clinic].[dbo].[Тип собственности].[Код типа собственности]" +
+        $"INNER JOIN [Veterinary Clinic].[dbo].[Районы] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код район города]) = [Veterinary Clinic].[dbo].[Районы].[Код района]";
+                    }
+                    else if (labelTemp.Text == "Сотрудники")
+                    {
+                        sql = "SELECT [Veterinary Clinic].[dbo].[Сотрудники].[Код сотрудника]," +
+            "[Veterinary Clinic].[dbo].[Сотрудники].[Имя]," +
+            "[Veterinary Clinic].[dbo].[Сотрудники].[Фамилия]," +
+            "[Veterinary Clinic].[dbo].[Сотрудники].[Отчество]," +
+            "[Veterinary Clinic].[dbo].[Сотрудники].[Дата рождения]," +
+            "[Veterinary Clinic].[dbo].[Должности].[Должность]," +
+            "[Veterinary Clinic].[dbo].[Сотрудники].[Стаж]," +
+            "[Veterinary Clinic].[dbo].[Сотрудники].[Оклад]," +
+            "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Номер регистрационного пункта]," +
+            "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта] FROM [Veterinary Clinic].[dbo].[Сотрудники]" +
+            "INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники]) = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]" +
+            $"INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код должности]) = [Veterinary Clinic].[dbo].[Должности].[Код должности]";
+                    }
+                    else if (labelTemp.Text == "Животные")
+                    {
+                        sql = "SELECT [Veterinary Clinic].[dbo].[Животные].[Код животного]," +
+            "[Veterinary Clinic].[dbo].[Животные].[Кличка Животного]," +
+            "[Veterinary Clinic].[dbo].[Животные].[Возраст Животного]," +
+            "[Veterinary Clinic].[dbo].[Животные].[Условия содержания животного]," +
+            "[Veterinary Clinic].[dbo].[Владельцы].[Имя]," +
+            "[Veterinary Clinic].[dbo].[Владельцы].[Фамилия]," +
+            "[Veterinary Clinic].[dbo].[Владельцы].[Отчество]," +
+            "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного] FROM [Veterinary Clinic].[dbo].[Животные]" +
+            "INNER JOIN [Veterinary Clinic].[dbo].[Владельцы] ON ([Veterinary Clinic].[dbo].[Животные].[Код владельца]) = [Veterinary Clinic].[dbo].[Владельцы].[Код владельца] " +
+            $"INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного]";
+                    }
+                    else if (labelTemp.Text == "Процедуры")
+                    {
+                        sql = "SELECT [Veterinary Clinic].[dbo].[Процедуры].[Код процедуры]," +
+            "[Veterinary Clinic].[dbo].[Процедуры].[Дата оказания помощи животному]," +
+            "[Veterinary Clinic].[dbo].[Процедуры].[Цена процедуры]," +
+            "[Veterinary Clinic].[dbo].[Процедуры].[Скидка на эту процедуру]," +
+            "[Veterinary Clinic].[dbo].[Процедуры].[Цена материала по этой процедуре]," +
+            "[Veterinary Clinic].[dbo].[Сотрудники].[Имя]," +
+            "[Veterinary Clinic].[dbo].[Сотрудники].[Фамилия]," +
+            "[Veterinary Clinic].[dbo].[Сотрудники].[Отчество]," +
+            "[Veterinary Clinic].[dbo].[Животные].[Кличка животного]," +
+            "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного]," +
+            "[Veterinary Clinic].[dbo].[Виды процедуры].[Вид процедуры] FROM [Veterinary Clinic].[dbo].[Процедуры]" +
+            "INNER JOIN [Veterinary Clinic].[dbo].[Сотрудники] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код сотрудника]) = [Veterinary Clinic].[dbo].[Сотрудники].[Код сотрудника]" +
+            "INNER JOIN [Veterinary Clinic].[dbo].[Животные] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код животного]) = [Veterinary Clinic].[dbo].[Животные].[Код животного] " +
+            "INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного] " +
+            $"INNER JOIN [Veterinary Clinic].[dbo].[Виды процедуры] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код вида процедуры]) = [Veterinary Clinic].[dbo].[Виды процедуры].[Код вида процедуры]";
+                    }
+                    else if (labelTemp.Text == "Виды животных")
+                    {
+                        sql = "SELECT [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного]," +
+            "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного]," +
+            "[Veterinary Clinic].[dbo].[Классы животных].[Класс животного] FROM [Veterinary Clinic].[dbo].[Виды животных]" +
+            $"INNER JOIN [Veterinary Clinic].[dbo].[Классы животных] ON ([Veterinary Clinic].[dbo].[Виды животных].[Код класса животного]) = [Veterinary Clinic].[dbo].[Классы животных].[Код класса животного]";
+                    }
+                    else if (labelTemp.Text == "Лицензии")
+                    {
+                        sql = "SELECT [Veterinary Clinic].[dbo].[Лицензии].[Код лицензии]," +
+            "[Veterinary Clinic].[dbo].[Лицензии].[Лицензия №]," +
+            "[Veterinary Clinic].[dbo].[Лицензии].[Срок окончания лицензии]," +
+            "[Veterinary Clinic].[dbo].[Лицензии].[Фото лицензии]," +
+            "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта] FROM [Veterinary Clinic].[dbo].[Лицензии]" +
+            $"INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Лицензии].[Код ветеринарной клинки]) = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]";
+                    }
+                    else
+                    {
+                        sql = $"SELECT * FROM [{labelTemp.Text}]";
+                    }
+
+                    var command = new SqlCommand(sql, connection);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        var schemaTable = reader.GetSchemaTable();
+                        foreach (DataRow row in schemaTable.Rows)
+                        {
+                            columnName.Add(row["ColumnName"].ToString());
+                        }
+                    }
+
+                    fieldsList.DataSource = columnName;
+                }
+            }
         }
 
         /// <summary>
@@ -515,7 +619,7 @@ namespace VeterenaryClinicApp
                     dataGridView1.Invalidate();
                     counter.Text = "" + (dataGridView1.RowCount);
                     break;
-                case "Типы собственности":
+                case "Тип собственности":
                     var dataTableOwnership = Refresher.RefreshDistrict();
                     dataGridView1.DataSource = dataTableOwnership;
                     dataGridView1.Invalidate();
@@ -532,6 +636,37 @@ namespace VeterenaryClinicApp
             }
         }
 
-        
+        private void removeByFieldButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult result = MessageBox.Show("Могут быть удалены запии из других таблиц.Вы уверены, что хотите продолжить?", "Удаление по полю", MessageBoxButtons.YesNo);
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+                else
+                {
+                    Remover.DeleteNotesByFields(valueBox.Text, nameTable.Text, labelTemp.Text, labelTemp2.Text);
+                    Refresh();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}!\nПопробуйте иначе!");
+            }
+        }
+
+        private void fieldsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var fieldName = fieldsList.GetItemText(fieldsList.SelectedItem);
+            labelTemp.Text = fieldName; 
+        }
+
+        private void signList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var sign = signList.GetItemText(signList.SelectedItem);
+            labelTemp2.Text = sign;
+        }
     }
 }

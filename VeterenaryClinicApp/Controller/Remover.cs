@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
+using System.Windows.Media.Media3D;
+using System.Xml;
 using VeterenaryClinicApp.Model;
 
 namespace VeterenaryClinicApp.Controller
@@ -493,5 +497,190 @@ namespace VeterenaryClinicApp.Controller
             return (count,count2, count3);
         }
 
+        public static DataTable LoadTables()
+        {
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+
+            string sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            var table = new DataTable();
+            adapter.Fill(table);
+            return table;
+        }
+
+        public static void DeleteNotesByFields(string value,string nameTable,string field,string sign)
+        {
+            try
+            {
+                if (value != null)
+                {
+                    string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+                    SqlConnection myConnection = new SqlConnection(connectionString);
+                    myConnection.Open();
+                    string sql;
+                    int intValue;
+                    decimal decValue;
+                    DateTime dateValue;
+
+                    if (int.TryParse(value, out intValue))
+                    {
+                        sql = $"DELETE  FROM [Veterinary Clinic].[dbo].[{nameTable}] " +
+                                $"WHERE [Veterinary Clinic].[dbo].[{nameTable}].[{field}] {sign} {intValue}";
+                    }
+                    else if (decimal.TryParse(value, out decValue))
+                    {
+                        sql = $"DELETE  FROM [Veterinary Clinic].[dbo].[{nameTable}] " +
+                                $"WHERE [Veterinary Clinic].[dbo].[{nameTable}].[{field}] {sign} {decValue}";
+                    }
+                    else if (DateTime.TryParse(value, out dateValue))
+                    {
+                        string date = $"{dateValue.Month}-{dateValue.Day}-{dateValue.Year}";
+                        sql = $"DELETE  FROM [Veterinary Clinic].[dbo].[{nameTable}] " +
+                                 $"WHERE [Veterinary Clinic].[dbo].[{nameTable}].[{field}] {sign} {date}";
+                    }
+                    else
+                    {
+                        if (nameTable == "Ветеринарные клиники")
+                        {
+                            if (field == "Тип собственности")
+                            {
+                                nameTable = "Тип собственности";
+                                sql = "DELETE  FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники] " +
+                                $" WHERE [Код типа собственности] IN (SELECT [Код типа собственности] FROM [{nameTable}] WHERE [{field}] = N'{value}')";
+                            }
+                            else if (field == "Район города")
+                            {
+                                nameTable = "Районы";
+                                sql = "DELETE  FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники] " +
+                                $" WHERE [Код район города] IN (SELECT [Код района] FROM [{nameTable}] WHERE [{field}] = N'{value}')";
+                            }
+                            else
+                            {
+                                sql = $"DELETE  FROM [Veterinary Clinic].[dbo].[{nameTable}] " +
+                                $"WHERE [Veterinary Clinic].[dbo].[{nameTable}].[{field}] = N'{value}'";
+                            }
+
+                        }
+                        else if (nameTable == "Сотрудники")
+                        {
+                            if (field == "Должность")
+                            {
+                                nameTable = "Должности";
+                                sql = "DELETE  FROM [Veterinary Clinic].[dbo].[Сотрудники] " +
+                                $" WHERE [Код должности] IN (SELECT [Код должности] FROM [{nameTable}] WHERE [{field}] = N'{value}')";
+                            }
+                            else if (field == "Номер регистрационного пункта" || field == "Название пункта")
+                            {
+                                nameTable = "Ветеринарные клиники";
+                                sql = "DELETE  FROM [Veterinary Clinic].[dbo].[Сотрудники] " +
+                                $" WHERE [Код ветеринарной клинки] IN (SELECT [Код ветеринарной клинки] FROM [{nameTable}] WHERE [{field}] = N'{value}')";
+                            }
+                            else
+                            {
+                                sql = "DELETE  FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники] " +
+                                $"WHERE [Veterinary Clinic].[dbo].[{nameTable}].[{field}] = N'{value}'";
+                            }
+                        }
+                        else if (nameTable == "Животные")
+                        {
+                            if (field == "Имя" || field == "Фамилия" || field == "Отчество")
+                            {
+                                nameTable = "Владельцы";
+                                sql = $"DELETE  FROM [Veterinary Clinic].[dbo].[Животные] " +
+                                $" WHERE [Код владельца] IN (SELECT [Код владельца] FROM [{nameTable}] WHERE [{field}] = N'{value}')";
+                            }
+                            else if (field == "Вид животного")
+                            {
+                                nameTable = "Виды животных";
+                                sql = $"DELETE  FROM [Veterinary Clinic].[dbo].[Животные] " +
+                                $" WHERE [Код вида животного] IN (SELECT [Код вида животного] FROM [{nameTable}] WHERE [{field}] = N'{value}')";
+                            }
+                            else
+                            {
+                                sql = "DELETE  FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники] " +
+                                $"WHERE [Veterinary Clinic].[dbo].[{nameTable}].[{field}] = N'{value}'";
+                            }
+                        }
+                        else if (nameTable == "Процедуры")
+                        {
+                            if (field == "Имя" || field == "Фамилия" || field == "Отчество")
+                            {
+                                nameTable = "Сотрудники";
+                                sql = $"DELETE  FROM [Veterinary Clinic].[dbo].[Процедуры] " +
+                                $" WHERE [Код сотрудника] IN (SELECT [Код сотрудника] FROM [{nameTable}] WHERE [{field}] = N'{value}')";
+                            }
+                            else if (field == "Кличка животного")
+                            {
+                                nameTable = "Животные";
+                                sql = $"DELETE  FROM [Veterinary Clinic].[dbo].[Процедуры] " +
+                                $" WHERE [Код животного] IN (SELECT [Код животного] FROM [{nameTable}] WHERE [{field}] = N'{value}')";
+                            }
+                            else if (field == "Вид животного")
+                            {
+                                nameTable = "Виды животных";
+                                sql = $"DELETE  FROM [Veterinary Clinic].[dbo].[Процедуры] " +
+                                $" WHERE [Код животного] IN (SELECT [Код животного] FROM [Животные] WHERE [Код животного] IN (SELECT [Код животного] FROM [{nameTable}] WHERE [Код вида животного] = N'{value}'))";
+                            }
+                            else if (field == "Вид процедуры")
+                            {
+                                nameTable = "Виды процедуры";
+                                sql = $"DELETE  FROM [Veterinary Clinic].[dbo].[Процедуры " +
+                                $" WHERE [Код вида процедуры] IN (SELECT [Код вида процедуры] FROM [{nameTable}] WHERE [{field}] = N'{value}')";
+                            }
+                            else
+                            {
+                                sql = "DELETE  FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники] " +
+                                $"WHERE [Veterinary Clinic].[dbo].[{nameTable}].[{field}] = N'{value}'";
+                            }
+
+                        }
+                        else if (nameTable == "Виды животных")
+                        {
+                            if (field == "Класс животного")
+                            {
+                                nameTable = "Классы животных";
+                                sql = $"DELETE  FROM [Veterinary Clinic].[dbo].[Виды животных] " +
+                                $" WHERE [Код класса животного] IN (SELECT [Код класса животного] FROM [{nameTable}] WHERE [{field}] = N'{value}')";
+                            }
+                            else
+                            {
+                                sql = "DELETE  FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники] " +
+                                $"WHERE [Veterinary Clinic].[dbo].[{nameTable}].[{field}] = N'{value}'";
+                            }
+                            sql = "DELETE FROM [Veterinary Clinic].[dbo].[Виды животных]" +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Классы животных] ON ([Veterinary Clinic].[dbo].[Виды животных].[Код класса животного]) = [Veterinary Clinic].[dbo].[Классы животных].[Код класса животного] WHERE [Veterinary Clinic].[dbo].[{nameTable}].[{field}] = N'{value}'";
+                        }
+                        else if (nameTable == "Лицензии")
+                        {
+                            if (field == "Название пункта")
+                            {
+                                nameTable = "Ветеринарные клиники";
+                                sql = $"DELETE  FROM [Veterinary Clinic].[dbo].[Лицензии] " +
+                                $" WHERE [Код ветеринарной клинки] IN (SELECT [Код ветеринарной клинки] FROM [{nameTable}] WHERE [{field}] = N'{value}')";
+                            }
+                            else
+                            {
+                                sql = "DELETE  FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники] " +
+                                $"WHERE [Veterinary Clinic].[dbo].[{nameTable}].[{field}] = N'{value}'";
+                            }
+                        }
+                        else
+                        {
+                            sql = $"DELETE FROM [Veterinary Clinic].[dbo].[{nameTable}] WHERE [Veterinary Clinic].[dbo].[{nameTable}].[{field}] = N'{value}'";
+                        }
+                    }
+                    SqlCommand command = new SqlCommand(sql, myConnection);
+                    command.ExecuteScalar();
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+
+        }
     }
 }

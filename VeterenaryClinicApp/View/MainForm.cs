@@ -339,7 +339,7 @@ namespace VeterenaryClinicApp
             SqlDataAdapter adapter = new SqlDataAdapter(query, myConnection);
             var dataTable = new DataTable();
             adapter.Fill(dataTable);
-            OpenChildForm(new TableForm(dataTable, "Типы собственности"));
+            OpenChildForm(new TableForm(dataTable, "Тип собственности"));
         }
 
         /// <summary>
@@ -378,7 +378,7 @@ namespace VeterenaryClinicApp
             SqlDataAdapter adapter = new SqlDataAdapter(query, myConnection);
             var dataTable = new DataTable();
             adapter.Fill(dataTable);
-            OpenChildForm(new TableForm(dataTable, "Виды процедур"));
+            OpenChildForm(new TableForm(dataTable, "Виды процедуры"));
         }
 
         /// <summary>

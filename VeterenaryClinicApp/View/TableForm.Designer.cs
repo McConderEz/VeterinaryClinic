@@ -36,6 +36,15 @@
             this.nameTable = new System.Windows.Forms.Label();
             this.counter = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.fieldsList = new System.Windows.Forms.ComboBox();
+            this.labelField = new System.Windows.Forms.Label();
+            this.valueBox = new System.Windows.Forms.TextBox();
+            this.labelValue = new System.Windows.Forms.Label();
+            this.removeByFieldButton = new System.Windows.Forms.Button();
+            this.labelTemp = new System.Windows.Forms.Label();
+            this.labelSign = new System.Windows.Forms.Label();
+            this.signList = new System.Windows.Forms.ComboBox();
+            this.labelTemp2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,7 +67,7 @@
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(247, 402);
+            this.button3.Location = new System.Drawing.Point(12, 402);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(103, 34);
             this.button3.TabIndex = 3;
@@ -89,7 +98,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(356, 402);
+            this.button1.Location = new System.Drawing.Point(121, 402);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(103, 34);
             this.button1.TabIndex = 5;
@@ -104,7 +113,7 @@
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(465, 402);
+            this.button2.Location = new System.Drawing.Point(230, 402);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(109, 34);
             this.button2.TabIndex = 6;
@@ -143,12 +152,123 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Количество записей:";
             // 
+            // fieldsList
+            // 
+            this.fieldsList.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.fieldsList.FormattingEnabled = true;
+            this.fieldsList.Location = new System.Drawing.Point(348, 417);
+            this.fieldsList.Name = "fieldsList";
+            this.fieldsList.Size = new System.Drawing.Size(121, 21);
+            this.fieldsList.TabIndex = 11;
+            this.fieldsList.SelectedIndexChanged += new System.EventHandler(this.fieldsList_SelectedIndexChanged);
+            // 
+            // labelField
+            // 
+            this.labelField.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.labelField.AutoSize = true;
+            this.labelField.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.labelField.Location = new System.Drawing.Point(345, 400);
+            this.labelField.Name = "labelField";
+            this.labelField.Size = new System.Drawing.Size(33, 13);
+            this.labelField.TabIndex = 13;
+            this.labelField.Text = "Поля";
+            // 
+            // valueBox
+            // 
+            this.valueBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.valueBox.Location = new System.Drawing.Point(624, 417);
+            this.valueBox.Name = "valueBox";
+            this.valueBox.Size = new System.Drawing.Size(104, 20);
+            this.valueBox.TabIndex = 14;
+            // 
+            // labelValue
+            // 
+            this.labelValue.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.labelValue.AutoSize = true;
+            this.labelValue.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.labelValue.Location = new System.Drawing.Point(621, 400);
+            this.labelValue.Name = "labelValue";
+            this.labelValue.Size = new System.Drawing.Size(55, 13);
+            this.labelValue.TabIndex = 15;
+            this.labelValue.Text = "Значение";
+            // 
+            // removeByFieldButton
+            // 
+            this.removeByFieldButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.removeByFieldButton.BackColor = System.Drawing.Color.SkyBlue;
+            this.removeByFieldButton.FlatAppearance.BorderSize = 0;
+            this.removeByFieldButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeByFieldButton.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.removeByFieldButton.Location = new System.Drawing.Point(734, 402);
+            this.removeByFieldButton.Name = "removeByFieldButton";
+            this.removeByFieldButton.Size = new System.Drawing.Size(104, 36);
+            this.removeByFieldButton.TabIndex = 16;
+            this.removeByFieldButton.Text = "Удалить по полю";
+            this.removeByFieldButton.UseVisualStyleBackColor = false;
+            this.removeByFieldButton.Click += new System.EventHandler(this.removeByFieldButton_Click);
+            // 
+            // labelTemp
+            // 
+            this.labelTemp.AutoSize = true;
+            this.labelTemp.Location = new System.Drawing.Point(14, 475);
+            this.labelTemp.Name = "labelTemp";
+            this.labelTemp.Size = new System.Drawing.Size(46, 13);
+            this.labelTemp.TabIndex = 17;
+            this.labelTemp.Text = "Шаблон";
+            this.labelTemp.Visible = false;
+            // 
+            // labelSign
+            // 
+            this.labelSign.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.labelSign.AutoSize = true;
+            this.labelSign.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.labelSign.Location = new System.Drawing.Point(482, 400);
+            this.labelSign.Name = "labelSign";
+            this.labelSign.Size = new System.Drawing.Size(32, 13);
+            this.labelSign.TabIndex = 19;
+            this.labelSign.Text = "Знак";
+            // 
+            // signList
+            // 
+            this.signList.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.signList.FormattingEnabled = true;
+            this.signList.Items.AddRange(new object[] {
+            ">",
+            "=",
+            "<",
+            ">=",
+            "<="});
+            this.signList.Location = new System.Drawing.Point(485, 417);
+            this.signList.Name = "signList";
+            this.signList.Size = new System.Drawing.Size(121, 21);
+            this.signList.TabIndex = 18;
+            this.signList.SelectedIndexChanged += new System.EventHandler(this.signList_SelectedIndexChanged);
+            // 
+            // labelTemp2
+            // 
+            this.labelTemp2.AutoSize = true;
+            this.labelTemp2.Location = new System.Drawing.Point(66, 475);
+            this.labelTemp2.Name = "labelTemp2";
+            this.labelTemp2.Size = new System.Drawing.Size(46, 13);
+            this.labelTemp2.TabIndex = 20;
+            this.labelTemp2.Text = "Шаблон";
+            this.labelTemp2.Visible = false;
+            // 
             // TableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
             this.ClientSize = new System.Drawing.Size(850, 500);
+            this.Controls.Add(this.labelTemp2);
+            this.Controls.Add(this.labelSign);
+            this.Controls.Add(this.signList);
+            this.Controls.Add(this.labelTemp);
+            this.Controls.Add(this.removeByFieldButton);
+            this.Controls.Add(this.labelValue);
+            this.Controls.Add(this.valueBox);
+            this.Controls.Add(this.labelField);
+            this.Controls.Add(this.fieldsList);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.counter);
             this.Controls.Add(this.nameTable);
@@ -177,5 +297,14 @@
         private System.Windows.Forms.Label nameTable;
         private System.Windows.Forms.Label counter;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox fieldsList;
+        private System.Windows.Forms.Label labelField;
+        private System.Windows.Forms.TextBox valueBox;
+        private System.Windows.Forms.Label labelValue;
+        private System.Windows.Forms.Button removeByFieldButton;
+        private System.Windows.Forms.Label labelTemp;
+        private System.Windows.Forms.Label labelSign;
+        private System.Windows.Forms.ComboBox signList;
+        private System.Windows.Forms.Label labelTemp2;
     }
 }
