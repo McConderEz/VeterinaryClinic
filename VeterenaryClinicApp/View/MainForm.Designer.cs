@@ -198,7 +198,7 @@
             this.button1.Padding = new System.Windows.Forms.Padding(70, 0, 0, 0);
             this.button1.Size = new System.Drawing.Size(233, 32);
             this.button1.TabIndex = 6;
-            this.button1.Text = "Фильтрация";
+            this.button1.Text = "Составная форма";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -215,7 +215,7 @@
             this.searchButton.Padding = new System.Windows.Forms.Padding(70, 0, 0, 0);
             this.searchButton.Size = new System.Drawing.Size(233, 40);
             this.searchButton.TabIndex = 5;
-            this.searchButton.Text = "Поиск";
+            this.searchButton.Text = "Поиск/Фильтрация";
             this.searchButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.searchButton.UseVisualStyleBackColor = true;
             this.searchButton.Click += new System.EventHandler(this.searchButton_Click);

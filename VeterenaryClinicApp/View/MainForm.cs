@@ -32,7 +32,7 @@ namespace VeterenaryClinicApp
         {
             InitializeComponent();
             customizeDesign();
-            Generator.GenerateDataBase();
+            //Generator.GenerateDataBase();
         }
       
 
@@ -388,7 +388,39 @@ namespace VeterenaryClinicApp
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)//фильтрация
         {
-            OpenChildForm(new FilterForm());
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            string query = "SELECT [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Номер регистрационного пункта]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Год открытия]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Адрес пункта]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта]," +
+                "[Veterinary Clinic].[dbo].[Районы].[Район города]," +
+                "[Veterinary Clinic].[dbo].[Тип собственности].[Тип собственности]," +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Телефон] FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники]" +
+            "INNER JOIN [Veterinary Clinic].[dbo].[Тип собственности] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код типа собственности]) = [Veterinary Clinic].[dbo].[Тип собственности].[Код типа собственности]" +
+            "INNER JOIN [Veterinary Clinic].[dbo].[Районы] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код район города]) = [Veterinary Clinic].[dbo].[Районы].[Код района]";
+            SqlDataAdapter adapter = new SqlDataAdapter(query, myConnection);
+            var dataTableVetClinic = new DataTable();
+            adapter.Fill(dataTableVetClinic);
+
+            query = "SELECT [Veterinary Clinic].[dbo].[Сотрудники].[Код сотрудника]," +
+               "[Veterinary Clinic].[dbo].[Сотрудники].[Имя]," +
+               "[Veterinary Clinic].[dbo].[Сотрудники].[Фамилия]," +
+               "[Veterinary Clinic].[dbo].[Сотрудники].[Отчество]," +
+               "[Veterinary Clinic].[dbo].[Сотрудники].[Дата рождения]," +
+               "[Veterinary Clinic].[dbo].[Должности].[Должность]," +
+               "[Veterinary Clinic].[dbo].[Сотрудники].[Стаж]," +
+               "[Veterinary Clinic].[dbo].[Сотрудники].[Оклад]," +
+               "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Номер регистрационного пункта]," +
+               "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта] FROM [Veterinary Clinic].[dbo].[Сотрудники]" +
+               "INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники]) = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]" +
+               "INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код должности]) = [Veterinary Clinic].[dbo].[Должности].[Код должности]";
+
+            var dataTableEmployee = new DataTable();
+            adapter.Fill(dataTableEmployee);
+            OpenChildForm(new FilterForm(dataTableVetClinic,dataTableEmployee));
         }
 
         /// <summary>

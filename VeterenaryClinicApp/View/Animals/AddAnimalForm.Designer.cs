@@ -40,15 +40,15 @@
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.codeOwnerBox = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.ageBox = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.codeTypeAnimalBox = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.conditionsBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.nameBox = new System.Windows.Forms.TextBox();
+            this.animalTypeBox = new System.Windows.Forms.ComboBox();
+            this.codeOwnerBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,11 +84,11 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label5.Location = new System.Drawing.Point(327, 282);
+            this.label5.Location = new System.Drawing.Point(330, 283);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(153, 18);
+            this.label5.Size = new System.Drawing.Size(115, 18);
             this.label5.TabIndex = 85;
-            this.label5.Text = "Код вида животного";
+            this.label5.Text = "Вид животного";
             // 
             // label4
             // 
@@ -174,18 +174,6 @@
             this.panel5.Size = new System.Drawing.Size(257, 1);
             this.panel5.TabIndex = 78;
             // 
-            // codeOwnerBox
-            // 
-            this.codeOwnerBox.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.codeOwnerBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.codeOwnerBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.codeOwnerBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.codeOwnerBox.Location = new System.Drawing.Point(422, 227);
-            this.codeOwnerBox.Margin = new System.Windows.Forms.Padding(4);
-            this.codeOwnerBox.Name = "codeOwnerBox";
-            this.codeOwnerBox.Size = new System.Drawing.Size(226, 22);
-            this.codeOwnerBox.TabIndex = 77;
-            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -215,18 +203,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(257, 1);
             this.panel3.TabIndex = 74;
-            // 
-            // codeTypeAnimalBox
-            // 
-            this.codeTypeAnimalBox.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.codeTypeAnimalBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.codeTypeAnimalBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.codeTypeAnimalBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.codeTypeAnimalBox.Location = new System.Drawing.Point(263, 319);
-            this.codeTypeAnimalBox.Margin = new System.Windows.Forms.Padding(4);
-            this.codeTypeAnimalBox.Name = "codeTypeAnimalBox";
-            this.codeTypeAnimalBox.Size = new System.Drawing.Size(226, 22);
-            this.codeTypeAnimalBox.TabIndex = 73;
             // 
             // panel2
             // 
@@ -270,12 +246,34 @@
             this.nameBox.Size = new System.Drawing.Size(257, 22);
             this.nameBox.TabIndex = 69;
             // 
+            // animalTypeBox
+            // 
+            this.animalTypeBox.FormattingEnabled = true;
+            this.animalTypeBox.Location = new System.Drawing.Point(263, 319);
+            this.animalTypeBox.Name = "animalTypeBox";
+            this.animalTypeBox.Size = new System.Drawing.Size(257, 21);
+            this.animalTypeBox.TabIndex = 88;
+            this.animalTypeBox.SelectedIndexChanged += new System.EventHandler(this.animalTypeBox_SelectedIndexChanged);
+            // 
+            // codeOwnerBox
+            // 
+            this.codeOwnerBox.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.codeOwnerBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.codeOwnerBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.codeOwnerBox.ForeColor = System.Drawing.SystemColors.Window;
+            this.codeOwnerBox.Location = new System.Drawing.Point(422, 227);
+            this.codeOwnerBox.Margin = new System.Windows.Forms.Padding(4);
+            this.codeOwnerBox.Name = "codeOwnerBox";
+            this.codeOwnerBox.Size = new System.Drawing.Size(226, 22);
+            this.codeOwnerBox.TabIndex = 77;
+            // 
             // AddAnimalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
             this.ClientSize = new System.Drawing.Size(728, 548);
+            this.Controls.Add(this.animalTypeBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -290,7 +288,6 @@
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.ageBox);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.codeTypeAnimalBox);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.conditionsBox);
             this.Controls.Add(this.panel1);
@@ -298,6 +295,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddAnimalForm";
             this.Text = "AddAnimalForm";
+            this.Load += new System.EventHandler(this.AddAnimalForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -317,14 +315,14 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.TextBox codeOwnerBox;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox ageBox;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox codeTypeAnimalBox;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox conditionsBox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox nameBox;
+        private System.Windows.Forms.ComboBox animalTypeBox;
+        private System.Windows.Forms.TextBox codeOwnerBox;
     }
 }

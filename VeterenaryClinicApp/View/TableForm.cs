@@ -26,6 +26,7 @@ using VeterenaryClinicApp.View.ProceduresType;
 
 namespace VeterenaryClinicApp
 {
+    //TODO: Сделать добавление через ComboBox везде, где связь идет со справочником
     public partial class TableForm : Form
     {        
         public TableForm(DataTable data,string name)

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design.Serialization;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -311,14 +313,31 @@ namespace VeterenaryClinicApp.Controller
         public static void GenerateEmployees()
         {
             Random rnd = new Random();
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            string query = "SELECT [Код ветеринарной клинки] FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники]";
+            SqlCommand command = new SqlCommand(query, myConnection);
+            List<int> idList = new List<int>();
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+
+                while (reader.Read())
+                {
+                    int id = reader.GetInt32(0);
+                    idList.Add(id);
+                }
+            }
             using (var db = new Veterinary_ClinicEntities())
             {
-                for (var i = 0; i < 1000; i++)
+                for (var i = 0; i < 5000; i++)
                 {
                     DateTime start = new DateTime(1950, 1, 1);
                     TimeSpan range = DateTime.Now.AddYears(-18) - start;
                     int days = rnd.Next(range.Days);
                     DateTime birthdate = start.AddDays(days);
+                   
+
                     db.Сотрудники.Add(new Сотрудники
                     {
                         Имя = name[rnd.Next(0, name.Count())],
@@ -328,7 +347,7 @@ namespace VeterenaryClinicApp.Controller
                         Стаж = rnd.Next(0, (DateTime.Now.Year - birthdate.Year)-18),
                         Оклад = rnd.Next(5000,300000),
                         Код_должности = rnd.Next(2,db.Должности.Count()),                       
-                        Код_ветеринарной_клиники = rnd.Next(4,db.Ветеринарные_клиники.Count())
+                        Код_ветеринарной_клиники = idList[rnd.Next(1,idList.Count)]
                         
                     });
                 }
@@ -395,9 +414,9 @@ namespace VeterenaryClinicApp.Controller
             //CreateProceduresType();
             //GenerateOwner();
             //CreatePositions();
-            GenerateVeterinaryClinic();
+            //GenerateVeterinaryClinic();
             //GenerateAnimals();
-            //GenerateEmployees();
+            GenerateEmployees();
             //GenerateProcedure();
             //CreateLicenses();
         }

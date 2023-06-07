@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using VeterenaryClinicApp.Controller;
+using VeterenaryClinicApp.Model;
 
 namespace VeterenaryClinicApp.View.Animals
 {
     public partial class AddAnimalForm : Form
     {
+        Dictionary<string, int> animalType = new Dictionary<string, int>();
 
         protected override void WndProc(ref Message m)
         {
@@ -49,7 +53,7 @@ namespace VeterenaryClinicApp.View.Animals
         private void button1_Click(object sender, EventArgs e)
         {
             if (Adder.AddAnimal(nameBox.Text, ageBox.Text, conditionsBox.Text, codeOwnerBox.Text,
-            codeTypeAnimalBox.Text))
+            animalType[codeTypeAnimalBox].ToString()))
             {
                 MessageBox.Show("Запись успешно добавлена!");
                 this.Dispose();
@@ -58,6 +62,36 @@ namespace VeterenaryClinicApp.View.Animals
             {
                 MessageBox.Show("Запись не была добавленна ввиду некорректности входных данных!");
             }
+        }
+
+        private void AddAnimalForm_Load(object sender, EventArgs e)
+        {
+            using(var db = new Veterinary_ClinicEntities())
+            {
+                for(var i = 0;i < db.Виды_животных.Count(); i++)
+                {
+                    animalType.Add(db.Виды_животных.FirstOrDefault(x => x.Код_вида_животного == (i+1)).Вид_животного, i+1);                   
+                }
+                
+            }
+
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+
+            string sql = "SELECT [Вид животного] FROM [Виды животных]";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            var table = new DataTable();            
+            adapter.Fill(table);
+            animalTypeBox.DataSource = table;
+            animalTypeBox.DisplayMember = "Вид животного";
+        }
+        string codeTypeAnimalBox;
+        private void animalTypeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            codeTypeAnimalBox = animalTypeBox.GetItemText(animalTypeBox.SelectedItem);
+            
         }
     }
 }
