@@ -52,12 +52,12 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.secondNameBox = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.codePositionBox = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.surNameBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.nameBox = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.positionBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -149,9 +149,9 @@
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label5.Location = new System.Drawing.Point(71, 276);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(115, 18);
+            this.label5.Size = new System.Drawing.Size(86, 18);
             this.label5.TabIndex = 119;
-            this.label5.Text = "Код должности";
+            this.label5.Text = "Должности";
             // 
             // label4
             // 
@@ -311,18 +311,6 @@
             this.panel3.Size = new System.Drawing.Size(257, 1);
             this.panel3.TabIndex = 104;
             // 
-            // codePositionBox
-            // 
-            this.codePositionBox.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.codePositionBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.codePositionBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.codePositionBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.codePositionBox.Location = new System.Drawing.Point(75, 309);
-            this.codePositionBox.Margin = new System.Windows.Forms.Padding(4);
-            this.codePositionBox.Name = "codePositionBox";
-            this.codePositionBox.Size = new System.Drawing.Size(226, 22);
-            this.codePositionBox.TabIndex = 103;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -375,12 +363,22 @@
             this.pictureBox1.TabIndex = 113;
             this.pictureBox1.TabStop = false;
             // 
+            // positionBox
+            // 
+            this.positionBox.FormattingEnabled = true;
+            this.positionBox.Location = new System.Drawing.Point(74, 309);
+            this.positionBox.Name = "positionBox";
+            this.positionBox.Size = new System.Drawing.Size(257, 21);
+            this.positionBox.TabIndex = 127;
+            this.positionBox.SelectedIndexChanged += new System.EventHandler(this.positionBox_SelectedIndexChanged);
+            // 
             // EditEmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
             this.ClientSize = new System.Drawing.Size(728, 548);
+            this.Controls.Add(this.positionBox);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.codeVeterinaryClinicBox);
@@ -404,7 +402,6 @@
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.secondNameBox);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.codePositionBox);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.surNameBox);
             this.Controls.Add(this.panel1);
@@ -412,6 +409,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EditEmployeeForm";
             this.Text = "EditEmployeeForm";
+            this.Load += new System.EventHandler(this.EditEmployeeForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -444,10 +442,10 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox secondNameBox;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox codePositionBox;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox surNameBox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox nameBox;
+        private System.Windows.Forms.ComboBox positionBox;
     }
 }

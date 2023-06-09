@@ -35,7 +35,6 @@ namespace VeterenaryClinicApp
             this.panel1 = new System.Windows.Forms.Panel();
             this.regNumberBox = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.ownershipTypeBox = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.yearBox = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -43,7 +42,6 @@ namespace VeterenaryClinicApp
             this.panel5 = new System.Windows.Forms.Panel();
             this.nameBox = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.districtBox = new System.Windows.Forms.TextBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.phoneBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -57,6 +55,8 @@ namespace VeterenaryClinicApp
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ownershipTypeBox = new System.Windows.Forms.ComboBox();
+            this.distinctBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,18 +95,6 @@ namespace VeterenaryClinicApp
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(257, 1);
             this.panel2.TabIndex = 24;
-            // 
-            // ownershipTypeBox
-            // 
-            this.ownershipTypeBox.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.ownershipTypeBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ownershipTypeBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ownershipTypeBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.ownershipTypeBox.Location = new System.Drawing.Point(73, 227);
-            this.ownershipTypeBox.Margin = new System.Windows.Forms.Padding(4);
-            this.ownershipTypeBox.Name = "ownershipTypeBox";
-            this.ownershipTypeBox.Size = new System.Drawing.Size(226, 22);
-            this.ownershipTypeBox.TabIndex = 23;
             // 
             // panel3
             // 
@@ -179,18 +167,6 @@ namespace VeterenaryClinicApp
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(257, 1);
             this.panel6.TabIndex = 32;
-            // 
-            // districtBox
-            // 
-            this.districtBox.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.districtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.districtBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.districtBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.districtBox.Location = new System.Drawing.Point(403, 309);
-            this.districtBox.Margin = new System.Windows.Forms.Padding(4);
-            this.districtBox.Name = "districtBox";
-            this.districtBox.Size = new System.Drawing.Size(226, 22);
-            this.districtBox.TabIndex = 31;
             // 
             // panel7
             // 
@@ -274,9 +250,9 @@ namespace VeterenaryClinicApp
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label4.Location = new System.Drawing.Point(70, 205);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(182, 18);
+            this.label4.Size = new System.Drawing.Size(143, 18);
             this.label4.TabIndex = 40;
-            this.label4.Text = "Код типа собственности";
+            this.label4.Text = "Тип собственности";
             // 
             // label5
             // 
@@ -343,12 +319,32 @@ namespace VeterenaryClinicApp
             this.pictureBox1.TabIndex = 35;
             this.pictureBox1.TabStop = false;
             // 
+            // ownershipTypeBox
+            // 
+            this.ownershipTypeBox.FormattingEnabled = true;
+            this.ownershipTypeBox.Location = new System.Drawing.Point(73, 232);
+            this.ownershipTypeBox.Name = "ownershipTypeBox";
+            this.ownershipTypeBox.Size = new System.Drawing.Size(257, 21);
+            this.ownershipTypeBox.TabIndex = 108;
+            this.ownershipTypeBox.SelectedIndexChanged += new System.EventHandler(this.ownershipTypeBox_SelectedIndexChanged);
+            // 
+            // distinctBox
+            // 
+            this.distinctBox.FormattingEnabled = true;
+            this.distinctBox.Location = new System.Drawing.Point(403, 314);
+            this.distinctBox.Name = "distinctBox";
+            this.distinctBox.Size = new System.Drawing.Size(257, 21);
+            this.distinctBox.TabIndex = 109;
+            this.distinctBox.SelectedIndexChanged += new System.EventHandler(this.distinctBox_SelectedIndexChanged);
+            // 
             // AddOwnerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
             this.ClientSize = new System.Drawing.Size(728, 548);
+            this.Controls.Add(this.distinctBox);
+            this.Controls.Add(this.ownershipTypeBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -363,7 +359,6 @@ namespace VeterenaryClinicApp
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.phoneBox);
             this.Controls.Add(this.panel6);
-            this.Controls.Add(this.districtBox);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.nameBox);
             this.Controls.Add(this.panel4);
@@ -371,7 +366,6 @@ namespace VeterenaryClinicApp
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.yearBox);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.ownershipTypeBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.regNumberBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -395,7 +389,6 @@ namespace VeterenaryClinicApp
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.TextBox phoneBox;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.TextBox districtBox;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TextBox nameBox;
         private System.Windows.Forms.Panel panel4;
@@ -403,7 +396,6 @@ namespace VeterenaryClinicApp
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox yearBox;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox ownershipTypeBox;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
@@ -415,5 +407,7 @@ namespace VeterenaryClinicApp
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox distinctBox;
+        private System.Windows.Forms.ComboBox ownershipTypeBox;
     }
 }

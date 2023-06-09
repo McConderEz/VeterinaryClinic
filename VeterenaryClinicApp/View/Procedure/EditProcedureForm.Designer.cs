@@ -51,10 +51,10 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.materialsPriceBox = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.codeTypeProcedureBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataHelpBox = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.procedureTypeBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -125,9 +125,9 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label4.Location = new System.Drawing.Point(75, 205);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(159, 18);
+            this.label4.Size = new System.Drawing.Size(121, 18);
             this.label4.TabIndex = 90;
-            this.label4.Text = "Код вида процедуры";
+            this.label4.Text = "Вид процедуры";
             // 
             // label3
             // 
@@ -297,18 +297,6 @@
             this.panel2.Size = new System.Drawing.Size(257, 1);
             this.panel2.TabIndex = 74;
             // 
-            // codeTypeProcedureBox
-            // 
-            this.codeTypeProcedureBox.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.codeTypeProcedureBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.codeTypeProcedureBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.codeTypeProcedureBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.codeTypeProcedureBox.Location = new System.Drawing.Point(78, 227);
-            this.codeTypeProcedureBox.Margin = new System.Windows.Forms.Padding(4);
-            this.codeTypeProcedureBox.Name = "codeTypeProcedureBox";
-            this.codeTypeProcedureBox.Size = new System.Drawing.Size(226, 22);
-            this.codeTypeProcedureBox.TabIndex = 73;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -340,12 +328,22 @@
             this.pictureBox1.TabIndex = 85;
             this.pictureBox1.TabStop = false;
             // 
+            // procedureTypeBox
+            // 
+            this.procedureTypeBox.FormattingEnabled = true;
+            this.procedureTypeBox.Location = new System.Drawing.Point(78, 232);
+            this.procedureTypeBox.Name = "procedureTypeBox";
+            this.procedureTypeBox.Size = new System.Drawing.Size(257, 21);
+            this.procedureTypeBox.TabIndex = 109;
+            this.procedureTypeBox.SelectedIndexChanged += new System.EventHandler(this.procedureTypeBox_SelectedIndexChanged);
+            // 
             // EditProcedureForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
             this.ClientSize = new System.Drawing.Size(728, 548);
+            this.Controls.Add(this.procedureTypeBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -368,12 +366,12 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.materialsPriceBox);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.codeTypeProcedureBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataHelpBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EditProcedureForm";
             this.Text = "EditProcedureForm";
+            this.Load += new System.EventHandler(this.EditProcedureForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -405,8 +403,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox materialsPriceBox;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox codeTypeProcedureBox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox dataHelpBox;
+        private System.Windows.Forms.ComboBox procedureTypeBox;
     }
 }

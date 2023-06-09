@@ -38,8 +38,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.codeAnimalClassBox = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.animalClassBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +53,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(140, 112);
+            this.label3.Location = new System.Drawing.Point(153, 112);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(115, 18);
             this.label3.TabIndex = 84;
@@ -128,11 +128,11 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label4.Location = new System.Drawing.Point(113, 188);
+            this.label4.Location = new System.Drawing.Point(133, 196);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(167, 18);
+            this.label4.Size = new System.Drawing.Size(138, 18);
             this.label4.TabIndex = 87;
-            this.label4.Text = "Код класса животного";
+            this.label4.Text = "Класса животного";
             // 
             // panel2
             // 
@@ -142,18 +142,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(257, 1);
             this.panel2.TabIndex = 86;
-            // 
-            // codeAnimalClassBox
-            // 
-            this.codeAnimalClassBox.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.codeAnimalClassBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.codeAnimalClassBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.codeAnimalClassBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.codeAnimalClassBox.Location = new System.Drawing.Point(66, 210);
-            this.codeAnimalClassBox.Margin = new System.Windows.Forms.Padding(4);
-            this.codeAnimalClassBox.Name = "codeAnimalClassBox";
-            this.codeAnimalClassBox.Size = new System.Drawing.Size(257, 22);
-            this.codeAnimalClassBox.TabIndex = 85;
             // 
             // pictureBox1
             // 
@@ -165,15 +153,24 @@
             this.pictureBox1.TabIndex = 78;
             this.pictureBox1.TabStop = false;
             // 
+            // animalClassBox
+            // 
+            this.animalClassBox.FormattingEnabled = true;
+            this.animalClassBox.Location = new System.Drawing.Point(66, 217);
+            this.animalClassBox.Name = "animalClassBox";
+            this.animalClassBox.Size = new System.Drawing.Size(257, 21);
+            this.animalClassBox.TabIndex = 111;
+            this.animalClassBox.SelectedIndexChanged += new System.EventHandler(this.animalClassBox_SelectedIndexChanged);
+            // 
             // AddAnimalTypeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
             this.ClientSize = new System.Drawing.Size(400, 350);
+            this.Controls.Add(this.animalClassBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.codeAnimalClassBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.animalTypeBox);
@@ -184,6 +181,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddAnimalTypeForm";
             this.Text = "AddAnimalTypeForm";
+            this.Load += new System.EventHandler(this.AddAnimalTypeForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -202,6 +200,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox codeAnimalClassBox;
+        private System.Windows.Forms.ComboBox animalClassBox;
     }
 }

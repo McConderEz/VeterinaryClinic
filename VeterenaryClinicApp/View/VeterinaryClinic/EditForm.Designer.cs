@@ -44,7 +44,6 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.phoneBox = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.districtBox = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.nameBox = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -52,9 +51,10 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.yearBox = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.ownershipTypeBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.regNumberBox = new System.Windows.Forms.TextBox();
+            this.ownershipTypeBox = new System.Windows.Forms.ComboBox();
+            this.distinctBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -167,9 +167,9 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label4.Location = new System.Drawing.Point(76, 202);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(182, 18);
+            this.label4.Size = new System.Drawing.Size(143, 18);
             this.label4.TabIndex = 71;
-            this.label4.Text = "Код типа собственности";
+            this.label4.Text = "Тип собственности";
             // 
             // label3
             // 
@@ -222,18 +222,6 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(257, 1);
             this.panel6.TabIndex = 66;
-            // 
-            // districtBox
-            // 
-            this.districtBox.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.districtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.districtBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.districtBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.districtBox.Location = new System.Drawing.Point(409, 306);
-            this.districtBox.Margin = new System.Windows.Forms.Padding(4);
-            this.districtBox.Name = "districtBox";
-            this.districtBox.Size = new System.Drawing.Size(226, 22);
-            this.districtBox.TabIndex = 65;
             // 
             // panel5
             // 
@@ -307,18 +295,6 @@
             this.panel2.Size = new System.Drawing.Size(257, 1);
             this.panel2.TabIndex = 58;
             // 
-            // ownershipTypeBox
-            // 
-            this.ownershipTypeBox.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.ownershipTypeBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ownershipTypeBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ownershipTypeBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.ownershipTypeBox.Location = new System.Drawing.Point(79, 224);
-            this.ownershipTypeBox.Margin = new System.Windows.Forms.Padding(4);
-            this.ownershipTypeBox.Name = "ownershipTypeBox";
-            this.ownershipTypeBox.Size = new System.Drawing.Size(226, 22);
-            this.ownershipTypeBox.TabIndex = 57;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -340,12 +316,32 @@
             this.regNumberBox.Size = new System.Drawing.Size(257, 22);
             this.regNumberBox.TabIndex = 55;
             // 
+            // ownershipTypeBox
+            // 
+            this.ownershipTypeBox.FormattingEnabled = true;
+            this.ownershipTypeBox.Location = new System.Drawing.Point(79, 226);
+            this.ownershipTypeBox.Name = "ownershipTypeBox";
+            this.ownershipTypeBox.Size = new System.Drawing.Size(257, 21);
+            this.ownershipTypeBox.TabIndex = 109;
+            this.ownershipTypeBox.SelectedIndexChanged += new System.EventHandler(this.ownershipTypeBox_SelectedIndexChanged);
+            // 
+            // distinctBox
+            // 
+            this.distinctBox.FormattingEnabled = true;
+            this.distinctBox.Location = new System.Drawing.Point(409, 308);
+            this.distinctBox.Name = "distinctBox";
+            this.distinctBox.Size = new System.Drawing.Size(257, 21);
+            this.distinctBox.TabIndex = 110;
+            this.distinctBox.SelectedIndexChanged += new System.EventHandler(this.distinctBox_SelectedIndexChanged);
+            // 
             // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
             this.ClientSize = new System.Drawing.Size(728, 548);
+            this.Controls.Add(this.distinctBox);
+            this.Controls.Add(this.ownershipTypeBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -357,7 +353,6 @@
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.phoneBox);
             this.Controls.Add(this.panel6);
-            this.Controls.Add(this.districtBox);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.nameBox);
             this.Controls.Add(this.panel4);
@@ -365,7 +360,6 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.yearBox);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.ownershipTypeBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.regNumberBox);
             this.Controls.Add(this.label1);
@@ -401,7 +395,6 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.TextBox phoneBox;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.TextBox districtBox;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TextBox nameBox;
         private System.Windows.Forms.Panel panel4;
@@ -409,8 +402,9 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox yearBox;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox ownershipTypeBox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox regNumberBox;
+        private System.Windows.Forms.ComboBox ownershipTypeBox;
+        private System.Windows.Forms.ComboBox distinctBox;
     }
 }

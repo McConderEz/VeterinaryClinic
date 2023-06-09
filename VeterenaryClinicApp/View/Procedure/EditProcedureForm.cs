@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VeterenaryClinicApp.Controller;
+using VeterenaryClinicApp.Model;
 
 namespace VeterenaryClinicApp.View.Procedure
 {
     public partial class EditProcedureForm : Form
     {
         int id;
+        Dictionary<string, int> procedureType = new Dictionary<string, int>();
         protected override void WndProc(ref Message m)
         {
             if (m.Msg == 0x84)
@@ -34,7 +37,7 @@ namespace VeterenaryClinicApp.View.Procedure
 
         private void label1_Click(object sender, EventArgs e)
         {
-            if (Editer.EditProcedure(id, dataHelpBox.Text, codeTypeProcedureBox.Text, priceBox.Text,
+            if (Editer.EditProcedure(id, dataHelpBox.Text, procedureType[codeTypeProcedureBox].ToString(), priceBox.Text,
                 discountBox.Text, materialsPriceBox.Text, codeEmployeeBox.Text, codeAnimalBox.Text))
             {
                 MessageBox.Show("Запись успешно Изменена!");
@@ -59,6 +62,37 @@ namespace VeterenaryClinicApp.View.Procedure
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+            this.Dispose();
+        }
+
+        string codeTypeProcedureBox;
+        private void procedureTypeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            codeTypeProcedureBox = procedureTypeBox.GetItemText(procedureTypeBox.SelectedItem);
+        }
+
+        private void EditProcedureForm_Load(object sender, EventArgs e)
+        {
+            using (var db = new Veterinary_ClinicEntities())
+            {
+                for (var i = 0; i < db.Виды_процедуры.Count(); i++)
+                {
+                    procedureType.Add(db.Виды_процедуры.FirstOrDefault(x => x.Код_вида_процедуры == (i + 1)).Вид_процедуры, i + 1);
+                }
+
+            }
+
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+
+            string sql = "SELECT [Вид процедуры] FROM [Виды процедуры]";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            var table = new DataTable();
+            adapter.Fill(table);
+            procedureTypeBox.DataSource = table;
+            procedureTypeBox.DisplayMember = "Вид процедуры";
         }
     }
 }

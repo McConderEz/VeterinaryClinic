@@ -32,11 +32,11 @@
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.animalClassBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.animalClassBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +50,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(147, 150);
+            this.label3.Location = new System.Drawing.Point(139, 148);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(129, 18);
             this.label3.TabIndex = 77;
@@ -64,18 +64,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(257, 1);
             this.panel1.TabIndex = 76;
-            // 
-            // animalClassBox
-            // 
-            this.animalClassBox.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.animalClassBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.animalClassBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.animalClassBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.animalClassBox.Location = new System.Drawing.Point(73, 172);
-            this.animalClassBox.Margin = new System.Windows.Forms.Padding(4);
-            this.animalClassBox.Name = "animalClassBox";
-            this.animalClassBox.Size = new System.Drawing.Size(257, 22);
-            this.animalClassBox.TabIndex = 75;
             // 
             // button1
             // 
@@ -130,15 +118,27 @@
             this.pictureBox1.TabIndex = 71;
             this.pictureBox1.TabStop = false;
             // 
+            // animalClassBox
+            // 
+            this.animalClassBox.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.animalClassBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.animalClassBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.animalClassBox.ForeColor = System.Drawing.SystemColors.Window;
+            this.animalClassBox.Location = new System.Drawing.Point(73, 177);
+            this.animalClassBox.Margin = new System.Windows.Forms.Padding(4);
+            this.animalClassBox.Name = "animalClassBox";
+            this.animalClassBox.Size = new System.Drawing.Size(226, 22);
+            this.animalClassBox.TabIndex = 91;
+            // 
             // AddAnimalClassForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
             this.ClientSize = new System.Drawing.Size(400, 350);
+            this.Controls.Add(this.animalClassBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.animalClassBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -146,6 +146,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddAnimalClassForm";
             this.Text = "AddAnimalClassForm";
+            this.Load += new System.EventHandler(this.AddAnimalClassForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -157,10 +158,10 @@
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox animalClassBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox animalClassBox;
     }
 }
