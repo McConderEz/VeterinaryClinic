@@ -359,8 +359,35 @@ namespace VeterenaryClinicApp.Controller
         /// </summary>
         public static void GenerateProcedure()
         {
-            Random rnd = new Random();
-            using(var db = new Veterinary_ClinicEntities())
+            Random rnd = new Random();            
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            string query = "SELECT [Код сотрудника] FROM [Veterinary Clinic].[dbo].[Сотрудники]";
+            SqlCommand command = new SqlCommand(query, myConnection);
+            List<int> idList = new List<int>();
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+
+                while (reader.Read())
+                {
+                    int id = reader.GetInt32(0);
+                    idList.Add(id);
+                }
+            }
+            query = "SELECT [Код животного] FROM [Veterinary Clinic].[dbo].[Животные]";
+            List<int> idList2 = new List<int>();
+            command = new SqlCommand(query, myConnection);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+
+                while (reader.Read())
+                {
+                    int id = reader.GetInt32(0);
+                    idList2.Add(id);
+                }
+            }
+            using (var db = new Veterinary_ClinicEntities())
             {
                 for(var i = 0;i < 1000; i++)
                 {
@@ -375,9 +402,10 @@ namespace VeterenaryClinicApp.Controller
                         Цена_процедуры = rnd.Next(1000, 100000),
                         Скидка_на_эту_процедуру = rnd.Next(0, 20),
                         Цена_материала_по_этой_процедуре = rnd.Next(0,100000),
-                        Код_сотрудника = rnd.Next(1549,2544),
-                        Код_животного = rnd.Next(2,db.Животные.Count())
+                        Код_сотрудника = idList[rnd.Next(1,idList.Count)],
+                        Код_животного = idList2[rnd.Next(1, idList2.Count)]
                     });
+                    
                 }
                 db.SaveChanges();
             }
@@ -416,7 +444,7 @@ namespace VeterenaryClinicApp.Controller
             //CreatePositions();
             //GenerateVeterinaryClinic();
             //GenerateAnimals();
-            GenerateEmployees();
+            //GenerateEmployees();
             //GenerateProcedure();
             //CreateLicenses();
         }

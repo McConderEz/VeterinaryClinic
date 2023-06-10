@@ -240,6 +240,7 @@
     <Compile Include="Controller\Generator.cs" />
     <Compile Include="Controller\Refresher.cs" />
     <Compile Include="Controller\Remover.cs" />
+    <Compile Include="Controller\RequestsExecuter.cs" />
     <Compile Include="Model\ApplicationContext.cs" />
     <Compile Include="Model\Model1.Context.cs">
       <AutoGen>True</AutoGen>

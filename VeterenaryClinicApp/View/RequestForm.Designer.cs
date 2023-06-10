@@ -40,6 +40,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.simpleRequestsBox = new System.Windows.Forms.ComboBox();
+            this.valueBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.simpleRequestButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -63,7 +68,7 @@
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(621, 463);
+            this.button2.Location = new System.Drawing.Point(531, 461);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(103, 27);
             this.button2.TabIndex = 10;
@@ -77,7 +82,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(621, 409);
+            this.button1.Location = new System.Drawing.Point(531, 409);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(103, 27);
             this.button1.TabIndex = 9;
@@ -91,7 +96,7 @@
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(622, 357);
+            this.button3.Location = new System.Drawing.Point(531, 354);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(103, 27);
             this.button3.TabIndex = 8;
@@ -162,11 +167,11 @@
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label5.Location = new System.Drawing.Point(12, 442);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(544, 48);
+            this.label5.Size = new System.Drawing.Size(500, 48);
             this.label5.TabIndex = 15;
             this.label5.Text = "Определить доходы каждого пункта в районе,\r\n доходы от пунктов по каждому району " +
     "и по городу \r\nв целом за указанный год (в одном районе может находиться нескольк" +
@@ -179,7 +184,7 @@
             this.panel7.Location = new System.Drawing.Point(15, 383);
             this.panel7.Margin = new System.Windows.Forms.Padding(4);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(600, 1);
+            this.panel7.Size = new System.Drawing.Size(500, 1);
             this.panel7.TabIndex = 35;
             // 
             // panel1
@@ -189,8 +194,76 @@
             this.panel1.Location = new System.Drawing.Point(15, 440);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(600, 1);
+            this.panel1.Size = new System.Drawing.Size(500, 1);
             this.panel1.TabIndex = 36;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label6.Location = new System.Drawing.Point(640, 354);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(97, 16);
+            this.label6.TabIndex = 37;
+            this.label6.Text = "Проcтые запросы";
+            // 
+            // simpleRequestsBox
+            // 
+            this.simpleRequestsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleRequestsBox.FormattingEnabled = true;
+            this.simpleRequestsBox.Items.AddRange(new object[] {
+            "Учёт сотрудников по должности",
+            "Ветеринарные клиники в определённом районе",
+            "Процедуры оказанные в опред. дату",
+            "Сотрудники, родившиеся в опред. дату",
+            "Ветеринарные клиники",
+            "Сотрудники",
+            "Процедуры",
+            "Районы, в которых нет вет. клиник",
+            "Сотрудники, не делавшие процедур",
+            "Сотрудники, не делавшие процедур опред. даты"});
+            this.simpleRequestsBox.Location = new System.Drawing.Point(640, 373);
+            this.simpleRequestsBox.Name = "simpleRequestsBox";
+            this.simpleRequestsBox.Size = new System.Drawing.Size(208, 21);
+            this.simpleRequestsBox.TabIndex = 38;
+            this.simpleRequestsBox.SelectedIndexChanged += new System.EventHandler(this.simpleRequestsBox_SelectedIndexChanged);
+            // 
+            // valueBox
+            // 
+            this.valueBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.valueBox.Location = new System.Drawing.Point(643, 416);
+            this.valueBox.Name = "valueBox";
+            this.valueBox.Size = new System.Drawing.Size(205, 20);
+            this.valueBox.TabIndex = 39;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label7.Location = new System.Drawing.Point(640, 397);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(106, 16);
+            this.label7.TabIndex = 40;
+            this.label7.Text = "Значение к запросу";
+            // 
+            // simpleRequestButton
+            // 
+            this.simpleRequestButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleRequestButton.BackColor = System.Drawing.Color.SkyBlue;
+            this.simpleRequestButton.FlatAppearance.BorderSize = 0;
+            this.simpleRequestButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.simpleRequestButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.simpleRequestButton.Location = new System.Drawing.Point(745, 461);
+            this.simpleRequestButton.Name = "simpleRequestButton";
+            this.simpleRequestButton.Size = new System.Drawing.Size(103, 27);
+            this.simpleRequestButton.TabIndex = 41;
+            this.simpleRequestButton.Text = "Выполнить";
+            this.simpleRequestButton.UseVisualStyleBackColor = false;
+            this.simpleRequestButton.Click += new System.EventHandler(this.simpleRequestButton_Click);
             // 
             // RequestForm
             // 
@@ -198,6 +271,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
             this.ClientSize = new System.Drawing.Size(850, 500);
+            this.Controls.Add(this.simpleRequestButton);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.valueBox);
+            this.Controls.Add(this.simpleRequestsBox);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.label5);
@@ -234,5 +312,10 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox simpleRequestsBox;
+        private System.Windows.Forms.TextBox valueBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button simpleRequestButton;
     }
 }

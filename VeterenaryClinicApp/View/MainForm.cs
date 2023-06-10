@@ -32,7 +32,7 @@ namespace VeterenaryClinicApp
         {
             InitializeComponent();
             customizeDesign();
-            //Generator.GenerateDataBase();
+            Generator.GenerateDataBase();
         }
       
 

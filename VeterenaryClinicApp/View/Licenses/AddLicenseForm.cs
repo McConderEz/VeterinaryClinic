@@ -48,6 +48,7 @@ namespace VeterenaryClinicApp.View.Licenses
         private void label1_Click(object sender, EventArgs e)
         {
             this.Close();
+            this.Dispose();
         }
 
         private void label1_MouseMove(object sender, MouseEventArgs e)

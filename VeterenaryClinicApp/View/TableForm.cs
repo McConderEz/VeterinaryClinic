@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
@@ -352,96 +353,103 @@ namespace VeterenaryClinicApp
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
-        {           
-            switch (nameTable.Text)
+        {
+            try
             {
-                case "Ветеринарные клиники":
-                    var selectedRow = dataGridView1.SelectedRows[0];
-                    EditForm editForm = new EditForm(selectedRow);
-                    editForm.ShowDialog();
-                    while (!editForm.IsDisposed) { }
-                    Refresh();
-                    break;
-                case "Владельцы":
-                    var selectedOwnerRow = dataGridView1.SelectedRows[0];
-                    EditOwnerForm editOwnerForm = new EditOwnerForm(selectedOwnerRow);
-                    editOwnerForm.ShowDialog();
-                    while (!editOwnerForm.IsDisposed) { }
-                    Refresh();
-                    break;
-                case "Процедуры":
-                    var selectedProcedureRow = dataGridView1.SelectedRows[0];
-                    EditProcedureForm editProcedureForm = new EditProcedureForm(selectedProcedureRow);
-                    editProcedureForm.ShowDialog();
-                    while (!editProcedureForm.IsDisposed) { }
-                    Refresh();
-                    break;
-                case "Сотрудники":
-                    var selectedEmployeeRow = dataGridView1.SelectedRows[0];
-                    EditEmployeeForm editEmployeeForm = new EditEmployeeForm(selectedEmployeeRow);
-                    editEmployeeForm.ShowDialog();
-                    while (!editEmployeeForm.IsDisposed) { }
-                    Refresh();
-                    break;
-                case "Животные":
-                    var selectedAnimalRow = dataGridView1.SelectedRows[0];
-                    EditAnimalForm editAnimalForm = new EditAnimalForm(selectedAnimalRow);
-                    editAnimalForm.ShowDialog();
-                    while (!editAnimalForm.IsDisposed) { }
-                    Refresh();
-                    break;
-                case "Виды процедуры":
-                    var selectedProcedureTypeRow = dataGridView1.SelectedRows[0];
-                    EditProcedureTypeForm editProcedureTypeForm = new EditProcedureTypeForm(selectedProcedureTypeRow);
-                    editProcedureTypeForm.ShowDialog();
-                    while (!editProcedureTypeForm.IsDisposed) { }
-                    Refresh();
-                    break;
-                case "Должности":
-                    var selectedPositionRow = dataGridView1.SelectedRows[0];
-                    EditPositionForm editConditionForm = new EditPositionForm(selectedPositionRow);
-                    editConditionForm.ShowDialog();
-                    while (!editConditionForm.IsDisposed) { }
-                    Refresh();
-                    break;
-                case "Классы животных":
-                    var selectedAnimalClassRow = dataGridView1.SelectedRows[0];
-                    EditAnimalClassForm editAnimalClassForm = new EditAnimalClassForm(selectedAnimalClassRow);
-                    editAnimalClassForm.ShowDialog();
-                    while (!editAnimalClassForm.IsDisposed) { }
-                    Refresh();
-                    break;
-                case "Виды животных":
-                    var selectedAnimalTypeRow = dataGridView1.SelectedRows[0];
-                    EditAnimalTypeForm editAnimalTypeForm = new EditAnimalTypeForm(selectedAnimalTypeRow);
-                    editAnimalTypeForm.ShowDialog();
-                    while (!editAnimalTypeForm.IsDisposed) { }
-                    Refresh();
-                    break;
-                case "Районы":
-                    var selectedDistrictRow = dataGridView1.SelectedRows[0];
-                    EditDistrictForm editDistrictForm = new EditDistrictForm(selectedDistrictRow);
-                    editDistrictForm.ShowDialog();
-                    while (!editDistrictForm.IsDisposed) { }
-                    Refresh();
-                    break;
-                case "Тип собственности":
-                    var selectedOwnershipRow = dataGridView1.SelectedRows[0];
-                    EditOwnershipTypeForm editOwnershipForm = new EditOwnershipTypeForm(selectedOwnershipRow);
-                    editOwnershipForm.ShowDialog();
-                    while (!editOwnershipForm.IsDisposed) { }
-                    Refresh();
-                    break;
-                case "Лицензии":
-                    var selectedLicenseRow = dataGridView1.SelectedRows[0];
-                    EditLicenseForm editLicenseForm = new EditLicenseForm(selectedLicenseRow);
-                    editLicenseForm.ShowDialog();
-                    while (!editLicenseForm.IsDisposed) { }
-                    Refresh();
-                    break;
-                default:
-                    break;
-            }           
+                switch (nameTable.Text)
+                {
+                    case "Ветеринарные клиники":
+                        var selectedRow = dataGridView1.SelectedRows[0];
+                        EditForm editForm = new EditForm(selectedRow);
+                        editForm.ShowDialog();
+                        while (!editForm.IsDisposed) { }
+                        Refresh();
+                        break;
+                    case "Владельцы":
+                        var selectedOwnerRow = dataGridView1.SelectedRows[0];
+                        EditOwnerForm editOwnerForm = new EditOwnerForm(selectedOwnerRow);
+                        editOwnerForm.ShowDialog();
+                        while (!editOwnerForm.IsDisposed) { }
+                        Refresh();
+                        break;
+                    case "Процедуры":
+                        var selectedProcedureRow = dataGridView1.SelectedRows[0];
+                        EditProcedureForm editProcedureForm = new EditProcedureForm(selectedProcedureRow);
+                        editProcedureForm.ShowDialog();
+                        while (!editProcedureForm.IsDisposed) { }
+                        Refresh();
+                        break;
+                    case "Сотрудники":
+                        var selectedEmployeeRow = dataGridView1.SelectedRows[0];
+                        EditEmployeeForm editEmployeeForm = new EditEmployeeForm(selectedEmployeeRow);
+                        editEmployeeForm.ShowDialog();
+                        while (!editEmployeeForm.IsDisposed) { }
+                        Refresh();
+                        break;
+                    case "Животные":
+                        var selectedAnimalRow = dataGridView1.SelectedRows[0];
+                        EditAnimalForm editAnimalForm = new EditAnimalForm(selectedAnimalRow);
+                        editAnimalForm.ShowDialog();
+                        while (!editAnimalForm.IsDisposed) { }
+                        Refresh();
+                        break;
+                    case "Виды процедуры":
+                        var selectedProcedureTypeRow = dataGridView1.SelectedRows[0];
+                        EditProcedureTypeForm editProcedureTypeForm = new EditProcedureTypeForm(selectedProcedureTypeRow);
+                        editProcedureTypeForm.ShowDialog();
+                        while (!editProcedureTypeForm.IsDisposed) { }
+                        Refresh();
+                        break;
+                    case "Должности":
+                        var selectedPositionRow = dataGridView1.SelectedRows[0];
+                        EditPositionForm editConditionForm = new EditPositionForm(selectedPositionRow);
+                        editConditionForm.ShowDialog();
+                        while (!editConditionForm.IsDisposed) { }
+                        Refresh();
+                        break;
+                    case "Классы животных":
+                        var selectedAnimalClassRow = dataGridView1.SelectedRows[0];
+                        EditAnimalClassForm editAnimalClassForm = new EditAnimalClassForm(selectedAnimalClassRow);
+                        editAnimalClassForm.ShowDialog();
+                        while (!editAnimalClassForm.IsDisposed) { }
+                        Refresh();
+                        break;
+                    case "Виды животных":
+                        var selectedAnimalTypeRow = dataGridView1.SelectedRows[0];
+                        EditAnimalTypeForm editAnimalTypeForm = new EditAnimalTypeForm(selectedAnimalTypeRow);
+                        editAnimalTypeForm.ShowDialog();
+                        while (!editAnimalTypeForm.IsDisposed) { }
+                        Refresh();
+                        break;
+                    case "Районы":
+                        var selectedDistrictRow = dataGridView1.SelectedRows[0];
+                        EditDistrictForm editDistrictForm = new EditDistrictForm(selectedDistrictRow);
+                        editDistrictForm.ShowDialog();
+                        while (!editDistrictForm.IsDisposed) { }
+                        Refresh();
+                        break;
+                    case "Тип собственности":
+                        var selectedOwnershipRow = dataGridView1.SelectedRows[0];
+                        EditOwnershipTypeForm editOwnershipForm = new EditOwnershipTypeForm(selectedOwnershipRow);
+                        editOwnershipForm.ShowDialog();
+                        while (!editOwnershipForm.IsDisposed) { }
+                        Refresh();
+                        break;
+                    case "Лицензии":
+                        var selectedLicenseRow = dataGridView1.SelectedRows[0];
+                        EditLicenseForm editLicenseForm = new EditLicenseForm(selectedLicenseRow);
+                        editLicenseForm.ShowDialog();
+                        while (!editLicenseForm.IsDisposed) { }
+                        Refresh();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}");
+            }
         }
 
         private void TableForm_Load(object sender, EventArgs e)
