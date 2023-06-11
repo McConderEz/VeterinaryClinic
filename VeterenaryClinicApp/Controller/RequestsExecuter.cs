@@ -333,5 +333,124 @@ $"INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clin
                 return null;
             }
         }
+
+        /// <summary>
+        /// Количество проведённых процедур всего и в каждом районе
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable Request_11()
+        {
+
+            
+                string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+                SqlConnection myConnection = new SqlConnection(connectionString);
+                myConnection.Open();
+                var table = new DataTable();
+                
+                string sql = @"
+SELECT
+    [Veterinary Clinic].[dbo].[Районы].[Район города],
+    COUNT([Veterinary Clinic].[dbo].[Процедуры].[Код процедуры]) AS [Количество процедур]
+FROM [Veterinary Clinic].[dbo].[Процедуры]
+INNER JOIN [Veterinary Clinic].[dbo].[Сотрудники]
+    ON [Veterinary Clinic].[dbo].[Процедуры].[Код сотрудника] = [Veterinary Clinic].[dbo].[Сотрудники].[Код сотрудника]
+INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники]
+    ON [Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники] = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]
+INNER JOIN [Veterinary Clinic].[dbo].[Районы]
+    ON [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код район города] = [Veterinary Clinic].[dbo].[Районы].[Код района]
+GROUP BY [Veterinary Clinic].[dbo].[Районы].[Район города]
+UNION ALL
+SELECT N'Общее количество процедур', COUNT([Veterinary Clinic].[dbo].[Процедуры].[Код процедуры])
+FROM [Veterinary Clinic].[dbo].[Процедуры]";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                table = new DataTable();            
+                adapter.Fill(table);
+
+                return table;
+            
+            
+        }
+
+        /// <summary>
+        /// Количество сотрудников в ветеринарных клиниках с окладом больше указанного
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable Request_12(string valueBox)
+        {
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            var table = new DataTable();
+            string sql = $@"SELECT [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта],
+                        COUNT(*) AS 'Количество сотрудников'
+                 FROM [Veterinary Clinic].[dbo].[Сотрудники]
+                 INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники]
+                     ON [Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники] = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]
+                 WHERE [Veterinary Clinic].[dbo].[Сотрудники].[Оклад] > {valueBox}
+                 GROUP BY [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта]";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
+
+        /// <summary>
+        /// Ветеринарные клиники, где средний оклад сотрудников больше указанного
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable Request_13(string valueBox)
+        {
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            var table = new DataTable();
+            string sql = $@"SELECT [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта],
+                        AVG([Veterinary Clinic].[dbo].[Сотрудники].[Оклад]) AS 'Средний оклад'
+                 FROM [Veterinary Clinic].[dbo].[Сотрудники]
+                 INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники]
+                     ON [Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники] = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]
+                 GROUP BY [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта]
+                 HAVING AVG([Veterinary Clinic].[dbo].[Сотрудники].[Оклад]) > {valueBox}";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
+
+        /// <summary>
+        /// Ветеринарные клиники, где суммарный оклад сотрудников на опред. должности выше указанного
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable Request_14(string valueBox,string positionBox)
+        {
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            var table = new DataTable();
+            string sql = $@"
+                SELECT [Ветеринарные клиники].[Название пункта], 
+                       SUM([Сотрудники].[Оклад]) as 'Суммарный оклад'
+                FROM [Ветеринарные клиники]
+                INNER JOIN [Сотрудники]  
+                    ON [Сотрудники].[Код ветеринарной клиники] = 
+                       [Ветеринарные клиники].[Код ветеринарной клинки]
+                INNER JOIN [Должности]
+                    ON [Сотрудники].[Код должности] = 
+                       [Должности].[Код должности]     
+                WHERE [Должности].[Должность] = N'{positionBox}' 
+                GROUP BY [Ветеринарные клиники].[Название пункта] 
+                HAVING SUM([Сотрудники].[Оклад]) > {valueBox}";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
     }
 }

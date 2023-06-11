@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,18 @@ namespace VeterenaryClinicApp
 
         private void RequestForm_Load(object sender, EventArgs e)
         {
+            posBox.Enabled = false;
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
 
+            string sql = "SELECT [Должность] FROM [Должности]";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            var table = new DataTable();
+            adapter.Fill(table);
+            posBox.DataSource = table;
+            posBox.DisplayMember = "Должность";
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -77,8 +89,16 @@ namespace VeterenaryClinicApp
         private void simpleRequestsBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             request = simpleRequestsBox.GetItemText(simpleRequestsBox.SelectedItem);
+
+            if (request == "Ветеринарные клиники, где суммарный оклад сотрудников на опред. должности выше указанного")
+                posBox.Enabled = true;
+            else
+                posBox.Enabled = false;
+
+
             if (request == "Ветеринарные клиники" || request == "Сотрудники" || request == "Процедуры"
-                || request == "Районы, в которых нет вет. клиник" || request == "Сотрудники, не делавшие процедур")
+                || request == "Районы, в которых нет вет. клиник" || request == "Сотрудники, не делавшие процедур"
+                || request == "Количество проведённых процедур всего и в каждом районе")
                 valueBox.Enabled = false;
             else
                 valueBox.Enabled = true;
@@ -129,9 +149,32 @@ namespace VeterenaryClinicApp
                     table = RequestsExecuter.Request_10(valueBox.Text);
                     dataGridView1.DataSource = table;
                     break;
+                case "Количество проведённых процедур всего и в каждом районе":
+                    table = RequestsExecuter.Request_11();
+                    dataGridView1.DataSource = table;
+                    break;
+                case "Количество сотрудников в ветеринарных клиниках с окладом больше указанного":
+                    table = RequestsExecuter.Request_12(valueBox.Text);
+                    dataGridView1.DataSource = table;
+                    break;
+                case "Ветеринарные клиники, где средний оклад сотрудников больше указанного":
+                    table = RequestsExecuter.Request_13(valueBox.Text);
+                    dataGridView1.DataSource = table;
+                    break;
+                case "Ветеринарные клиники, где суммарный оклад сотрудников на опред. должности выше указанного":
+                    table = RequestsExecuter.Request_14(valueBox.Text,positionBox);
+                    dataGridView1.DataSource = table;
+                    break;
 
             }
         }
+        string positionBox;
+
+        private void posBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            positionBox = posBox.GetItemText(posBox.SelectedItem);
+        }
+
 
         //private void pictureBox3_MouseLeave(object sender, EventArgs e)
         //{
