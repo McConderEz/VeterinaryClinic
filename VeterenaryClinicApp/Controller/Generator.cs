@@ -330,7 +330,7 @@ namespace VeterenaryClinicApp.Controller
             }
             using (var db = new Veterinary_ClinicEntities())
             {
-                for (var i = 0; i < 5000; i++)
+                for (var i = 0; i < 150; i++)
                 {
                     DateTime start = new DateTime(1950, 1, 1);
                     TimeSpan range = DateTime.Now.AddYears(-18) - start;
@@ -345,7 +345,7 @@ namespace VeterenaryClinicApp.Controller
                         Отчество = surname[rnd.Next(0, surname.Count())],
                         Дата_рождения = birthdate,
                         Стаж = rnd.Next(0, (DateTime.Now.Year - birthdate.Year)-18),
-                        Оклад = rnd.Next(5000,300000),
+                        Оклад = 5000,
                         Код_должности = rnd.Next(2,db.Должности.Count()),                       
                         Код_ветеринарной_клиники = idList[rnd.Next(1,idList.Count)]
                         

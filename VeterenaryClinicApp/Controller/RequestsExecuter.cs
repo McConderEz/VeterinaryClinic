@@ -452,5 +452,86 @@ FROM [Veterinary Clinic].[dbo].[Процедуры]";
 
             return table;
         }
+
+        /// <summary>
+        /// Количество сотрудников с минимальным окладом в каждой ветеринарной клинике
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable Request_15()
+        {
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            var table = new DataTable();
+            string sql = "SELECT [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта], COUNT(*) AS 'Количество сотрудников с мин. окладом' " +
+                       "FROM [Veterinary Clinic].[dbo].[Сотрудники] " +
+                       "INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники]) = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки] " +
+                       "WHERE [Veterinary Clinic].[dbo].[Сотрудники].[Оклад] = 5000 " +
+                       "GROUP BY [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта]";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
+
+        /// <summary>
+        /// Ветеринарные клиники, которые находятся в районе Басманный
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable Request_16()
+        {
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            var table = new DataTable();
+            string sql = "SELECT [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки],[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта], " +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Адрес пункта],[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Номер регистрационного пункта]," +
+                "[Veterinary Clinic].[dbo].[Районы].[Район города] " +
+                       "FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники] " +
+                       "JOIN [Veterinary Clinic].[dbo].[Районы] " +
+                       "ON [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код район города] = [Veterinary Clinic].[dbo].[Районы].[Код района] " +
+                       "WHERE [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код район города] = ( " +
+                           "SELECT [Veterinary Clinic].[dbo].[Районы].[Код района] " +
+                           "FROM [Veterinary Clinic].[dbo].[Районы] " +
+                           "WHERE [Veterinary Clinic].[dbo].[Районы].[Район города] = N'Басманный' " +
+                       ")";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
+
+        /// <summary>
+        /// Ветеринарные клиники, которые находятся вне района Басманный
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable Request_17()
+        {
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            var table = new DataTable();
+            string sql = "SELECT [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки],[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта], " +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Адрес пункта],[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Номер регистрационного пункта]," +
+                "[Veterinary Clinic].[dbo].[Районы].[Район города]" +
+                       "FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники] " +
+                       "JOIN [Veterinary Clinic].[dbo].[Районы] " +
+                       "ON [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код район города] = [Veterinary Clinic].[dbo].[Районы].[Код района] " +
+                       "WHERE [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код район города] <> ( " +
+                           "SELECT [Veterinary Clinic].[dbo].[Районы].[Код района] " +
+                           "FROM [Veterinary Clinic].[dbo].[Районы] " +
+                           "WHERE [Veterinary Clinic].[dbo].[Районы].[Район города] = N'Басманный' " +
+                       ")";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
     }
 }

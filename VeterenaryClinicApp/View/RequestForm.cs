@@ -98,7 +98,10 @@ namespace VeterenaryClinicApp
 
             if (request == "Ветеринарные клиники" || request == "Сотрудники" || request == "Процедуры"
                 || request == "Районы, в которых нет вет. клиник" || request == "Сотрудники, не делавшие процедур"
-                || request == "Количество проведённых процедур всего и в каждом районе")
+                || request == "Количество проведённых процедур всего и в каждом районе"
+                || request == "Количество сотрудников с минимальным окладом в каждой ветеринарной клинике"
+                || request == "Ветеринарные клиники, которые находятся в районе Басманный"
+                || request == "Ветеринарные клиники, которые находятся вне района Басманный")
                 valueBox.Enabled = false;
             else
                 valueBox.Enabled = true;
@@ -163,6 +166,18 @@ namespace VeterenaryClinicApp
                     break;
                 case "Ветеринарные клиники, где суммарный оклад сотрудников на опред. должности выше указанного":
                     table = RequestsExecuter.Request_14(valueBox.Text,positionBox);
+                    dataGridView1.DataSource = table;
+                    break;
+                case "Количество сотрудников с минимальным окладом в каждой ветеринарной клинике":
+                    table = RequestsExecuter.Request_15();
+                    dataGridView1.DataSource = table;
+                    break;
+                case "Ветеринарные клиники, которые находятся в районе Басманный":
+                    table = RequestsExecuter.Request_16();
+                    dataGridView1.DataSource = table;
+                    break;
+                case "Ветеринарные клиники, которые находятся вне района Басманный":
+                    table = RequestsExecuter.Request_17();
                     dataGridView1.DataSource = table;
                     break;
 
