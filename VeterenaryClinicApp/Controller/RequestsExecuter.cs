@@ -533,5 +533,80 @@ FROM [Veterinary Clinic].[dbo].[Процедуры]";
 
             return table;
         }
+
+        /// <summary>
+        /// Запрос для таблицы Ветеринарные клиники с использованием условия по значению (по коду ветеринарной клиники)
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable Request_18(string valueBox)
+        {
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            var table = new DataTable();
+            string sql = "SELECT [Код ветеринарной клинки], [Номер регистрационного пункта], [Год открытия], [Адрес пункта], [Название пункта], [Район города], [Тип собственности], [Телефон] " +
+               "FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники] " +
+               "INNER JOIN [Veterinary Clinic].[dbo].[Тип собственности] ON ([Ветеринарные клиники].[Код типа собственности]) = [Тип собственности].[Код типа собственности] " +
+               "INNER JOIN [Veterinary Clinic].[dbo].[Районы] ON ([Ветеринарные клиники].[Код район города]) = [Районы].[Код района] " +
+               $"WHERE [Код ветеринарной клинки] = {valueBox}";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
+
+        /// <summary>
+        /// Запрос для таблицы Процедуры с использованием индекса (по коду животного)
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable Request_20(string valueBox)
+        {
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            //string createIndexQuery = "CREATE INDEX IX_Ветеринарные_клиники_Номер_регистрационного_пункта " +
+            //              "ON dbo.[Ветеринарные клиники] ([Номер регистрационного пункта])";
+            //SqlCommand createIndexCommand = new SqlCommand(createIndexQuery, myConnection);
+            //createIndexCommand.ExecuteNonQuery();
+            var table = new DataTable();
+            string sql = "SELECT [Код ветеринарной клинки], [Номер регистрационного пункта], [Год открытия], [Адрес пункта], [Название пункта], [Район города], [Тип собственности], [Телефон] " +
+                     "FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники] WITH (INDEX([IX_Ветеринарные_клиники_Номер_регистрационного_пункта])) " +
+                     "INNER JOIN [Veterinary Clinic].[dbo].[Тип собственности] ON ([Ветеринарные клиники].[Код типа собственности]) = [Тип собственности].[Код типа собственности] " +
+                     "INNER JOIN [Veterinary Clinic].[dbo].[Районы] ON ([Ветеринарные клиники].[Код район города]) = [Районы].[Код района] " +
+                     $"WHERE [Номер регистрационного пункта] = {valueBox}";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
+
+        /// <summary>
+        /// Запрос для таблицы Процедуры без использования индекса (по виду процедуры)
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable Request_21(string procedureTypeBox)
+        {
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            var table = new DataTable();
+            string sql = "SELECT [Код процедуры], [Дата оказания помощи животному], [Цена процедуры], [Скидка на эту процедуру], [Цена материала по этой процедуре],[Имя], [Фамилия], [Отчество], [Кличка животного], [Вид животного], [Вид процедуры] " +
+               "FROM [Veterinary Clinic].[dbo].[Процедуры] " +
+               "INNER JOIN [Veterinary Clinic].[dbo].[Сотрудники] ON ([Процедуры].[Код сотрудника]) = [Сотрудники].[Код сотрудника] " +
+               "INNER JOIN [Veterinary Clinic].[dbo].[Животные] ON ([Процедуры].[Код животного]) = [Животные].[Код животного] " +
+               "INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] ON ([Животные].[Код вида животного]) = [Виды животных].[Код вида животного] " +
+               "INNER JOIN [Veterinary Clinic].[dbo].[Виды процедуры] ON ([Процедуры].[Код вида процедуры]) = [Виды процедуры].[Код вида процедуры] " +
+               $"WHERE [Вид процедуры] = N'{procedureTypeBox}'";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
     }
 }

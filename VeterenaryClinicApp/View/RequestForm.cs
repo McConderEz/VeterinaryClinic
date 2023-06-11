@@ -22,6 +22,7 @@ namespace VeterenaryClinicApp
         private void RequestForm_Load(object sender, EventArgs e)
         {
             posBox.Enabled = false;
+            procedureTypeBox.Enabled = false;
             string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
             SqlConnection myConnection = new SqlConnection(connectionString);
             myConnection.Open();
@@ -33,6 +34,14 @@ namespace VeterenaryClinicApp
             adapter.Fill(table);
             posBox.DataSource = table;
             posBox.DisplayMember = "Должность";
+
+            var table2 = new DataTable();
+            sql = "SELECT [Вид процедуры] FROM [Виды процедуры]";
+            command = new SqlCommand(sql, myConnection);
+            adapter = new SqlDataAdapter(command);
+            adapter.Fill(table2);
+            procedureTypeBox.DataSource = table2;
+            procedureTypeBox.DisplayMember = "Вид процедуры";
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -95,13 +104,18 @@ namespace VeterenaryClinicApp
             else
                 posBox.Enabled = false;
 
+            if (request == "Запрос для таблицы Процедуры без использования индекса (по виду процедуры)")
+                procedureTypeBox.Enabled = true;
+            else
+                procedureTypeBox.Enabled = false;
 
             if (request == "Ветеринарные клиники" || request == "Сотрудники" || request == "Процедуры"
                 || request == "Районы, в которых нет вет. клиник" || request == "Сотрудники, не делавшие процедур"
                 || request == "Количество проведённых процедур всего и в каждом районе"
                 || request == "Количество сотрудников с минимальным окладом в каждой ветеринарной клинике"
                 || request == "Ветеринарные клиники, которые находятся в районе Басманный"
-                || request == "Ветеринарные клиники, которые находятся вне района Басманный")
+                || request == "Ветеринарные клиники, которые находятся вне района Басманный"
+                || request == "Запрос для таблицы Процедуры без использования индекса (по виду процедуры)")
                 valueBox.Enabled = false;
             else
                 valueBox.Enabled = true;
@@ -109,85 +123,113 @@ namespace VeterenaryClinicApp
 
         private void simpleRequestButton_Click(object sender, EventArgs e)
         {
-            DataTable table;
-            switch (request)
+            //try
             {
-                case "Учёт сотрудников по должности":
-                    table = RequestsExecuter.Request_1(valueBox.Text);
-                    dataGridView1.DataSource = table;
-                    break;
-                case "Ветеринарные клиники в определённом районе":
-                    table = RequestsExecuter.Request_2(valueBox.Text);
-                    dataGridView1.DataSource = table;
-                    break;
-                case "Процедуры оказанные в опред. дату":
-                    table = RequestsExecuter.Request_3(valueBox.Text);
-                    dataGridView1.DataSource = table;
-                    break;
-                case "Сотрудники, родившиеся в опред. дату":
-                    table = RequestsExecuter.Request_4(valueBox.Text);
-                    dataGridView1.DataSource = table;
-                    break;
-                case "Ветеринарные клиники":
-                    table = RequestsExecuter.Request_5();
-                    dataGridView1.DataSource = table;
-                    break;
-                case "Сотрудники":
-                    table = RequestsExecuter.Request_6();
-                    dataGridView1.DataSource = table;
-                    break;
-                case "Процедуры":
-                    table = RequestsExecuter.Request_7();
-                    dataGridView1.DataSource = table;
-                    break;
-                case "Районы, в которых нет вет. клиник":
-                    table = RequestsExecuter.Request_8();
-                    dataGridView1.DataSource = table;
-                    break;
-                case "Сотрудники, не делавшие процедур":
-                    table = RequestsExecuter.Request_9();
-                    dataGridView1.DataSource = table;
-                    break;
-                case "Сотрудники, не делавшие процедур опред. даты":
-                    table = RequestsExecuter.Request_10(valueBox.Text);
-                    dataGridView1.DataSource = table;
-                    break;
-                case "Количество проведённых процедур всего и в каждом районе":
-                    table = RequestsExecuter.Request_11();
-                    dataGridView1.DataSource = table;
-                    break;
-                case "Количество сотрудников в ветеринарных клиниках с окладом больше указанного":
-                    table = RequestsExecuter.Request_12(valueBox.Text);
-                    dataGridView1.DataSource = table;
-                    break;
-                case "Ветеринарные клиники, где средний оклад сотрудников больше указанного":
-                    table = RequestsExecuter.Request_13(valueBox.Text);
-                    dataGridView1.DataSource = table;
-                    break;
-                case "Ветеринарные клиники, где суммарный оклад сотрудников на опред. должности выше указанного":
-                    table = RequestsExecuter.Request_14(valueBox.Text,positionBox);
-                    dataGridView1.DataSource = table;
-                    break;
-                case "Количество сотрудников с минимальным окладом в каждой ветеринарной клинике":
-                    table = RequestsExecuter.Request_15();
-                    dataGridView1.DataSource = table;
-                    break;
-                case "Ветеринарные клиники, которые находятся в районе Басманный":
-                    table = RequestsExecuter.Request_16();
-                    dataGridView1.DataSource = table;
-                    break;
-                case "Ветеринарные клиники, которые находятся вне района Басманный":
-                    table = RequestsExecuter.Request_17();
-                    dataGridView1.DataSource = table;
-                    break;
+                DataTable table;
+                switch (request)
+                {
+                    case "Учёт сотрудников по должности":
+                        table = RequestsExecuter.Request_1(valueBox.Text);
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Ветеринарные клиники в определённом районе":
+                        table = RequestsExecuter.Request_2(valueBox.Text);
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Процедуры оказанные в опред. дату":
+                        table = RequestsExecuter.Request_3(valueBox.Text);
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Сотрудники, родившиеся в опред. дату":
+                        table = RequestsExecuter.Request_4(valueBox.Text);
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Ветеринарные клиники":
+                        table = RequestsExecuter.Request_5();
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Сотрудники":
+                        table = RequestsExecuter.Request_6();
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Процедуры":
+                        table = RequestsExecuter.Request_7();
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Районы, в которых нет вет. клиник":
+                        table = RequestsExecuter.Request_8();
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Сотрудники, не делавшие процедур":
+                        table = RequestsExecuter.Request_9();
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Сотрудники, не делавшие процедур опред. даты":
+                        table = RequestsExecuter.Request_10(valueBox.Text);
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Количество проведённых процедур всего и в каждом районе":
+                        table = RequestsExecuter.Request_11();
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Количество сотрудников в ветеринарных клиниках с окладом больше указанного":
+                        table = RequestsExecuter.Request_12(valueBox.Text);
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Ветеринарные клиники, где средний оклад сотрудников больше указанного":
+                        table = RequestsExecuter.Request_13(valueBox.Text);
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Ветеринарные клиники, где суммарный оклад сотрудников на опред. должности выше указанного":
+                        table = RequestsExecuter.Request_14(valueBox.Text, positionBox);
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Количество сотрудников с минимальным окладом в каждой ветеринарной клинике":
+                        table = RequestsExecuter.Request_15();
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Ветеринарные клиники, которые находятся в районе Басманный":
+                        table = RequestsExecuter.Request_16();
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Ветеринарные клиники, которые находятся вне района Басманный":
+                        table = RequestsExecuter.Request_17();
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Запрос для таблицы Ветеринарные клиники с использованием условия по значению (по коду ветеринарной клиники)":
+                        table = RequestsExecuter.Request_18(valueBox.Text);
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Запрос для таблицы Сотрудники с использованием условия по маске (по имени)":
+                        //TODO:Сделать
+                        break;
+                    case "Запрос для таблицы Процедуры с использованием индекса (по коду животного)":
+                        table = RequestsExecuter.Request_20(valueBox.Text);
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Запрос для таблицы Процедуры без использования индекса (по виду процедуры)":
+                        table = RequestsExecuter.Request_21(procedureType);
+                        dataGridView1.DataSource = table;
+                        break;
 
+                }
             }
+            //catch(Exception ex)
+            //{
+            //    MessageBox.Show($"{ex.Message}; Возможно вы ввели не верный параметр");
+            //}
         }
         string positionBox;
 
         private void posBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             positionBox = posBox.GetItemText(posBox.SelectedItem);
+        }
+
+        string procedureType;
+        private void procedureTypeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            procedureType = procedureTypeBox.GetItemText(procedureTypeBox.SelectedItem);
         }
 
 
