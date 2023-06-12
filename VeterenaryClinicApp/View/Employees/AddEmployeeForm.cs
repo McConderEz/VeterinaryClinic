@@ -35,7 +35,7 @@ namespace VeterenaryClinicApp.View.Employees
 
         private void label1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Dispose();
         }
 
         private void label1_MouseMove(object sender, MouseEventArgs e)
@@ -69,18 +69,26 @@ namespace VeterenaryClinicApp.View.Employees
 
         private void AddEmployeeForm_Load(object sender, EventArgs e)
         {
-            using (var db = new Veterinary_ClinicEntities())
-            {
-                for (var i = 0; i < db.Должности.Count(); i++)
-                {
-                    position.Add(db.Должности.FirstOrDefault(x => x.Код_должности == (i + 1)).Должность, i + 1);
-                }
-
-            }
-
             string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
             SqlConnection myConnection = new SqlConnection(connectionString);
             myConnection.Open();
+            using (var db = new Veterinary_ClinicEntities())
+            {
+
+                var commandTemp = new SqlCommand("SELECT [Код должности],[Должность] FROM [Должности]", myConnection);
+
+                using (var reader = commandTemp.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["Код должности"];
+                        string name = (string)reader["Должность"];
+                        position.Add(name, id);
+                    }
+                }
+
+
+            }
 
             string sql = "SELECT [Должность] FROM [Должности]";
             SqlCommand command = new SqlCommand(sql, myConnection);

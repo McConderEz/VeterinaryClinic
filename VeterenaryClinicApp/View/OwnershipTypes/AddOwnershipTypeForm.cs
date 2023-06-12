@@ -23,6 +23,8 @@ namespace VeterenaryClinicApp.View.OwnershipTypes
                     m.Result = (IntPtr)0x2;
                 return;
             }
+
+            base.WndProc(ref m);
         }
 
         public AddOwnershipTypeForm()
@@ -32,7 +34,7 @@ namespace VeterenaryClinicApp.View.OwnershipTypes
 
         private void label1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Dispose();
         }
 
         private void label1_MouseLeave(object sender, EventArgs e)
@@ -56,6 +58,11 @@ namespace VeterenaryClinicApp.View.OwnershipTypes
             {
                 MessageBox.Show("Запись не была добавленна ввиду некорректности входных данных!");
             }
+        }
+
+        private void AddOwnershipTypeForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

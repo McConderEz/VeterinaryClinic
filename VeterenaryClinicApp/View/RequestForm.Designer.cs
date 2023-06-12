@@ -207,11 +207,11 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label6.Location = new System.Drawing.Point(460, 357);
+            this.label6.Location = new System.Drawing.Point(507, 353);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(97, 16);
+            this.label6.Size = new System.Drawing.Size(50, 16);
             this.label6.TabIndex = 37;
-            this.label6.Text = "Проcтые запросы";
+            this.label6.Text = "Запросы";
             // 
             // simpleRequestsBox
             // 
@@ -238,9 +238,16 @@
             "Ветеринарные клиники, которые находятся вне района Басманный",
             "Запрос для таблицы Ветеринарные клиники с использованием условия по значению (по " +
                 "коду ветеринарной клиники)",
-            "Запрос для таблицы Сотрудники с использованием условия по маске (по имени)",
+            "Запрос для таблицы Животные с использованием условия по маске (по виду животного)" +
+                "",
             "Запрос для таблицы Процедуры с использованием индекса (по коду животного)",
-            "Запрос для таблицы Процедуры без использования индекса (по виду процедуры)"});
+            "Запрос для таблицы Процедуры без использования индекса (по виду процедуры)",
+            "Использование оператора IN для поиска животных определенных видов",
+            "Использование оператора NOT IN для поиска животных, которые не относятся к опреде" +
+                "ленным видам",
+            "Использование оператора CASE для вычисления скидки на процедуры",
+            "Использование подзапроса для выбора владельцев, у которых есть более одного живот" +
+                "ного"});
             this.simpleRequestsBox.Location = new System.Drawing.Point(563, 352);
             this.simpleRequestsBox.Name = "simpleRequestsBox";
             this.simpleRequestsBox.Size = new System.Drawing.Size(208, 21);

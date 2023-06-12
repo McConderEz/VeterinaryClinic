@@ -99,7 +99,7 @@ namespace VeterenaryClinicApp
         {
             request = simpleRequestsBox.GetItemText(simpleRequestsBox.SelectedItem);
 
-            if (request == "Ветеринарные клиники, где суммарный оклад сотрудников на опред. должности выше указанного")
+            if (request == "Ветеринарные клиники, где суммарный оклад сотрудников на опред. должности выше указанного" || request == "Учёт сотрудников по должности")
                 posBox.Enabled = true;
             else
                 posBox.Enabled = false;
@@ -115,7 +115,11 @@ namespace VeterenaryClinicApp
                 || request == "Количество сотрудников с минимальным окладом в каждой ветеринарной клинике"
                 || request == "Ветеринарные клиники, которые находятся в районе Басманный"
                 || request == "Ветеринарные клиники, которые находятся вне района Басманный"
-                || request == "Запрос для таблицы Процедуры без использования индекса (по виду процедуры)")
+                || request == "Запрос для таблицы Процедуры без использования индекса (по виду процедуры)"
+                || request == "Использование оператора IN для поиска животных определенных видов"
+                || request == "Использование оператора NOT IN для поиска животных, которые не относятся к определенным видам"
+                || request == "Использование оператора CASE для вычисления скидки на процедуры"
+                || request == "Использование подзапроса для выбора владельцев, у которых есть более одного животного")
                 valueBox.Enabled = false;
             else
                 valueBox.Enabled = true;
@@ -123,13 +127,13 @@ namespace VeterenaryClinicApp
 
         private void simpleRequestButton_Click(object sender, EventArgs e)
         {
-            //try
+            try
             {
                 DataTable table;
                 switch (request)
                 {
                     case "Учёт сотрудников по должности":
-                        table = RequestsExecuter.Request_1(valueBox.Text);
+                        table = RequestsExecuter.Request_1(positionBox);
                         dataGridView1.DataSource = table;
                         break;
                     case "Ветеринарные клиники в определённом районе":
@@ -200,8 +204,9 @@ namespace VeterenaryClinicApp
                         table = RequestsExecuter.Request_18(valueBox.Text);
                         dataGridView1.DataSource = table;
                         break;
-                    case "Запрос для таблицы Сотрудники с использованием условия по маске (по имени)":
-                        //TODO:Сделать
+                    case "Запрос для таблицы Животные с использованием условия по маске (по виду животного)":
+                        table = RequestsExecuter.Request_19(valueBox.Text);
+                        dataGridView1.DataSource = table;
                         break;
                     case "Запрос для таблицы Процедуры с использованием индекса (по коду животного)":
                         table = RequestsExecuter.Request_20(valueBox.Text);
@@ -211,13 +216,29 @@ namespace VeterenaryClinicApp
                         table = RequestsExecuter.Request_21(procedureType);
                         dataGridView1.DataSource = table;
                         break;
+                    case "Использование оператора IN для поиска животных определенных видов":
+                        table = RequestsExecuter.Request_22();
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Использование оператора NOT IN для поиска животных, которые не относятся к определенным видам":
+                        table = RequestsExecuter.Request_23();
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Использование оператора CASE для вычисления скидки на процедуры":
+                        table = RequestsExecuter.Request_24();
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Использование подзапроса для выбора владельцев, у которых есть более одного животного":
+                        table = RequestsExecuter.Request_25();
+                        dataGridView1.DataSource = table;
+                        break;
 
                 }
             }
-            //catch(Exception ex)
-            //{
-            //    MessageBox.Show($"{ex.Message}; Возможно вы ввели не верный параметр");
-            //}
+            catch(Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}; Возможно вы ввели не верный параметр");
+            }
         }
         string positionBox;
 

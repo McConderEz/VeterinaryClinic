@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VeterenaryClinicApp.Controller;
 using VeterenaryClinicApp.Model;
+using static Bunifu.UI.WinForms.BunifuSnackbar;
 
 namespace VeterenaryClinicApp.View.Procedure
 {
@@ -72,18 +73,26 @@ namespace VeterenaryClinicApp.View.Procedure
 
         private void AddProcedureForm_Load(object sender, EventArgs e)
         {
-            using (var db = new Veterinary_ClinicEntities())
-            {
-                for (var i = 0; i < db.Виды_процедуры.Count(); i++)
-                {
-                    procedureType.Add(db.Виды_процедуры.FirstOrDefault(x => x.Код_вида_процедуры == (i + 1)).Вид_процедуры, i + 1);
-                }
-
-            }
-
             string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
             SqlConnection myConnection = new SqlConnection(connectionString);
             myConnection.Open();
+            using (var db = new Veterinary_ClinicEntities())
+            {
+
+                var commandTemp = new SqlCommand("SELECT [Код вида процедуры],[Вид процедуры] FROM [Виды процедуры]", myConnection);
+
+                using (var reader = commandTemp.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["Код вида процедуры"];
+                        string name = (string)reader["Вид процедуры"];
+                        procedureType.Add(name, id);
+                    }
+                }
+
+
+            }
 
             string sql = "SELECT [Вид процедуры] FROM [Виды процедуры]";
             SqlCommand command = new SqlCommand(sql, myConnection);

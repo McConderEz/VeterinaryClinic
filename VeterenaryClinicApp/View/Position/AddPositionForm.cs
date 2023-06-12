@@ -45,7 +45,7 @@ namespace VeterenaryClinicApp.View.Conditions
 
         private void label1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Dispose();
         }
 
         private void label1_MouseLeave(object sender, EventArgs e)

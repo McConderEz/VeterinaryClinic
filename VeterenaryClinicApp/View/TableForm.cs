@@ -27,7 +27,8 @@ using VeterenaryClinicApp.View.ProceduresType;
 
 namespace VeterenaryClinicApp
 {
-    //TODO: Сделать добавление через ComboBox везде, где связь идет со справочником
+    
+    
     public partial class TableForm : Form
     {        
         public TableForm(DataTable data,string name)
@@ -35,7 +36,7 @@ namespace VeterenaryClinicApp
             InitializeComponent();
             dataGridView1.DataSource = data;
             nameTable.Text = name;           
-            counter.Text = "" + (dataGridView1.RowCount);
+            counter.Text = "" + (dataGridView1.RowCount - 1);
         }
 
         bool flag = false;
@@ -112,7 +113,7 @@ namespace VeterenaryClinicApp
                     while (!addAnimalClassForm.IsDisposed) { }
                     Refresh();
                     break;
-                case "Вида животных":
+                case "Виды животных":
                     var addAnimalTypeForm = new AddAnimalTypeForm();
                     addAnimalTypeForm.ShowDialog();
                     while (!addAnimalTypeForm.IsDisposed) { }
@@ -629,7 +630,7 @@ namespace VeterenaryClinicApp
                     counter.Text = "" + (dataGridView1.RowCount);
                     break;
                 case "Тип собственности":
-                    var dataTableOwnership = Refresher.RefreshDistrict();
+                    var dataTableOwnership = Refresher.RefreshOwnership();
                     dataGridView1.DataSource = dataTableOwnership;
                     dataGridView1.Invalidate();
                     counter.Text = "" + (dataGridView1.RowCount);

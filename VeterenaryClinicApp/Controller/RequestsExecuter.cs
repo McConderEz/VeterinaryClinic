@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
+using VeterenaryClinicApp.Model;
 
 namespace VeterenaryClinicApp.Controller
 {
@@ -32,8 +33,10 @@ namespace VeterenaryClinicApp.Controller
 "[Veterinary Clinic].[dbo].[Сотрудники].[Оклад]," +
 "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Номер регистрационного пункта]," +
 "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта] FROM [Veterinary Clinic].[dbo].[Сотрудники]" +
-"INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники]) = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]" +
-$"INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код должности]) = [Veterinary Clinic].[dbo].[Должности].[Код должности]  WHERE [Veterinary Clinic].[dbo].[Должности].[Должность] = N'{valueBox}'";
+"INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники]) = " +
+"[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]" +
+$"INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код должности]) = " +
+$"[Veterinary Clinic].[dbo].[Должности].[Код должности]  WHERE [Veterinary Clinic].[dbo].[Должности].[Должность] = N'{valueBox}'";
             SqlCommand command = new SqlCommand(sql, myConnection);
             SqlDataAdapter adapter = new SqlDataAdapter(command);
             table = new DataTable();
@@ -61,8 +64,10 @@ $"INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clin
                 "[Veterinary Clinic].[dbo].[Районы].[Район города]," +
                 "[Veterinary Clinic].[dbo].[Тип собственности].[Тип собственности]," +
                 "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Телефон] FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники]" +
-            "INNER JOIN [Veterinary Clinic].[dbo].[Тип собственности] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код типа собственности]) = [Veterinary Clinic].[dbo].[Тип собственности].[Код типа собственности]" +
-            $"INNER JOIN [Veterinary Clinic].[dbo].[Районы] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код район города]) = [Veterinary Clinic].[dbo].[Районы].[Код района] WHERE [Veterinary Clinic].[dbo].[Районы].[Район города] = N'{valueBox}'";
+            "INNER JOIN [Veterinary Clinic].[dbo].[Тип собственности] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код типа собственности]) = " +
+            "[Veterinary Clinic].[dbo].[Тип собственности].[Код типа собственности]" +
+            $"INNER JOIN [Veterinary Clinic].[dbo].[Районы] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код район города]) = " +
+            $"[Veterinary Clinic].[dbo].[Районы].[Код района] WHERE [Veterinary Clinic].[dbo].[Районы].[Район города] = N'{valueBox}'";
             SqlCommand command = new SqlCommand(sql, myConnection);
             SqlDataAdapter adapter = new SqlDataAdapter(command);
             table = new DataTable();
@@ -95,8 +100,10 @@ $"INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clin
                     "[Veterinary Clinic].[dbo].[Виды процедуры].[Вид процедуры] FROM [Veterinary Clinic].[dbo].[Процедуры]" +
                     "INNER JOIN [Veterinary Clinic].[dbo].[Сотрудники] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код сотрудника]) = [Veterinary Clinic].[dbo].[Сотрудники].[Код сотрудника]" +
                     "INNER JOIN [Veterinary Clinic].[dbo].[Животные] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код животного]) = [Veterinary Clinic].[dbo].[Животные].[Код животного] " +
-                    "INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного] " +
-                    $"INNER JOIN [Veterinary Clinic].[dbo].[Виды процедуры] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код вида процедуры]) = [Veterinary Clinic].[dbo].[Виды процедуры].[Код вида процедуры] WHERE [Дата оказания помощи животному] = '{date}'";
+                    "INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = " +
+                    "[Veterinary Clinic].[dbo].[Виды животных].[Код вида животного] " +
+                    $"INNER JOIN [Veterinary Clinic].[dbo].[Виды процедуры] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код вида процедуры]) = " +
+                    $"[Veterinary Clinic].[dbo].[Виды процедуры].[Код вида процедуры] WHERE [Дата оказания помощи животному] = '{date}'";
                 SqlCommand command = new SqlCommand(sql, myConnection);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 table = new DataTable();
@@ -133,8 +140,10 @@ $"INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clin
                 "[Veterinary Clinic].[dbo].[Сотрудники].[Стаж]," +
                 "[Veterinary Clinic].[dbo].[Сотрудники].[Оклад]," +
                 "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта] FROM [Veterinary Clinic].[dbo].[Сотрудники]" +
-                "INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники]) = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]" +
-                $"INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код должности]) = [Veterinary Clinic].[dbo].[Должности].[Код должности] WHERE [Дата рождения] = '{date}'";
+                "INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники]) = " +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]" +
+                $"INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код должности]) =" +
+                $" [Veterinary Clinic].[dbo].[Должности].[Код должности] WHERE [Дата рождения] = '{date}'";
                 SqlCommand command = new SqlCommand(sql, myConnection);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 table = new DataTable();
@@ -167,8 +176,10 @@ $"INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clin
                 "[Veterinary Clinic].[dbo].[Районы].[Район города]," +
                 "[Veterinary Clinic].[dbo].[Тип собственности].[Тип собственности]," +
                 "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Телефон] FROM [Veterinary Clinic].[dbo].[Ветеринарные клиники]" +
-            "INNER JOIN [Veterinary Clinic].[dbo].[Тип собственности] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код типа собственности]) = [Veterinary Clinic].[dbo].[Тип собственности].[Код типа собственности]" +
-            "INNER JOIN [Veterinary Clinic].[dbo].[Районы] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код район города]) = [Veterinary Clinic].[dbo].[Районы].[Код района]";
+            "INNER JOIN [Veterinary Clinic].[dbo].[Тип собственности] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код типа собственности]) = " +
+            "[Veterinary Clinic].[dbo].[Тип собственности].[Код типа собственности]" +
+            "INNER JOIN [Veterinary Clinic].[dbo].[Районы] ON ([Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код район города]) =" +
+            " [Veterinary Clinic].[dbo].[Районы].[Код района]";
             SqlCommand command = new SqlCommand(sql, myConnection);
             SqlDataAdapter adapter = new SqlDataAdapter(command);
             table = new DataTable();
@@ -198,8 +209,10 @@ $"INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clin
                 "[Veterinary Clinic].[dbo].[Сотрудники].[Оклад]," +
                 "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Номер регистрационного пункта]," +
                 "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта] FROM [Veterinary Clinic].[dbo].[Сотрудники]" +
-                "INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники]) = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]" +
-                "INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код должности]) = [Veterinary Clinic].[dbo].[Должности].[Код должности]";
+                "INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники]) = " +
+                "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки]" +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код должности]) = " +
+                "[Veterinary Clinic].[dbo].[Должности].[Код должности]";
             SqlCommand command = new SqlCommand(sql, myConnection);
             SqlDataAdapter adapter = new SqlDataAdapter(command);
             table = new DataTable();
@@ -230,10 +243,14 @@ $"INNER JOIN [Veterinary Clinic].[dbo].[Должности] ON ([Veterinary Clin
                 "[Veterinary Clinic].[dbo].[Животные].[Кличка животного]," +
                 "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного]," +
                 "[Veterinary Clinic].[dbo].[Виды процедуры].[Вид процедуры] FROM [Veterinary Clinic].[dbo].[Процедуры]" +
-                "INNER JOIN [Veterinary Clinic].[dbo].[Сотрудники] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код сотрудника]) = [Veterinary Clinic].[dbo].[Сотрудники].[Код сотрудника]" +
-                "INNER JOIN [Veterinary Clinic].[dbo].[Животные] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код животного]) = [Veterinary Clinic].[dbo].[Животные].[Код животного] " +
-                "INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного] " +
-                "INNER JOIN [Veterinary Clinic].[dbo].[Виды процедуры] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код вида процедуры]) = [Veterinary Clinic].[dbo].[Виды процедуры].[Код вида процедуры] ";
+                "INNER JOIN [Veterinary Clinic].[dbo].[Сотрудники] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код сотрудника]) = " +
+                "[Veterinary Clinic].[dbo].[Сотрудники].[Код сотрудника]" +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Животные] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код животного]) = " +
+                "[Veterinary Clinic].[dbo].[Животные].[Код животного] " +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = " +
+                "[Veterinary Clinic].[dbo].[Виды животных].[Код вида животного] " +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Виды процедуры] ON ([Veterinary Clinic].[dbo].[Процедуры].[Код вида процедуры]) = " +
+                "[Veterinary Clinic].[dbo].[Виды процедуры].[Код вида процедуры] ";
             SqlCommand command = new SqlCommand(sql, myConnection);
             SqlDataAdapter adapter = new SqlDataAdapter(command);
             table = new DataTable();
@@ -465,7 +482,8 @@ FROM [Veterinary Clinic].[dbo].[Процедуры]";
             var table = new DataTable();
             string sql = "SELECT [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта], COUNT(*) AS 'Количество сотрудников с мин. окладом' " +
                        "FROM [Veterinary Clinic].[dbo].[Сотрудники] " +
-                       "INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники]) = [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки] " +
+                       "INNER JOIN [Veterinary Clinic].[dbo].[Ветеринарные клиники] ON ([Veterinary Clinic].[dbo].[Сотрудники].[Код ветеринарной клиники]) = " +
+                       "[Veterinary Clinic].[dbo].[Ветеринарные клиники].[Код ветеринарной клинки] " +
                        "WHERE [Veterinary Clinic].[dbo].[Сотрудники].[Оклад] = 5000 " +
                        "GROUP BY [Veterinary Clinic].[dbo].[Ветеринарные клиники].[Название пункта]";
             SqlCommand command = new SqlCommand(sql, myConnection);
@@ -558,6 +576,35 @@ FROM [Veterinary Clinic].[dbo].[Процедуры]";
         }
 
         /// <summary>
+        /// Запрос для таблицы Животные с использованием условия по маске (по виду животного)
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable Request_19(string valueBox)
+        {
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            var table = new DataTable();
+            string sql = "SELECT [Veterinary Clinic].[dbo].[Животные].[Код животного]," +
+                "[Veterinary Clinic].[dbo].[Животные].[Кличка Животного]," +
+                "[Veterinary Clinic].[dbo].[Животные].[Возраст Животного]," +
+                "[Veterinary Clinic].[dbo].[Животные].[Условия содержания животного]," +
+                "[Veterinary Clinic].[dbo].[Владельцы].[Имя]," +
+                "[Veterinary Clinic].[dbo].[Владельцы].[Фамилия]," +
+                "[Veterinary Clinic].[dbo].[Владельцы].[Отчество]," +
+                "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного] FROM [Veterinary Clinic].[dbo].[Животные]" +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Владельцы] ON ([Veterinary Clinic].[dbo].[Животные].[Код владельца]) = [Veterinary Clinic].[dbo].[Владельцы].[Код владельца] " +
+                "INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного]" +
+                $"WHERE [Вид животного] LIKE N'%{valueBox}%' ";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
+
+        /// <summary>
         /// Запрос для таблицы Процедуры с использованием индекса (по коду животного)
         /// </summary>
         /// <returns></returns>
@@ -601,6 +648,151 @@ FROM [Veterinary Clinic].[dbo].[Процедуры]";
                "INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] ON ([Животные].[Код вида животного]) = [Виды животных].[Код вида животного] " +
                "INNER JOIN [Veterinary Clinic].[dbo].[Виды процедуры] ON ([Процедуры].[Код вида процедуры]) = [Виды процедуры].[Код вида процедуры] " +
                $"WHERE [Вид процедуры] = N'{procedureTypeBox}'";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
+
+        /// <summary>
+        /// Использование оператора IN для поиска животных определенных видов(всех собак)
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable Request_22()
+        {
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            var table = new DataTable();
+            string sql = "SELECT [Veterinary Clinic].[dbo].[Животные].[Код животного], " +
+                    "[Veterinary Clinic].[dbo].[Животные].[Кличка Животного], " +
+                    "[Veterinary Clinic].[dbo].[Животные].[Возраст Животного], " +
+                    "[Veterinary Clinic].[dbo].[Животные].[Условия содержания животного], " +
+                    "[Veterinary Clinic].[dbo].[Владельцы].[Имя], " +
+                    "[Veterinary Clinic].[dbo].[Владельцы].[Фамилия], " +
+                    "[Veterinary Clinic].[dbo].[Владельцы].[Отчество], " +
+                    "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного] " +
+                    "FROM [Veterinary Clinic].[dbo].[Животные] " +
+                    "INNER JOIN [Veterinary Clinic].[dbo].[Владельцы] " +
+                    "ON ([Veterinary Clinic].[dbo].[Животные].[Код владельца]) = [Veterinary Clinic].[dbo].[Владельцы].[Код владельца] " +
+                    "INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] " +
+                    "ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного] " +
+                    "WHERE [Veterinary Clinic].[dbo].[Животные].[Код вида животного] IN (SELECT [Код вида животного] FROM [Veterinary Clinic].[dbo].[Виды животных] WHERE [Вид животного] IN (N'Нем.овчарка', N'Йорк.терьер', N'Лабрадор', N'Франц.бульдог', N'Шпиц'))";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
+
+        /// <summary>
+        /// Использование оператора NOT IN для поиска животных, которые не относятся к определенным видам(паукообразные)
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable Request_23()
+        {
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            var table = new DataTable();
+            string sql = "SELECT [Veterinary Clinic].[dbo].[Животные].[Код животного], " +
+                    "[Veterinary Clinic].[dbo].[Животные].[Кличка Животного], " +
+                    "[Veterinary Clinic].[dbo].[Животные].[Возраст Животного], " +
+                    "[Veterinary Clinic].[dbo].[Животные].[Условия содержания животного], " +
+                    "[Veterinary Clinic].[dbo].[Владельцы].[Имя], " +
+                    "[Veterinary Clinic].[dbo].[Владельцы].[Фамилия], " +
+                    "[Veterinary Clinic].[dbo].[Владельцы].[Отчество], " +
+                    "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного] " +
+                    "FROM [Veterinary Clinic].[dbo].[Животные] " +
+                    "INNER JOIN [Veterinary Clinic].[dbo].[Владельцы] " +
+                    "ON ([Veterinary Clinic].[dbo].[Животные].[Код владельца]) = [Veterinary Clinic].[dbo].[Владельцы].[Код владельца] " +
+                    "INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] " +
+                    "ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного] " +
+                    "WHERE [Veterinary Clinic].[dbo].[Животные].[Код вида животного] NOT IN " +
+                    "(SELECT [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного] " +
+                    "FROM [Veterinary Clinic].[dbo].[Виды животных] " +
+                    "WHERE [Veterinary Clinic].[dbo].[Виды животных].[Вид животного] IN (N'Тарантул', N'Птицеед', N'Терр.паук', N'Черная вдова', N'колесница', N'Скакунчик', N'Паук-птицелов', N'Мекс.тарантул', N'Крабовый паук', N'паук-птицелов'))";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
+
+        /// <summary>
+        /// Использование оператора CASE для вычисления скидки на процедуры
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable Request_24()
+        {
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            var table = new DataTable();
+            string sql = "SELECT [Veterinary Clinic].[dbo].[Процедуры].[Код процедуры], " +
+                           "[Veterinary Clinic].[dbo].[Процедуры].[Дата оказания помощи животному], " +
+                           "[Veterinary Clinic].[dbo].[Процедуры].[Цена процедуры], " +
+                           "[Veterinary Clinic].[dbo].[Процедуры].[Скидка на эту процедуру], " +
+                           "[Veterinary Clinic].[dbo].[Процедуры].[Цена материала по этой процедуре], " +
+                           "[Veterinary Clinic].[dbo].[Сотрудники].[Имя], " +
+                           "[Veterinary Clinic].[dbo].[Сотрудники].[Фамилия], " +
+                           "[Veterinary Clinic].[dbo].[Сотрудники].[Отчество], " +
+                           "[Veterinary Clinic].[dbo].[Животные].[Кличка животного], " +
+                           "[Veterinary Clinic].[dbo].[Виды животных].[Вид животного], " +
+                           "[Veterinary Clinic].[dbo].[Виды процедуры].[Вид процедуры], " +
+                           "CASE WHEN [Veterinary Clinic].[dbo].[Процедуры].[Скидка на эту процедуру] > 0 " +
+                           "     THEN [Veterinary Clinic].[dbo].[Процедуры].[Цена процедуры] * (1 - ([Veterinary Clinic].[dbo].[Процедуры].[Скидка на эту процедуру] / 100)) " +
+                           "     ELSE [Veterinary Clinic].[dbo].[Процедуры].[Цена процедуры] " +
+                           "END AS [Итоговая цена] " +
+                           "FROM [Veterinary Clinic].[dbo].[Процедуры] " +
+                           "INNER JOIN [Veterinary Clinic].[dbo].[Сотрудники] " +
+                           "    ON ([Veterinary Clinic].[dbo].[Процедуры].[Код сотрудника]) = [Veterinary Clinic].[dbo].[Сотрудники].[Код сотрудника] " +
+                           "INNER JOIN [Veterinary Clinic].[dbo].[Животные] " +
+                           "    ON ([Veterinary Clinic].[dbo].[Процедуры].[Код животного]) = [Veterinary Clinic].[dbo].[Животные].[Код животного] " +
+                           "INNER JOIN [Veterinary Clinic].[dbo].[Виды животных] " +
+                           "    ON ([Veterinary Clinic].[dbo].[Животные].[Код вида животного]) = [Veterinary Clinic].[dbo].[Виды животных].[Код вида животного] " +
+                           "INNER JOIN [Veterinary Clinic].[dbo].[Виды процедуры] " +
+                           "    ON ([Veterinary Clinic].[dbo].[Процедуры].[Код вида процедуры]) = [Veterinary Clinic].[dbo].[Виды процедуры].[Код вида процедуры]";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
+
+        /// <summary>
+        /// Использование подзапроса для выбора владельцев, у которых есть более одного животного
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable Request_25()
+        {
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            var table = new DataTable();
+            string sql = "SELECT [Veterinary Clinic].[dbo].[Владельцы].[Код владельца], " +
+             "[Veterinary Clinic].[dbo].[Владельцы].[Фамилия], " +
+             "[Veterinary Clinic].[dbo].[Владельцы].[Имя], " +
+             "[Veterinary Clinic].[dbo].[Владельцы].[Отчество], " +
+             "[Veterinary Clinic].[dbo].[Владельцы].[Дата рождения хозяина]," +
+             "[Veterinary Clinic].[dbo].[Владельцы].[Телефон]," +
+             "COUNT([Veterinary Clinic].[dbo].[Животные].[Код животного]) AS [Количество питомцев] " +
+             "FROM [Veterinary Clinic].[dbo].[Владельцы] " +
+             "INNER JOIN [Veterinary Clinic].[dbo].[Животные] " +
+             "    ON ([Veterinary Clinic].[dbo].[Владельцы].[Код владельца]) = [Veterinary Clinic].[dbo].[Животные].[Код владельца] " +
+             "GROUP BY [Veterinary Clinic].[dbo].[Владельцы].[Код владельца], " +
+             "[Veterinary Clinic].[dbo].[Владельцы].[Фамилия], " +
+             "[Veterinary Clinic].[dbo].[Владельцы].[Имя], " +
+             "[Veterinary Clinic].[dbo].[Владельцы].[Отчество], " +
+             "[Veterinary Clinic].[dbo].[Владельцы].[Дата рождения хозяина]," +
+             "[Veterinary Clinic].[dbo].[Владельцы].[Дата рождения хозяина]," +
+             "[Veterinary Clinic].[dbo].[Владельцы].[Телефон]" +
+             "HAVING COUNT(*) > 1";
             SqlCommand command = new SqlCommand(sql, myConnection);
             SqlDataAdapter adapter = new SqlDataAdapter(command);
             table = new DataTable();

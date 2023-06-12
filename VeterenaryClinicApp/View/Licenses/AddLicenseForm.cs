@@ -63,9 +63,16 @@ namespace VeterenaryClinicApp.View.Licenses
 
         private void button2_Click(object sender, EventArgs e)
         {
-            openImage.ShowDialog();
-            openImage.Filter = "JPEG files (*.jpg;*.jpeg)|*.jpg;*.jpeg|PNG files (*.png)|*.png";
-            imageData = File.ReadAllBytes(openImage.FileName);
+            try
+            {
+                openImage.ShowDialog();
+                openImage.Filter = "JPEG files (*.jpg;*.jpeg)|*.jpg;*.jpeg|PNG files (*.png)|*.png";
+                imageData = File.ReadAllBytes(openImage.FileName);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}");
+            }
         }
     }
 }

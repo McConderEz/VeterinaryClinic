@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,7 +38,7 @@ namespace VeterenaryClinicApp.View.Animals
 
         private void label1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Dispose();
         }
 
         private void label1_MouseLeave(object sender, EventArgs e)
@@ -66,18 +67,28 @@ namespace VeterenaryClinicApp.View.Animals
 
         private void AddAnimalForm_Load(object sender, EventArgs e)
         {
-            using(var db = new Veterinary_ClinicEntities())
-            {
-                for(var i = 0;i < db.Виды_животных.Count(); i++)
-                {
-                    animalType.Add(db.Виды_животных.FirstOrDefault(x => x.Код_вида_животного == (i+1)).Вид_животного, i+1);                   
-                }
-                
-            }
-
             string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
             SqlConnection myConnection = new SqlConnection(connectionString);
             myConnection.Open();
+            using (var db = new Veterinary_ClinicEntities())
+            { 
+
+                var commandTemp = new SqlCommand("SELECT [Код вида животного],[Вид животного] FROM [Виды животных]", myConnection);
+
+                using(var reader  = commandTemp.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["Код вида животного"];
+                        string name = (string)reader["Вид животного"];
+                        animalType.Add(name, id);
+                    }
+                }
+
+                
+            }
+
+            
 
             string sql = "SELECT [Вид животного] FROM [Виды животных]";
             SqlCommand command = new SqlCommand(sql, myConnection);
