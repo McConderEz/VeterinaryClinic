@@ -101,5 +101,45 @@ namespace VeterenaryClinicApp.View.Procedure
             procedureTypeBox.DataSource = table;
             procedureTypeBox.DisplayMember = "Вид процедуры";
         }
+
+        private void codeEmployeeBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                employeeLabel.Text = "Сотрудник:";
+                using (var db = new Veterinary_ClinicEntities())
+                {
+                    var temp = db.Сотрудники.Find(int.Parse(codeEmployeeBox.Text));
+                    if (temp != null)
+                        employeeLabel.Text += " " + temp.Фамилия.Trim(' ') + " " + temp.Имя.Trim(' ').ToString() + " " + temp.Отчество.Trim(' ').ToString();
+                    else
+                        employeeLabel.Text = "Сотрудник:";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}");
+            }
+        }
+
+        private void codeAnimalBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                animalLabel.Text = "Животное:";
+                using (var db = new Veterinary_ClinicEntities())
+                {
+                    var temp = db.Животные.Find(int.Parse(codeAnimalBox.Text));
+                    if (temp != null)
+                        animalLabel.Text += " " + temp.Кличка_Животного.Trim(' ') + " " + db.Виды_животных.FirstOrDefault(x => x.Код_вида_животного == temp.Код_вида_животного).ToString();
+                    else
+                        animalLabel.Text = "Животное:";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}");
+            }
+        }
     }
 }

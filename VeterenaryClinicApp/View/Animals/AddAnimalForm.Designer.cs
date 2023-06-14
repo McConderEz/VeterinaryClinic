@@ -49,6 +49,7 @@
             this.nameBox = new System.Windows.Forms.TextBox();
             this.animalTypeBox = new System.Windows.Forms.ComboBox();
             this.codeOwnerBox = new System.Windows.Forms.TextBox();
+            this.ownerLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,7 +85,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label5.Location = new System.Drawing.Point(330, 283);
+            this.label5.Location = new System.Drawing.Point(88, 280);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(115, 18);
             this.label5.TabIndex = 85;
@@ -198,7 +199,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel3.Location = new System.Drawing.Point(263, 349);
+            this.panel3.Location = new System.Drawing.Point(91, 344);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(257, 1);
@@ -249,7 +250,7 @@
             // animalTypeBox
             // 
             this.animalTypeBox.FormattingEnabled = true;
-            this.animalTypeBox.Location = new System.Drawing.Point(263, 319);
+            this.animalTypeBox.Location = new System.Drawing.Point(91, 314);
             this.animalTypeBox.Name = "animalTypeBox";
             this.animalTypeBox.Size = new System.Drawing.Size(257, 21);
             this.animalTypeBox.TabIndex = 88;
@@ -266,6 +267,18 @@
             this.codeOwnerBox.Name = "codeOwnerBox";
             this.codeOwnerBox.Size = new System.Drawing.Size(226, 22);
             this.codeOwnerBox.TabIndex = 77;
+            this.codeOwnerBox.TextChanged += new System.EventHandler(this.codeOwnerBox_TextChanged);
+            // 
+            // ownerLabel
+            // 
+            this.ownerLabel.AutoSize = true;
+            this.ownerLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ownerLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ownerLabel.Location = new System.Drawing.Point(419, 280);
+            this.ownerLabel.Name = "ownerLabel";
+            this.ownerLabel.Size = new System.Drawing.Size(83, 18);
+            this.ownerLabel.TabIndex = 89;
+            this.ownerLabel.Text = "Владелец:";
             // 
             // AddAnimalForm
             // 
@@ -273,6 +286,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
             this.ClientSize = new System.Drawing.Size(728, 548);
+            this.Controls.Add(this.ownerLabel);
             this.Controls.Add(this.animalTypeBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -324,5 +338,6 @@
         private System.Windows.Forms.TextBox nameBox;
         private System.Windows.Forms.ComboBox animalTypeBox;
         private System.Windows.Forms.TextBox codeOwnerBox;
+        private System.Windows.Forms.Label ownerLabel;
     }
 }

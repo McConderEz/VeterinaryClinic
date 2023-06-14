@@ -57,27 +57,46 @@ namespace VeterenaryClinicApp
 
         private void AddForm_Load(object sender, EventArgs e)
         {
-            using (var db = new Veterinary_ClinicEntities())
-            {
-                for (var i = 0; i < db.Тип_собственности.Count(); i++)
-                {
-                    ownershipType.Add(db.Тип_собственности.FirstOrDefault(x => x.Код_типа_собственности == (i + 1)).Тип_собственности1, i + 1);
-                }
-
-            }
-
-            using (var db = new Veterinary_ClinicEntities())
-            {
-                for (var i = 0; i < db.Районы.Count(); i++)
-                {
-                    district.Add(db.Районы.FirstOrDefault(x => x.Код_района == (i + 1)).Район_города, i + 1);
-                }
-
-            }
-
             string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
             SqlConnection myConnection = new SqlConnection(connectionString);
             myConnection.Open();
+            using (var db = new Veterinary_ClinicEntities())
+            {
+
+                var commandTemp = new SqlCommand("SELECT [Код типа собственности],[Тип собственности] FROM [Тип собственности]", myConnection);
+
+                using (var reader = commandTemp.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["Код типа собственности"];
+                        string name = (string)reader["Тип собственности"];
+                        ownershipType.Add(name, id);
+                    }
+                }
+
+
+            }
+
+            using (var db = new Veterinary_ClinicEntities())
+            {
+
+                var commandTemp = new SqlCommand("SELECT [Код района],[Район города] FROM [Районы]", myConnection);
+
+                using (var reader = commandTemp.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["Код района"];
+                        string name = (string)reader["Район города"];
+                        district.Add(name, id);
+                    }
+                }
+
+
+            }
+
+
 
             string sql = "SELECT [Район города] FROM [Районы]";
             SqlCommand command = new SqlCommand(sql, myConnection);
@@ -86,8 +105,10 @@ namespace VeterenaryClinicApp
             adapter.Fill(table);
             distinctBox.DataSource = table;
             distinctBox.DisplayMember = "Район города";
-            sql = "SELECT [Тип собственности] FROM [Тип собственности]";
+            sql = "SELECT * FROM [Тип собственности]";
+            command = new SqlCommand(sql, myConnection);
             var table2 = new DataTable();
+            adapter = new SqlDataAdapter(command);
             adapter.Fill(table2);
             ownershipTypeBox.DataSource = table2;
             ownershipTypeBox.DisplayMember = "Тип собственности";

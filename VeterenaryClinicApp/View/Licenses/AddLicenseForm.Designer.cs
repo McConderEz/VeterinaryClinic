@@ -45,6 +45,7 @@
             this.codeVeterinaryClinicBox = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.openImage = new System.Windows.Forms.OpenFileDialog();
+            this.vetClinicLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -201,6 +202,7 @@
             this.codeVeterinaryClinicBox.Name = "codeVeterinaryClinicBox";
             this.codeVeterinaryClinicBox.Size = new System.Drawing.Size(257, 22);
             this.codeVeterinaryClinicBox.TabIndex = 102;
+            this.codeVeterinaryClinicBox.TextChanged += new System.EventHandler(this.codeVeterinaryClinicBox_TextChanged);
             // 
             // button2
             // 
@@ -209,7 +211,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button2.Location = new System.Drawing.Point(163, 310);
+            this.button2.Location = new System.Drawing.Point(156, 361);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(176, 26);
@@ -222,12 +224,24 @@
             // 
             this.openImage.FileName = "openFileDialog1";
             // 
+            // vetClinicLabel
+            // 
+            this.vetClinicLabel.AutoSize = true;
+            this.vetClinicLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.vetClinicLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.vetClinicLabel.Location = new System.Drawing.Point(111, 318);
+            this.vetClinicLabel.Name = "vetClinicLabel";
+            this.vetClinicLabel.Size = new System.Drawing.Size(175, 18);
+            this.vetClinicLabel.TabIndex = 110;
+            this.vetClinicLabel.Text = "Ветеринарная клиника:";
+            // 
             // AddLicenseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
             this.ClientSize = new System.Drawing.Size(500, 450);
+            this.Controls.Add(this.vetClinicLabel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.panel3);
@@ -269,5 +283,6 @@
         private System.Windows.Forms.TextBox dateToEndBox;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.OpenFileDialog openImage;
+        private System.Windows.Forms.Label vetClinicLabel;
     }
 }

@@ -58,6 +58,7 @@
             this.nameBox = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.positionBox = new System.Windows.Forms.ComboBox();
+            this.vetClinicLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,7 +72,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label10.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label10.Location = new System.Drawing.Point(402, 357);
+            this.label10.Location = new System.Drawing.Point(402, 321);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(198, 18);
             this.label10.TabIndex = 126;
@@ -80,7 +81,7 @@
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel8.Location = new System.Drawing.Point(405, 429);
+            this.panel8.Location = new System.Drawing.Point(405, 393);
             this.panel8.Margin = new System.Windows.Forms.Padding(4);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(257, 1);
@@ -92,18 +93,19 @@
             this.codeVeterinaryClinicBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.codeVeterinaryClinicBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.codeVeterinaryClinicBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.codeVeterinaryClinicBox.Location = new System.Drawing.Point(405, 399);
+            this.codeVeterinaryClinicBox.Location = new System.Drawing.Point(405, 363);
             this.codeVeterinaryClinicBox.Margin = new System.Windows.Forms.Padding(4);
             this.codeVeterinaryClinicBox.Name = "codeVeterinaryClinicBox";
             this.codeVeterinaryClinicBox.Size = new System.Drawing.Size(226, 22);
             this.codeVeterinaryClinicBox.TabIndex = 124;
+            this.codeVeterinaryClinicBox.TextChanged += new System.EventHandler(this.codeVeterinaryClinicBox_TextChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label9.Location = new System.Drawing.Point(72, 357);
+            this.label9.Location = new System.Drawing.Point(72, 321);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 18);
             this.label9.TabIndex = 123;
@@ -114,7 +116,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label8.Location = new System.Drawing.Point(402, 276);
+            this.label8.Location = new System.Drawing.Point(402, 240);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(46, 18);
             this.label8.TabIndex = 122;
@@ -125,7 +127,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label7.Location = new System.Drawing.Point(402, 205);
+            this.label7.Location = new System.Drawing.Point(402, 169);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(119, 18);
             this.label7.TabIndex = 121;
@@ -136,7 +138,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label6.Location = new System.Drawing.Point(402, 132);
+            this.label6.Location = new System.Drawing.Point(402, 96);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 18);
             this.label6.TabIndex = 120;
@@ -147,7 +149,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label5.Location = new System.Drawing.Point(71, 276);
+            this.label5.Location = new System.Drawing.Point(71, 240);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(86, 18);
             this.label5.TabIndex = 119;
@@ -158,7 +160,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label4.Location = new System.Drawing.Point(72, 205);
+            this.label4.Location = new System.Drawing.Point(72, 169);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 18);
             this.label4.TabIndex = 118;
@@ -169,7 +171,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(71, 132);
+            this.label3.Location = new System.Drawing.Point(71, 96);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 18);
             this.label3.TabIndex = 117;
@@ -221,7 +223,7 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel7.Location = new System.Drawing.Point(75, 429);
+            this.panel7.Location = new System.Drawing.Point(75, 393);
             this.panel7.Margin = new System.Windows.Forms.Padding(4);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(257, 1);
@@ -233,7 +235,7 @@
             this.salaryBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.salaryBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.salaryBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.salaryBox.Location = new System.Drawing.Point(75, 399);
+            this.salaryBox.Location = new System.Drawing.Point(75, 363);
             this.salaryBox.Margin = new System.Windows.Forms.Padding(4);
             this.salaryBox.Name = "salaryBox";
             this.salaryBox.Size = new System.Drawing.Size(226, 22);
@@ -242,7 +244,7 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel6.Location = new System.Drawing.Point(405, 339);
+            this.panel6.Location = new System.Drawing.Point(405, 303);
             this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(257, 1);
@@ -254,7 +256,7 @@
             this.expBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.expBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.expBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.expBox.Location = new System.Drawing.Point(405, 309);
+            this.expBox.Location = new System.Drawing.Point(405, 273);
             this.expBox.Margin = new System.Windows.Forms.Padding(4);
             this.expBox.Name = "expBox";
             this.expBox.Size = new System.Drawing.Size(226, 22);
@@ -263,7 +265,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel5.Location = new System.Drawing.Point(405, 257);
+            this.panel5.Location = new System.Drawing.Point(405, 221);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(257, 1);
@@ -275,7 +277,7 @@
             this.birthdayBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.birthdayBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.birthdayBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.birthdayBox.Location = new System.Drawing.Point(405, 227);
+            this.birthdayBox.Location = new System.Drawing.Point(405, 191);
             this.birthdayBox.Margin = new System.Windows.Forms.Padding(4);
             this.birthdayBox.Name = "birthdayBox";
             this.birthdayBox.Size = new System.Drawing.Size(226, 22);
@@ -284,7 +286,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel4.Location = new System.Drawing.Point(405, 188);
+            this.panel4.Location = new System.Drawing.Point(405, 152);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(257, 1);
@@ -296,7 +298,7 @@
             this.secondNameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.secondNameBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.secondNameBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.secondNameBox.Location = new System.Drawing.Point(405, 158);
+            this.secondNameBox.Location = new System.Drawing.Point(405, 122);
             this.secondNameBox.Margin = new System.Windows.Forms.Padding(4);
             this.secondNameBox.Name = "secondNameBox";
             this.secondNameBox.Size = new System.Drawing.Size(226, 22);
@@ -305,7 +307,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel3.Location = new System.Drawing.Point(75, 339);
+            this.panel3.Location = new System.Drawing.Point(75, 303);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(257, 1);
@@ -314,7 +316,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel2.Location = new System.Drawing.Point(75, 257);
+            this.panel2.Location = new System.Drawing.Point(75, 221);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(257, 1);
@@ -326,7 +328,7 @@
             this.surNameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.surNameBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.surNameBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.surNameBox.Location = new System.Drawing.Point(75, 227);
+            this.surNameBox.Location = new System.Drawing.Point(75, 191);
             this.surNameBox.Margin = new System.Windows.Forms.Padding(4);
             this.surNameBox.Name = "surNameBox";
             this.surNameBox.Size = new System.Drawing.Size(226, 22);
@@ -335,7 +337,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel1.Location = new System.Drawing.Point(75, 188);
+            this.panel1.Location = new System.Drawing.Point(75, 152);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(257, 1);
@@ -347,7 +349,7 @@
             this.nameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.nameBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nameBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.nameBox.Location = new System.Drawing.Point(75, 158);
+            this.nameBox.Location = new System.Drawing.Point(75, 122);
             this.nameBox.Margin = new System.Windows.Forms.Padding(4);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(257, 22);
@@ -366,11 +368,22 @@
             // positionBox
             // 
             this.positionBox.FormattingEnabled = true;
-            this.positionBox.Location = new System.Drawing.Point(74, 309);
+            this.positionBox.Location = new System.Drawing.Point(74, 273);
             this.positionBox.Name = "positionBox";
             this.positionBox.Size = new System.Drawing.Size(257, 21);
             this.positionBox.TabIndex = 127;
             this.positionBox.SelectedIndexChanged += new System.EventHandler(this.positionBox_SelectedIndexChanged);
+            // 
+            // vetClinicLabel
+            // 
+            this.vetClinicLabel.AutoSize = true;
+            this.vetClinicLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.vetClinicLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.vetClinicLabel.Location = new System.Drawing.Point(232, 414);
+            this.vetClinicLabel.Name = "vetClinicLabel";
+            this.vetClinicLabel.Size = new System.Drawing.Size(175, 18);
+            this.vetClinicLabel.TabIndex = 128;
+            this.vetClinicLabel.Text = "Ветеринарная клиника:";
             // 
             // EditEmployeeForm
             // 
@@ -378,6 +391,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
             this.ClientSize = new System.Drawing.Size(728, 548);
+            this.Controls.Add(this.vetClinicLabel);
             this.Controls.Add(this.positionBox);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.panel8);
@@ -447,5 +461,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox nameBox;
         private System.Windows.Forms.ComboBox positionBox;
+        private System.Windows.Forms.Label vetClinicLabel;
     }
 }

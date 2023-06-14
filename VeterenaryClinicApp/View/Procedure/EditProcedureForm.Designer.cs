@@ -55,6 +55,8 @@
             this.dataHelpBox = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.procedureTypeBox = new System.Windows.Forms.ComboBox();
+            this.employeeLabel = new System.Windows.Forms.Label();
+            this.animalLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,7 +70,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label9.Location = new System.Drawing.Point(318, 357);
+            this.label9.Location = new System.Drawing.Point(75, 366);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(114, 18);
             this.label9.TabIndex = 95;
@@ -186,7 +188,7 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel7.Location = new System.Drawing.Point(247, 428);
+            this.panel7.Location = new System.Drawing.Point(77, 429);
             this.panel7.Margin = new System.Windows.Forms.Padding(4);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(257, 1);
@@ -198,11 +200,12 @@
             this.codeAnimalBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.codeAnimalBox.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.codeAnimalBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.codeAnimalBox.Location = new System.Drawing.Point(247, 398);
+            this.codeAnimalBox.Location = new System.Drawing.Point(77, 399);
             this.codeAnimalBox.Margin = new System.Windows.Forms.Padding(4);
             this.codeAnimalBox.Name = "codeAnimalBox";
             this.codeAnimalBox.Size = new System.Drawing.Size(226, 22);
             this.codeAnimalBox.TabIndex = 83;
+            this.codeAnimalBox.TextChanged += new System.EventHandler(this.codeAnimalBox_TextChanged);
             // 
             // panel6
             // 
@@ -224,6 +227,7 @@
             this.codeEmployeeBox.Name = "codeEmployeeBox";
             this.codeEmployeeBox.Size = new System.Drawing.Size(226, 22);
             this.codeEmployeeBox.TabIndex = 81;
+            this.codeEmployeeBox.TextChanged += new System.EventHandler(this.codeEmployeeBox_TextChanged);
             // 
             // panel5
             // 
@@ -337,12 +341,36 @@
             this.procedureTypeBox.TabIndex = 109;
             this.procedureTypeBox.SelectedIndexChanged += new System.EventHandler(this.procedureTypeBox_SelectedIndexChanged);
             // 
+            // employeeLabel
+            // 
+            this.employeeLabel.AutoSize = true;
+            this.employeeLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.employeeLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.employeeLabel.Location = new System.Drawing.Point(381, 366);
+            this.employeeLabel.Name = "employeeLabel";
+            this.employeeLabel.Size = new System.Drawing.Size(91, 18);
+            this.employeeLabel.TabIndex = 110;
+            this.employeeLabel.Text = "Сотрудник: ";
+            // 
+            // animalLabel
+            // 
+            this.animalLabel.AutoSize = true;
+            this.animalLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.animalLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.animalLabel.Location = new System.Drawing.Point(381, 399);
+            this.animalLabel.Name = "animalLabel";
+            this.animalLabel.Size = new System.Drawing.Size(85, 18);
+            this.animalLabel.TabIndex = 111;
+            this.animalLabel.Text = "Животное:";
+            // 
             // EditProcedureForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
             this.ClientSize = new System.Drawing.Size(728, 548);
+            this.Controls.Add(this.animalLabel);
+            this.Controls.Add(this.employeeLabel);
             this.Controls.Add(this.procedureTypeBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -406,5 +434,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox dataHelpBox;
         private System.Windows.Forms.ComboBox procedureTypeBox;
+        private System.Windows.Forms.Label animalLabel;
+        private System.Windows.Forms.Label employeeLabel;
     }
 }

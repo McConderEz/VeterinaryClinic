@@ -104,5 +104,18 @@ namespace VeterenaryClinicApp.View.Animals
             codeTypeAnimalBox = animalTypeBox.GetItemText(animalTypeBox.SelectedItem);
 
         }
+
+        private void codeOwnerBox_TextChanged(object sender, EventArgs e)
+        {
+            ownerLabel.Text = "Владелец:";
+            using (var db = new Veterinary_ClinicEntities())
+            {
+                var temp = db.Владельцы.Find(int.Parse(codeOwnerBox.Text));
+                if (temp != null)
+                    ownerLabel.Text += " " + temp.Фамилия.Trim(' ') + " " + temp.Имя.Trim(' ') + " " + temp.Отчество.Trim(' ');
+                else
+                    ownerLabel.Text = "Владелец:";
+            }
+        }
     }
 }

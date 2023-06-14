@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VeterenaryClinicApp.Controller;
+using VeterenaryClinicApp.Model;
 
 namespace VeterenaryClinicApp.View.Licenses
 {
@@ -70,6 +71,26 @@ namespace VeterenaryClinicApp.View.Licenses
                 imageData = File.ReadAllBytes(openImage.FileName);
             }
             catch(Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}");
+            }
+        }
+
+        private void codeVeterinaryClinicBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                vetClinicLabel.Text = "Ветеринарная клиника:";
+                using (var db = new Veterinary_ClinicEntities())
+                {
+                    var temp = db.Ветеринарные_клиники.Find(int.Parse(codeVeterinaryClinicBox.Text));
+                    if (temp != null)
+                        vetClinicLabel.Text += " " + temp.Название_пункта.Trim(' ') + " " + temp.Номер_регистрационного_пункта.ToString();
+                    else
+                        vetClinicLabel.Text = "Ветеринарная клиника:";
+                }
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show($"{ex.Message}");
             }
