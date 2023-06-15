@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using VeterenaryClinicApp.Model;
+using Row = DocumentFormat.OpenXml.Spreadsheet.Row;
 
 namespace VeterenaryClinicApp
 {
@@ -34,12 +38,12 @@ namespace VeterenaryClinicApp
 
         private void label1_MouseMove(object sender, MouseEventArgs e)
         {
-            label1.ForeColor = Color.Red;
+            label1.ForeColor = System.Drawing.Color.Red;
         }
 
         private void label1_MouseLeave(object sender, EventArgs e)
         {
-            label1.ForeColor = Color.White;
+            label1.ForeColor = System.Drawing.Color.White;
         }
 
         private void StatisticForm_Load(object sender, EventArgs e)
@@ -161,8 +165,45 @@ namespace VeterenaryClinicApp
             SqlDataAdapter adapter = new SqlDataAdapter(command);
             table = new DataTable();
             adapter.Fill(table);
+            using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Create("output.xlsx", SpreadsheetDocumentType.Workbook))
+            {
+                WorkbookPart workbookPart = spreadsheetDocument.AddWorkbookPart();
+                workbookPart.Workbook = new Workbook();
 
-            
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                worksheetPart.Worksheet = new Worksheet(new SheetData());
+
+                Sheets sheets = spreadsheetDocument.WorkbookPart.Workbook.AppendChild<Sheets>(new Sheets());
+
+                Sheet sheet = new Sheet() { Id = spreadsheetDocument.WorkbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "Sheet1" };
+                sheets.Append(sheet);
+
+                SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
+
+                // Заполнение первой строки заголовками
+                Row headerRow = new Row();
+                foreach (DataColumn column in table.Columns)
+                {
+                    Cell cell = new Cell() { DataType = CellValues.String, CellValue = new CellValue(column.ColumnName) };
+                    headerRow.AppendChild(cell);
+                }
+                sheetData.AppendChild(headerRow);
+
+                // Заполнение строк данными из таблицы
+                foreach (DataRow row in table.Rows)
+                {
+                    Row dataRow = new Row();
+                    foreach (DataColumn column in table.Columns)
+                    {
+                        Cell cell = new Cell() { DataType = CellValues.String, CellValue = new CellValue(row[column].ToString()) };
+                        dataRow.AppendChild(cell);
+                    }
+                    sheetData.AppendChild(dataRow);
+                }
+
+                workbookPart.Workbook.Save();
+            }
+
         }
     }
 

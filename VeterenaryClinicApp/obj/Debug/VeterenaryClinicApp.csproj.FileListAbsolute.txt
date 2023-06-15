@@ -197,3 +197,4 @@ C:\Users\fikra\source\repos\VeterinaryClinic\VeterenaryClinicApp\obj\Debug\Veter
 C:\Users\fikra\source\repos\VeterinaryClinic\VeterenaryClinicApp\obj\Debug\VeterenaryClinicApp.View.Conditions.EditPositionForm.resources
 C:\Users\fikra\source\repos\VeterinaryClinic\VeterenaryClinicApp\obj\Debug\VeterenaryClinicApp.View.Licenses.AddLicenseForm.resources
 C:\Users\fikra\source\repos\VeterinaryClinic\VeterenaryClinicApp\obj\Debug\VeterenaryClinicApp.View.Licenses.EditLicenseForm.resources
+C:\Users\fikra\source\repos\VeterinaryClinic\VeterenaryClinicApp\bin\Debug\DocumentFormat.OpenXml.xml

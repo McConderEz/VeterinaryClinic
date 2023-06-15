@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title6 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.label1 = new System.Windows.Forms.Label();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.button5 = new System.Windows.Forms.Button();
@@ -55,40 +55,40 @@
             // chart2
             // 
             this.chart2.BackColor = System.Drawing.Color.DarkSlateGray;
-            chartArea5.AxisX.IsMarginVisible = false;
-            chartArea5.AxisX.LineColor = System.Drawing.Color.White;
-            chartArea5.BackColor = System.Drawing.Color.DarkSlateGray;
-            chartArea5.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea5);
-            legend5.BackColor = System.Drawing.Color.DarkSlateGray;
-            legend5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            legend5.ForeColor = System.Drawing.SystemColors.Window;
-            legend5.IsTextAutoFit = false;
-            legend5.Name = "Legend1";
-            this.chart2.Legends.Add(legend5);
+            chartArea6.AxisX.IsMarginVisible = false;
+            chartArea6.AxisX.LineColor = System.Drawing.Color.White;
+            chartArea6.BackColor = System.Drawing.Color.DarkSlateGray;
+            chartArea6.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea6);
+            legend6.BackColor = System.Drawing.Color.DarkSlateGray;
+            legend6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            legend6.ForeColor = System.Drawing.SystemColors.Window;
+            legend6.IsTextAutoFit = false;
+            legend6.Name = "Legend1";
+            this.chart2.Legends.Add(legend6);
             this.chart2.Location = new System.Drawing.Point(24, 100);
             this.chart2.Name = "chart2";
-            series5.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.LeftRight;
-            series5.BackSecondaryColor = System.Drawing.Color.DarkOrchid;
-            series5.BorderColor = System.Drawing.Color.DeepPink;
-            series5.BorderWidth = 3;
-            series5.ChartArea = "ChartArea1";
-            series5.Color = System.Drawing.Color.Crimson;
-            series5.Legend = "Legend1";
-            series5.MarkerColor = System.Drawing.Color.MediumVioletRed;
-            series5.MarkerSize = 8;
-            series5.Name = "Series1";
-            this.chart2.Series.Add(series5);
+            series6.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.LeftRight;
+            series6.BackSecondaryColor = System.Drawing.Color.DarkOrchid;
+            series6.BorderColor = System.Drawing.Color.DeepPink;
+            series6.BorderWidth = 3;
+            series6.ChartArea = "ChartArea1";
+            series6.Color = System.Drawing.Color.Crimson;
+            series6.Legend = "Legend1";
+            series6.MarkerColor = System.Drawing.Color.MediumVioletRed;
+            series6.MarkerSize = 8;
+            series6.Name = "Series1";
+            this.chart2.Series.Add(series6);
             this.chart2.Size = new System.Drawing.Size(745, 309);
             this.chart2.TabIndex = 26;
             this.chart2.Text = "chart2";
-            title5.Alignment = System.Drawing.ContentAlignment.TopLeft;
-            title5.BorderWidth = 0;
-            title5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            title5.ForeColor = System.Drawing.Color.White;
-            title5.Name = "Лучшие клиники";
-            title5.Text = "Лучшие Клиники";
-            this.chart2.Titles.Add(title5);
+            title6.Alignment = System.Drawing.ContentAlignment.TopLeft;
+            title6.BorderWidth = 0;
+            title6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            title6.ForeColor = System.Drawing.Color.White;
+            title6.Name = "Лучшие клиники";
+            title6.Text = "Лучшие Клиники";
+            this.chart2.Titles.Add(title6);
             // 
             // button5
             // 
@@ -103,6 +103,7 @@
             this.button5.TabIndex = 27;
             this.button5.Text = "Экспорт в Excel";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button1
             // 
