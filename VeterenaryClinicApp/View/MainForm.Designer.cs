@@ -133,7 +133,7 @@
             this.button4.Padding = new System.Windows.Forms.Padding(70, 0, 0, 0);
             this.button4.Size = new System.Drawing.Size(233, 40);
             this.button4.TabIndex = 5;
-            this.button4.Text = "Лучшие сотрудники";
+            this.button4.Text = "Лучшие Клиники(столб)";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -150,7 +150,7 @@
             this.button6.Padding = new System.Windows.Forms.Padding(70, 0, 0, 0);
             this.button6.Size = new System.Drawing.Size(233, 40);
             this.button6.TabIndex = 4;
-            this.button6.Text = "Лучшие клиники";
+            this.button6.Text = "Лучшие клиники(XY)";
             this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
