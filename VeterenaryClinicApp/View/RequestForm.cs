@@ -253,6 +253,7 @@ namespace VeterenaryClinicApp
             procedureType = procedureTypeBox.GetItemText(procedureTypeBox.SelectedItem);
         }
 
+        //Запрос 1
         private void button3_Click(object sender, EventArgs e)
         {
             string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
@@ -260,41 +261,45 @@ namespace VeterenaryClinicApp
             myConnection.Open();
             var table = new DataTable();
             string sql = @"
-                WITH cte AS (
-                    SELECT
-                        [Ветеринарные клиники].[Название пункта],
-                        [Районы].[Район города],
-                        [Сотрудники].[Код ветеринарной клиники],
-                        COUNT(*) AS Количество_процедур,
-                        DENSE_RANK() OVER (PARTITION BY [Районы].[Район города] ORDER BY COUNT(*) DESC, [Ветеринарные клиники].[Название пункта]) AS Ранг_по_району,
-                        ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC, [Ветеринарные клиники].[Название пункта]) AS Ранг_по_городу
-                    FROM [dbo].[Процедуры]
-                    INNER JOIN [dbo].[Сотрудники] ON [Процедуры].[Код сотрудника] = [Сотрудники].[Код сотрудника]
-                    INNER JOIN [dbo].[Ветеринарные клиники] ON [Сотрудники].[Код ветеринарной клиники] = [Ветеринарные клиники].[Код ветеринарной клинки]
-                    INNER JOIN [dbo].[Районы] ON [Ветеринарные клиники].[Код район города] = [Районы].[Код района]
-                    GROUP BY
-                        [Ветеринарные клиники].[Название пункта],
-                        [Районы].[Район города],
-                        [Сотрудники].[Код ветеринарной клиники]
-                )
-                SELECT
-                    cte1.[Район города],
-                    STUFF((SELECT ', ' + [Название пункта]
-                           FROM cte
-                           WHERE [Район города] = cte1.[Район города] AND [Ранг_по_району] = 1
-                           FOR XML PATH('')), 1, 2, '') AS [Лучшие пункты по району],
-                    STUFF((SELECT TOP 3 ', ' + [Название пункта] + ' (' + CAST([Количество_процедур] AS VARCHAR) + ')'
-                           FROM cte
-                           WHERE [Ранг_по_городу] <= 3
-                           ORDER BY [Ранг_по_городу]
-                           FOR XML PATH('')), 1, 2, '') AS [Топ 3 лучших пункта по городу],
-                    cte1.[Количество_процедур]
-                FROM
-                    cte AS cte1
-                WHERE
-                    cte1.[Ранг_по_району] = 1
-                GROUP BY
-                    cte1.[Район города], cte1.[Количество_процедур]";
+    WITH cte AS (
+        SELECT
+            [Ветеринарные клиники].[Название пункта],
+            [Ветеринарные клиники].[Номер регистрационного пункта],
+            [Районы].[Район города],
+            [Сотрудники].[Код ветеринарной клиники],
+            COUNT(*) AS Количество_процедур,
+            DENSE_RANK() OVER (PARTITION BY [Районы].[Район города] ORDER BY COUNT(*) DESC, [Ветеринарные клиники].[Название пункта]) AS Ранг_по_району,
+            ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC, [Ветеринарные клиники].[Название пункта]) AS Ранг_по_городу
+        FROM [dbo].[Процедуры]
+        INNER JOIN [dbo].[Сотрудники] ON [Процедуры].[Код сотрудника] = [Сотрудники].[Код сотрудника]
+        INNER JOIN [dbo].[Ветеринарные клиники] ON [Сотрудники].[Код ветеринарной клиники] = [Ветеринарные клиники].[Код ветеринарной клинки]
+        INNER JOIN [dbo].[Районы] ON [Ветеринарные клиники].[Код район города] = [Районы].[Код района]
+        GROUP BY
+            [Ветеринарные клиники].[Название пункта],
+            [Ветеринарные клиники].[Номер регистрационного пункта],
+            [Районы].[Район города],
+            [Сотрудники].[Код ветеринарной клиники]
+    )
+    SELECT
+        cte1.[Район города],
+        STUFF((SELECT ', ' + [Название пункта]
+               FROM cte
+               WHERE [Район города] = cte1.[Район города] AND [Ранг_по_району] = 1
+               FOR XML PATH('')), 1, 2, '') AS [Лучшие пункты по району],
+        STUFF((SELECT TOP 3 ', ' + [Название пункта] + ' (' + CAST([Количество_процедур] AS VARCHAR) + ')'
+               FROM cte
+               WHERE [Ранг_по_городу] <= 3
+               ORDER BY [Ранг_по_городу]
+               FOR XML PATH('')), 1, 2, '') AS [Топ 3 лучших пункта по городу],
+        cte1.[Код ветеринарной клиники],
+        cte1.[Номер регистрационного пункта],
+        cte1.[Количество_процедур]
+    FROM
+        cte AS cte1
+    WHERE
+        cte1.[Ранг_по_району] = 1
+    GROUP BY
+        cte1.[Район города], cte1.[Код ветеринарной клиники], cte1.[Номер регистрационного пункта], cte1.[Количество_процедур]";
             SqlCommand command = new SqlCommand(sql, myConnection);
             SqlDataAdapter adapter = new SqlDataAdapter(command);
             table = new DataTable();
@@ -303,7 +308,7 @@ namespace VeterenaryClinicApp
             dataGridView1.DataSource = table;
         }
 
-        //TODO:НЕ РАБОТАЕТ
+        //Запрос 2
         private void button1_Click(object sender, EventArgs e)
         {
             string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
@@ -525,12 +530,14 @@ ORDER BY [Количество процедур] DESC;";
             dataGridView1.DataSource = table;
         }
 
+        //Запрос 3
         private void button2_Click(object sender, EventArgs e)
         {
             string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
             SqlConnection myConnection = new SqlConnection(connectionString);
             myConnection.Open();
             var table = new DataTable();
+            #region stuff
             //            string sql = @"WITH CTE AS (
             //SELECT
             //[Ветеринарные клиники].[Код ветеринарной клинки],
@@ -579,7 +586,11 @@ ORDER BY [Количество процедур] DESC;";
             //SELECT
             //[Доходы]
             //FROM CTE;";
-            string sql = @"WITH CTE_Clinics AS (
+            #endregion
+
+            if (int.TryParse(yearBox.Text, out int year))
+            {
+                string sql = $@"WITH CTE_Clinics AS (
     SELECT
         [Ветеринарные клиники].[Код ветеринарной клинки],
         [Ветеринарные клиники].[Номер регистрационного пункта],
@@ -591,7 +602,7 @@ ORDER BY [Количество процедур] DESC;";
     JOIN [Сотрудники] ON [Процедуры].[Код сотрудника] = [Сотрудники].[Код сотрудника]
     JOIN [Ветеринарные клиники] ON [Сотрудники].[Код ветеринарной клиники] = [Ветеринарные клиники].[Код ветеринарной клинки]
     JOIN [Районы] ON [Ветеринарные клиники].[Код район города] = [Районы].[Код района]
-    WHERE YEAR([Процедуры].[Дата оказания помощи животному]) = '2013'
+    WHERE YEAR([Процедуры].[Дата оказания помощи животному]) = '{yearBox.Text}'
     GROUP BY [Ветеринарные клиники].[Код ветеринарной клинки], [Ветеринарные клиники].[Номер регистрационного пункта], [Ветеринарные клиники].[Название пункта], [Районы].[Район города]
 ), CTE_Districts AS (
     SELECT
@@ -602,13 +613,13 @@ ORDER BY [Количество процедур] DESC;";
     JOIN [Сотрудники] ON [Процедуры].[Код сотрудника] = [Сотрудники].[Код сотрудника]
     JOIN [Ветеринарные клиники] ON [Сотрудники].[Код ветеринарной клиники] = [Ветеринарные клиники].[Код ветеринарной клинки]
     JOIN [Районы] ON [Ветеринарные клиники].[Код район города] = [Районы].[Код района]
-    WHERE YEAR([Процедуры].[Дата оказания помощи животному]) = '2013'
+    WHERE YEAR([Процедуры].[Дата оказания помощи животному]) = '{yearBox.Text}'
     GROUP BY [Районы].[Район города]
 ), CTE_Total AS (
     SELECT
         SUM([Процедуры].[Цена процедуры]) AS [Доходы]
     FROM [Процедуры]
-    WHERE YEAR([Процедуры].[Дата оказания помощи животному]) = '2013'
+    WHERE YEAR([Процедуры].[Дата оказания помощи животному]) = '{yearBox.Text}'
 )
 SELECT
     [Ранг клиники] AS [Ранг клиники],
@@ -634,12 +645,17 @@ SELECT
     [Доходы] AS [Доходы]
 FROM CTE_Total
 ORDER BY [Доходы] DESC, [Ранг клиники] ASC;";
-            SqlCommand command = new SqlCommand(sql, myConnection);
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            table = new DataTable();
-            adapter.Fill(table);
+                SqlCommand command = new SqlCommand(sql, myConnection);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                table = new DataTable();
+                adapter.Fill(table);
 
-            dataGridView1.DataSource = table;
+                dataGridView1.DataSource = table;
+            }
+            else
+            {
+                MessageBox.Show("Неверный ввод аргумента!Должен быть год!");
+            }
         }
 
 

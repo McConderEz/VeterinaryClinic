@@ -49,6 +49,8 @@
             this.posBox = new System.Windows.Forms.ComboBox();
             this.procedureTypeBox = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.yearBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -368,12 +370,34 @@
             this.label9.TabIndex = 45;
             this.label9.Text = "Виды процедур";
             // 
+            // yearBox
+            // 
+            this.yearBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.yearBox.Location = new System.Drawing.Point(563, 467);
+            this.yearBox.Name = "yearBox";
+            this.yearBox.Size = new System.Drawing.Size(109, 20);
+            this.yearBox.TabIndex = 46;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label10.Location = new System.Drawing.Point(472, 468);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(88, 16);
+            this.label10.TabIndex = 47;
+            this.label10.Text = "Год к 3 запросу:";
+            // 
             // RequestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
             this.ClientSize = new System.Drawing.Size(850, 500);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.yearBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.procedureTypeBox);
             this.Controls.Add(this.posBox);
@@ -428,5 +452,7 @@
         private System.Windows.Forms.ComboBox posBox;
         private System.Windows.Forms.ComboBox procedureTypeBox;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox yearBox;
+        private System.Windows.Forms.Label label10;
     }
 }
