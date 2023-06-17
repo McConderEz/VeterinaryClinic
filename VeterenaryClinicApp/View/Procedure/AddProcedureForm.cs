@@ -132,7 +132,7 @@ namespace VeterenaryClinicApp.View.Procedure
                 {
                     var temp = db.Животные.Find(int.Parse(codeAnimalBox.Text));
                     if (temp != null)
-                        animalLabel.Text += " " + temp.Кличка_Животного.Trim(' ') + " " + db.Виды_животных.FirstOrDefault(x => x.Код_вида_животного == temp.Код_вида_животного).ToString();
+                        animalLabel.Text += " " + temp.Кличка_Животного.Trim(' ') + " " + db.Виды_животных.FirstOrDefault(x => x.Код_вида_животного == temp.Код_вида_животного).Вид_животного.ToString();
                     else
                         animalLabel.Text = "Животное:";
                 }

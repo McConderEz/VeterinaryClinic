@@ -836,5 +836,24 @@ FROM [Veterinary Clinic].[dbo].[Процедуры]";
 
             return table;
         }
+
+        /// <summary>
+        /// Мод. представление с помощью триггера
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable Request_26()
+        {
+            string connectionString = @"data source=(localdb)\MSSQLLocalDB;Initial Catalog=Veterinary Clinic;Integrated Security=True;";
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            myConnection.Open();
+            var table = new DataTable();
+            string sql = "SELECT * FROM [Модифицируемое_представление_таблица]";
+            SqlCommand command = new SqlCommand(sql, myConnection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            table = new DataTable();
+            adapter.Fill(table);
+
+            return table;
+        }
     }
 }

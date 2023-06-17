@@ -119,7 +119,8 @@ namespace VeterenaryClinicApp
                 || request == "Использование оператора IN для поиска животных определенных видов"
                 || request == "Использование оператора NOT IN для поиска животных, которые не относятся к определенным видам"
                 || request == "Использование оператора CASE для вычисления скидки на процедуры"
-                || request == "Использование подзапроса для выбора владельцев, у которых есть более одного животного")
+                || request == "Использование подзапроса для выбора владельцев, у которых есть более одного животного"
+                || request == "Статистика по ветеринарным клиникам(мод. представление через триггер)")
                 valueBox.Enabled = false;
             else
                 valueBox.Enabled = true;
@@ -230,6 +231,10 @@ namespace VeterenaryClinicApp
                         break;
                     case "Использование подзапроса для выбора владельцев, у которых есть более одного животного":
                         table = RequestsExecuter.Request_25();
+                        dataGridView1.DataSource = table;
+                        break;
+                    case "Статистика по ветеринарным клиникам(мод. представление через триггер)":
+                        table = RequestsExecuter.Request_26();
                         dataGridView1.DataSource = table;
                         break;
 

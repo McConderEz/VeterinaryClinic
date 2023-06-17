@@ -252,7 +252,8 @@
                 "ленным видам",
             "Использование оператора CASE для вычисления скидки на процедуры",
             "Использование подзапроса для выбора владельцев, у которых есть более одного живот" +
-                "ного"});
+                "ного",
+            "Статистика по ветеринарным клиникам(мод. представление через триггер)"});
             this.simpleRequestsBox.Location = new System.Drawing.Point(563, 352);
             this.simpleRequestsBox.Name = "simpleRequestsBox";
             this.simpleRequestsBox.Size = new System.Drawing.Size(208, 21);
